@@ -52,9 +52,10 @@ function addNewDogsBis(){
 
 	var nomDogs = document.getElementById('nomDogs').value;
 	var numPuceDogs = document.getElementById('numPuceDogs').value;
-	//var raceDogs = document.getElementById('raceDogs').value;
 
-	if((nomDogs != '')){
+		alert(nomDogs);
+		alert(numPuceDogs);
+	if((nomDogs!= '')){
 
 		$.ajax({
 			type:"GET",
@@ -62,7 +63,7 @@ function addNewDogsBis(){
 			data:{
 				nomDogs:nomDogs,
 				numPuceDogs:numPuceDogs,
-				//raceDogs:raceDogs,
+			
 				
 			},
 			success:setTimeout(function(){
@@ -71,7 +72,7 @@ function addNewDogsBis(){
 
 		},
 		2000),
-		//success:function(retour){alert(retour);},
+		//success:function(retour){alert(nomDogs);},
 	});
 		}else{
 
@@ -386,6 +387,50 @@ function addNewListVerification(){
 		window.location.href="?component=dogs&action=majListVerification";
 	}
 }
+
+/*function connexion(){
+
+	var login = document.getElementById('login').value;
+	var mdp = document.getElementById('mdp').value;
+
+	if((login !='')&&(mdp !='')){
+
+		$.ajax({
+			type:"GET",
+			url:"js/php/dogs/connexion.php",
+			data:{
+				login:login,
+				mdp:mdp,
+
+           
+
+           },
+           success:setTimeout(function(){
+				window.location.href="?component=dogs&action=actif";
+				
+				
+			},
+			2000),
+
+
+
+		});
+
+
+
+
+	}else{
+		window.location.href="?component=dogs&action=connexion";
+	}
+
+
+
+
+
+
+		});
+	}
+}*/
 
 
 

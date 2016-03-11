@@ -97,8 +97,6 @@ public function __construct($dbPdo){
 	public function addNewDogs($tab){
 		$req=$this->pdo->prepare('INSERT INTO proprietaire(nom,prenom,rue,numero,CP,ville,pays,mail,telephone,gsm) VALUES (:nom,:prenom,:rue,:numero,:CP,:ville,:pays,:mail,:telephone,:gsm)');
 
-		$seq=$this->pdo->prepare('INSERT INTO chien(nom,num_puce) VALUES (:nom,:num_puce)');
-
 		$req->bindParam(':nom',$tab['nomMaster'],PDO::PARAM_STR);
 		$req->bindParam(':prenom',$tab['prenomMaster'],PDO::PARAM_STR);
 		$req->bindParam(':rue',$tab['rueMaster'],PDO::PARAM_STR);
@@ -110,26 +108,18 @@ public function __construct($dbPdo){
 		$req->bindParam(':telephone',$tab['telMaster'],PDO::PARAM_STR);
 		$req->bindParam(':gsm',$tab['gsmMaster'],PDO::PARAM_STR);
 		
-		//$req->bindParam(':race_chien',$tab['raceDogs'],PDO::PARAM_STR);
-		
-		//$req->execute();
-
-		//$req=$this->pdo->prepare('INSERT INTO chien(nom,num_puce) VALUES (:nom,:num_puce)');
-		$seq->bindParam(':nom_chien',$tab['nomDogs'],PDO::PARAM_STR);
-		$seq->bindParam(':num_puce',$tab['numPuceDogs'],PDO::PARAM_STR);
-
-		$req->execute();
 		$seq->execute();
 	}
+
 	public function addNewDogsBis($tab){
+
+		print_r($tab);
 		
-		$req=$this->pdo->prepare('INSERT INTO chien(nom,num_puce) VALUES (:nom,:num_puce)');
+		/*$req=$this->pdo->prepare('INSERT INTO chien(id_chien,nom,num_puce,id_race,id_proprietaire) VALUES (NULL,:nom,:num_puce,NULL,NULL)');
 		
 		$req->bindParam(':nom_chien',$tab['nomDogs'],PDO::PARAM_STR);
 		$req->bindParam(':num_puce',$tab['numPuceDogs'],PDO::PARAM_STR);
-
-	
-		$req->execute();
+		$req->execute();*/
 	}
 
 	public function addNewDogsList($tab){
@@ -146,15 +136,11 @@ public function __construct($dbPdo){
 		$req->execute();
 	}
     
-    public function filtre(){
-        
-        $sql=('SELECT a.id_proprietaire,b.id_race,a.nom,a.prenom,a.rue,a.numero,a.CP,a.ville,a.pays,a.mail,a.telephone,a.gsm,a.nom_chien,a.race_chien,b.race,a.num_puce 
-			FROM proprietaire a
-			LEFT JOIN race b ON b.id_race = a.race_chien
-			WHERE actif="O"
-            LIKE nom% OR prenom% OR rue% OR ville% OR CP% OR numero% OR ville% OR nom_chien% OR num_puce');
-			return $this->pdo->query($sql)->fetchAll();
-    }
+   	public function connexion(){
+
+   		$sql=$this->pdo->exec('SELECT * FROM agent');
+   		return $this->pdo->query($sql)->fetchAll();
+   	}
 
 	
 

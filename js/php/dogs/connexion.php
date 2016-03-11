@@ -1,10 +1,10 @@
 <?php
-if(isset($_GET['nomMaster'])){
+if(isset($_GET['login'])){
 
 	include ('../connect.php');
 	include('../../../class/dogs.class.php');
 	$art=new Dogs($pdo);
-	$art->addNewDogs($_GET);
+	$art->connexion($_GET);
 }
 
 ?>

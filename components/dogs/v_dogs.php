@@ -81,8 +81,8 @@ class VDogs extends VBase {
         foreach ($proprietaireIncatif as $key => $row) {
 
           $html.=' <div class="info">
-          <tr><td>Nom : '.$row['nom'].'</br> Prénom : '.$row['prenom'].' </br> Adresse : rue '.$row['rue'].'&nbsp'.$row['numero'].'&nbsp'.$row['CP'].'&nbsp'.$row['ville']./*'</br>Race du chien : '.$row['race'].'</br> Numéro de la puce : '.$row['num_puce'].*/'</br></br>
-                   <input class="btn btn-info" type="button" value="Détails" id="details" onclick="details('.$row['id_proprietaire'].');"</td></tr></div>
+          <tr><td>Nom : '.$row['nom'].'</br> Prénom : '.$row['prenom'].' </br> Adresse : rue '.$row['rue'].'&nbsp'.$row['numero'].'&nbsp'.$row['CP'].'&nbsp'.$row['ville'].'</br>Race du chien : </br> Numéro de la puce : </br></br>
+                   <input class="btn btn-info" type="button" value="Détails" id="details" onclick="details('.$row['id_proprietaire'].');"></td></tr></div>
 
                   <table  class="table"  id="details'.$row['id_proprietaire'].'" style="display:none;" >
 
@@ -212,6 +212,32 @@ class VDogs extends VBase {
        $this->appli->list=$html;       
     }  
 
+    public function connexion(){
+      $html='';
+      $html.='
+
+
+                    
+                    
+            <form action="/users/login" name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
+                <div class="form-group">
+                <div class="col-md-8"><input name="login" placeholder="Login" class="form-control" type="text" id="login"/></div>
+                </div> 
+                
+                <div class="form-group">
+                <div class="col-md-8"><input name="mdp" placeholder="Mot de passe" class="form-control" type="password" id="mdp"/></div>
+                </div> 
+                
+                <div class="form-group">
+                <div class="col-md-offset-0 col-md-8"><input  class="btn btn-success btn btn-success" type="submit" value="Connexion" onclick="connexion"/></div>
+                </div>
+            
+            </form>
+ ';
+
+
+       $this->appli->list=$html;
+    }
 
 }
 ?>

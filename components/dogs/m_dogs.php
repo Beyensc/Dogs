@@ -68,6 +68,11 @@ class MDogs extends MBase {
 		$deleteRace=new Dogs($this->appli->dbPdo);
 	}
 
+	public function connexion(){
+		include_once('./class/dogs.class.php');
+		$connexion=new Dogs($this->appli->dbPdo);
+	}
+
 
 }
 ?>

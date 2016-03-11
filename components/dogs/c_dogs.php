@@ -12,6 +12,7 @@ public function ajout(){
 	$race=$this->model->getListDogs();
 	$verification=$this->model->getListVerification();
 	$proprietaire=$this->model->getlistPro();
+
 	$this->view->recherche();
     $this->view->AddNewDogs($race,$verification);
 }
@@ -40,6 +41,12 @@ public function majListVerification(){
 	$verification=$this->model->getListVerification();
 	$newListVerification=$this->model->addNewListVerification();
 	$this->view->addNewListVerification($verification,$newListVerification);
+}
+
+public function connexion(){
+
+	$this->view->connexion();
+	$connexion=$this->model->connexion();
 }
 
 }
