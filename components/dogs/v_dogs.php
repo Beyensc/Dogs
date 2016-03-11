@@ -147,8 +147,7 @@ class VDogs extends VBase {
        <td><input class="form-control" type="text" placeholder="N° puce" name="numPuceDogs" id="numPuceDogs"></td></tr>
        <tr><td>Race du chien (dangereux): </td><td><select class="form-control" name="raceDogs" id="raceDogs">
        <option value="" selected></option>';
-      //liste des chiens dangereux
-      
+   
       foreach ($race as $key => $rowa) {
 
              $html.=' <option value='.$rowa['id_race'].'>'.$rowa['race'].'</option>';
@@ -162,7 +161,8 @@ class VDogs extends VBase {
       $html.='<tr id="details'.$vow['id_verification'].'" ><td><input type="checkbox" name="verification"id="verification" value='.$vow['id_verification'].$i.'>&nbsp'.ucfirst($vow['verification']).'';
             $i++;
           }
-      $html.='<tr><td><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs(); addverif();"></td></tr></table>';
+      $html.='<tr><td><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs(); addNewDogsBis()"></td></tr>
+      <tr><td><input class="btn btn-warning" type="button" value="Enregistrer2" id="bAddDogs" onclick="addNewDogsBis()"></td></tr></table>';
 
     	$this->appli->news=$html;
     }

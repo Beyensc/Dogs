@@ -38,6 +38,12 @@ class MDogs extends MBase {
 		$newDogs=new Dogs($this->appli->dbPdo);
 	}
 
+	public function addNewDogsBis(){
+		include_once('./class/dogs.class.php');
+		$newDogsBis=new Dogs($this->appli->dbPdo);
+	}
+
+
 	public function addNewDogsList(){
 		include_once('./class/dogs.class.php');
 		$newDogsList=new Dogs($this->appli->dbPdo);

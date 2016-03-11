@@ -97,6 +97,7 @@ public function __construct($dbPdo){
 	public function addNewDogs($tab){
 		$req=$this->pdo->prepare('INSERT INTO proprietaire(nom,prenom,rue,numero,CP,ville,pays,mail,telephone,gsm) VALUES (:nom,:prenom,:rue,:numero,:CP,:ville,:pays,:mail,:telephone,:gsm)');
 
+		$seq=$this->pdo->prepare('INSERT INTO chien(nom,num_puce) VALUES (:nom,:num_puce)');
 
 		$req->bindParam(':nom',$tab['nomMaster'],PDO::PARAM_STR);
 		$req->bindParam(':prenom',$tab['prenomMaster'],PDO::PARAM_STR);
@@ -111,13 +112,24 @@ public function __construct($dbPdo){
 		
 		//$req->bindParam(':race_chien',$tab['raceDogs'],PDO::PARAM_STR);
 		
-		$req->execute();
+		//$req->execute();
 
-		$seq=$this->pdo->prepare('INSERT INTO chien(nom,num_puce) VALUES (:nom,:num_puce)');
+		//$req=$this->pdo->prepare('INSERT INTO chien(nom,num_puce) VALUES (:nom,:num_puce)');
 		$seq->bindParam(':nom_chien',$tab['nomDogs'],PDO::PARAM_STR);
 		$seq->bindParam(':num_puce',$tab['numPuceDogs'],PDO::PARAM_STR);
 
+		$req->execute();
 		$seq->execute();
+	}
+	public function addNewDogsBis($tab){
+		
+		$req=$this->pdo->prepare('INSERT INTO chien(nom,num_puce) VALUES (:nom,:num_puce)');
+		
+		$req->bindParam(':nom_chien',$tab['nomDogs'],PDO::PARAM_STR);
+		$req->bindParam(':num_puce',$tab['numPuceDogs'],PDO::PARAM_STR);
+
+	
+		$req->execute();
 	}
 
 	public function addNewDogsList($tab){
