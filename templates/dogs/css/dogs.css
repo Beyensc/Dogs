@@ -1,0 +1,57 @@
+body{
+
+   
+    background-color: #5F8CA3; 
+    margin: 20px 40px 10px 70px;
+}
+
+#logo {
+    width: 100px;
+    height: auto;
+    
+}
+.info{
+    left:20px;
+    bottom:30px;
+    margin-bottom:30px; 
+
+}
+
+#formAjout,#formList,#formListDogs,#formAdd{
+	 padding: 0 20px 6px;
+     margin: auto;
+     vertical-align: top;
+     border-radius: 60px;
+     display:table;
+     border:5px;
+     margin-bottom: 50px;
+}
+
+#form{
+     padding: 0 20px 6px;
+     margin:;
+     vertical-align: top;
+     border-radius: 60px;
+     display:table;
+     border:5px;
+     margin-bottom: 100px;
+}
+
+#bAddDogs{
+    margin:auto;
+    color:black;
+    width: 120px;
+    margin-bottom: 100px;
+}
+
+#formRecherche{
+     padding: 0 20px 6px;
+     margin: auto;
+     vertical-align: top;
+     border-radius: 60px;
+     display:table;
+     border:5px;
+     margin-bottom: 50px;
+     vertical-align: baseline;
+     border-spacing: 5px 8px; 
+}
