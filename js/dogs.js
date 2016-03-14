@@ -35,9 +35,10 @@ function addNewDogs(){
 				//raceDogs:raceDogs,
 				
 			},
+
 			success:setTimeout(function(){
-				//window.location.href="?component=dogs&action=actif";
-				alert('test');
+				window.location.href="?component=dogs&action=actif";
+			
 
 
 		},
@@ -54,8 +55,7 @@ function addNewDogsBis(){
 	var nomDogs = document.getElementById('nomDogs').value;
 	var numPuceDogs = document.getElementById('numPuceDogs').value;
 
-		alert(nomDogs);
-		alert(numPuceDogs);
+		
 	if((nomDogs!= '')){
 
 		$.ajax({
@@ -67,13 +67,13 @@ function addNewDogsBis(){
 			
 				
 			},
-			success:setTimeout(function(){
-				window.location.href="?component=dogs&action=actif";
+			//success:setTimeout(function(){
+			//	window.location.href="?component=dogs&action=actif";
 
 
-		},
-		2000),
-		//success:function(retour){alert(nomDogs);},
+		//},
+		//2000),
+		success:function(retour){alert(nomDogs);},
 	});
 		}else{
 

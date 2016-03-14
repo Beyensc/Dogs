@@ -162,7 +162,7 @@ class VDogs extends VBase {
             $i++;
           }
       $html.='<tr><td><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs();"></td></tr>
-      </table>';
+      <tr><td><input class="btn btn-warning" type="button" value="Enregistrer2" id="bAddDogs" onclick="addNewDogsBis();"></td></tr></table>';
 
     	$this->appli->news=$html;
     }

@@ -109,18 +109,18 @@ public function __construct($dbPdo){
 		$req->bindParam(':telephone',$tab['telMaster'],PDO::PARAM_STR);
 		$req->bindParam(':gsm',$tab['gsmMaster'],PDO::PARAM_STR);
 		
-		$seq->execute();
+		$req->execute();
 	}
 
 	public function addNewDogsBis($tab){
-
+		echo "string";
 		//print_r($tab);
 		
-		$req=$this->pdo->prepare('INSERT INTO chien(nom,num_puce) VALUES (:nom,:num_puce)');
+		//$req=$this->pdo->prepare('INSERT INTO chien(nom,num_puce) VALUES (:nom,:num_puce)');
 		
-		$req->bindParam(':nom_chien',$tab['nomDogs'],PDO::PARAM_STR);
-		$req->bindParam(':num_puce',$tab['numPuceDogs'],PDO::PARAM_STR);
-		$req->execute();
+		//$req->bindParam(':nom_chien',$tab['nomDogs'],PDO::PARAM_STR);
+		//$req->bindParam(':num_puce',$tab['numPuceDogs'],PDO::PARAM_STR);
+		//$req->execute();
 	}
 
 	public function addNewDogsList($tab){
