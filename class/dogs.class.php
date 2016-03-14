@@ -15,18 +15,23 @@ public function __construct($dbPdo){
 		$sql=('SELECT * FROM verification');
 		return $this->pdo->query($sql)->fetchAll();
 	}
-	public function getListNamDogs(){
-		$sql=('SELECT * FROM chien a
-			   LEFT JOIN race b ON a.race = b.id_race');
-		
+
+	public function getListNameDogs(){
+		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.race,a.id_race,a.id_proprietaire,b.id_race,c.id_proprietaire 
+			   FROM chien a
+			   LEFT JOIN race b ON a.id_race = b.id_race
+			   LEFT JOIN proprietaire c ON a.id_proprietaire = c.id_proprietaire');
+
 		return $this->pdo->query($sql)->fetchAll();
 	}
+
 	public function getListPro(){
 		$sql=('SELECT id_proprietaire,nom,prenom,rue,numero,CP,ville,pays,mail,telephone,gsm 
 				FROM proprietaire
 				WHERE actif="O"');
 		return $this->pdo->query($sql)->fetchAll();
 	}
+
 	public function getlistProInactif(){
 		$sql=('SELECT id_proprietaire,nom,prenom,rue,numero,CP,ville,pays,mail,telephone,gsm 
 				FROM proprietaire
@@ -34,22 +39,6 @@ public function __construct($dbPdo){
 		return $this->pdo->query($sql)->fetchAll();
 	}
 	
-	/*public function getListPro(){
-		$sql=('SELECT a.id_proprietaire,b.id_race,a.nom,a.prenom,a.rue,a.numero,a.CP,a.ville,a.pays,a.mail,a.telephone,a.gsm,a.nom_chien,a.race_chien,b.race,a.num_puce 
-			FROM proprietaire a
-			LEFT JOIN race b ON b.id_race = a.race_chien
-			WHERE actif="O"');
-			return $this->pdo->query($sql)->fetchAll();
-	}*/
-
-	/*public function getlistProInactif(){
-		$sql=('SELECT a.id_proprietaire,b.id_race,a.nom,a.prenom,a.rue,a.numero,a.CP,a.ville,a.pays,a.mail,a.telephone,a.gsm,a.nom_chien,a.race_chien,b.race,a.num_puce 
-			FROM proprietaire a
-			LEFT JOIN race b ON b.id_race = a.race_chien
-			WHERE actif="N"');
-			return $this->pdo->query($sql)->fetchAll();
-	}*/
-
 	public function desactProprio($id){
 
 		$req=$this->pdo->exec('UPDATE proprietaire SET actif="N" WHERE id_proprietaire="'.$id.'"');
@@ -123,7 +112,6 @@ public function __construct($dbPdo){
 		$req->bindParam(':race',$tab['raceDogs'],PDO::PARAM_STR);
 		$req->execute();
 	}
-
 
 	public function addNewDogsList($tab){
 		$req=$this->pdo->prepare('INSERT INTO race (race) VALUES (:race)');

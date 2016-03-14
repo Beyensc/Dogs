@@ -16,16 +16,19 @@ class VDogs extends VBase {
       $this->appli->content=$html;
     }
 
-    public function listDogsPro($proprietaire,$race){
+    public function listDogsPro($proprietaire,$race,$dogsName){
 
         $html='';
 
         $html.='<div id="form"><table class="table">';
+    
+       foreach ($dogsName as $key => $dow) {
+        
       
         foreach ($proprietaire as $key => $row) {
 
           $html.=' <div class="info">
-                  <tr><td>Nom : '.$row['nom'].'</br> Prénom : '.$row['prenom'].' </br> Adresse : rue '.$row['rue'].'&nbsp'.$row['numero'].'&nbsp'.$row['CP'].'&nbsp'.$row['ville']./*'</br>Race du chien : '.$row['race'].'</br> Numéro de la puce : '.$row['num_puce'].*/'</br></br>
+                  <tr><td>Nom : '.$row['nom'].'</br> Prénom : '.$row['prenom'].' </br> Adresse : rue '.$row['rue'].'&nbsp'.$row['numero'].'&nbsp'.$row['CP'].'&nbsp'.$row['ville'].'</br>Race du chien : '.$dow['race'].'</br> Numéro de la puce : '.$dow['num_puce'].'</br></br>
                   <input class="btn btn-danger" type="button" value="supprimer" id="delete" onclick="desactProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"> <input class="btn btn-info" type="button" value="Détails" id="details" onclick="details('.$row['id_proprietaire'].');"</td></tr></div>
 
                   <table class="table"  id="details'.$row['id_proprietaire'].'" style="display:none;" >
@@ -48,12 +51,12 @@ class VDogs extends VBase {
                    <tr>
                   
                       <tr><td>Race du chien: </td><td><select class="form-control" name="raceDogs" id="raceDogs'.$row['id_proprietaire'].'">';
-                      //lier la table chien au proprio
+                     
                         foreach ($race as $key => $rowa) {
 
                          $html.='<option value="'.$rowa['id_race'].'"';
 
-                         if($rowa['id_race']==$row['race_chien']){
+                         if($rowa['id_race']==$dow['race']){
                                       
                                      $html.='selected';
                             }
@@ -65,11 +68,12 @@ class VDogs extends VBase {
                
                   $html.='<td><input class="btn btn-primary" type="button" value="modifier" id="modif" onclick="modifFild(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td></tr></table>';
          
-        }
+             }
+          }
 
-        $html.='</table></div>';
+                 $html.='</table></div>';
 
-        $this->appli->list=$html;
+                $this->appli->list=$html;
     }
 
     public function listDogsProInactif($proprietaireIncatif){
@@ -160,8 +164,7 @@ class VDogs extends VBase {
       $html.='<tr id="details'.$vow['id_verification'].'" ><td><input type="checkbox" name="verification"id="verification" value='.$vow['id_verification'].$i.'>&nbsp'.ucfirst($vow['verification']).'';
             $i++;
           }
-      $html.='<tr><td><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs();"></td></tr>
-      <tr><td><input class="btn btn-warning" type="button" value="Enregistrer2" id="bAddDogs" onclick="addNewDogsBis();"></td></tr></table>';
+      $html.='<tr><td><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs();"></td></tr></table>';
 
     	$this->appli->news=$html;
     }
@@ -231,8 +234,7 @@ class VDogs extends VBase {
                 <div class="col-md-offset-0 col-md-8"><input  class="btn btn-success btn btn-success" type="submit" value="Connexion" onclick="connexion"/></div>
                 </div>
             
-            </form>
- ';
+            </form>';
 
 
        $this->appli->list=$html;

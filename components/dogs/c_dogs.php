@@ -19,9 +19,10 @@ public function ajout(){
 public function actif(){
 	$this->view->recherche();
 	$proprietaire=$this->model->getlistPro();
+	$dogsName=$this->model->getListNameDogs();
 	$modifProprio=$this->model->modifProprio();
 	$race=$this->model->getListDogs();
-	$this->view->listDogsPro($proprietaire,$race);
+	$this->view->listDogsPro($proprietaire,$race,$dogsName);
 }
 public function inactif(){
 	$this->view->recherche();

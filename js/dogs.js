@@ -13,7 +13,7 @@ function addNewDogs(){
 	var nomDogs = document.getElementById('nomDogs').value;
 	var numPuceDogs = document.getElementById('numPuceDogs').value;
 	var raceDogs = document.getElementById('raceDogs').value;
-alert(raceDogs);
+
 	if((nomMaster != '')){
 
 		$.ajax({
@@ -50,36 +50,6 @@ alert(raceDogs);
 			alert('Les champs requis ne sont pas remplis !')
 	}
 }
-/*function addNewDogsBis(){
-
-	var nomDogs = document.getElementById('nomDogs').value;
-	var numPuceDogs = document.getElementById('numPuceDogs').value;
-
-		
-	if((nomDogs!= '')){
-
-		$.ajax({
-			type:"GET",
-			url:"js/php/dogs/addNewDogsBis.php",
-			data:{
-				nomDogs:nomDogs,
-				numPuceDogs:numPuceDogs,
-			
-				
-			},
-			//success:setTimeout(function(){
-				//window.location.href="?component=dogs&action=actif";
-
-
-		//},
-		//2000),
-		success:function(retour){alert(retour);},
-	});
-		}else{
-
-			alert('Les champs requis ne sont pas remplis !')
-	}
-}*/
 
 function addverif(id){
 	var verif = document.getElementById('verification'+id+'').checked;

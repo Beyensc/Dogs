@@ -17,7 +17,7 @@ class MDogs extends MBase {
 
 	public function getListVerification(){
 		include_once('./class/dogs.class.php');
-		$verification=new DOGS($this->appli->dbPdo);
+		$verification=new Dogs($this->appli->dbPdo);
 		return $verification->getListVerification();
 	}
 
@@ -25,6 +25,11 @@ class MDogs extends MBase {
 		include_once('./class/dogs.class.php');
 		$proprietaire=new Dogs($this->appli->dbPdo);
 		return $proprietaire->getListpro();
+	}
+	public function getListNameDogs(){
+		include_once('./class/dogs.class.php');
+		$dogsName=new Dogs($this->appli->dbPdo);
+		return $dogsName->getListNameDogs();
 	}
 
 	public function getlistProInactif(){
