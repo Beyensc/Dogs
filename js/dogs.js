@@ -10,8 +10,8 @@ function addNewDogs(){
 	var mailMaster = document.getElementById('mailMaster').value;
 	var telMaster = document.getElementById('telMaster').value;
 	var gsmMaster = document.getElementById('gsmMaster').value;
-	var nomDogs = document.getElementById('nomDogs').value;
-	var numPuceDogs = document.getElementById('numPuceDogs').value;
+	//var nomDogs = document.getElementById('nomDogs').value;
+	//var numPuceDogs = document.getElementById('numPuceDogs').value;
 	//var raceDogs = document.getElementById('raceDogs').value;
 
 	if((nomMaster != '')){
@@ -30,13 +30,14 @@ function addNewDogs(){
 				mailMaster:mailMaster,
 				telMaster:telMaster,
 				gsmMaster:gsmMaster,
-				nomDogs:nomDogs,
-				numPuceDogs:numPuceDogs,
+				//nomDogs:nomDogs,
+				//numPuceDogs:numPuceDogs,
 				//raceDogs:raceDogs,
 				
 			},
 			success:setTimeout(function(){
-				window.location.href="?component=dogs&action=actif";
+				//window.location.href="?component=dogs&action=actif";
+				alert('test');
 
 
 		},

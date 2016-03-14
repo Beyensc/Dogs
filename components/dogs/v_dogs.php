@@ -161,8 +161,8 @@ class VDogs extends VBase {
       $html.='<tr id="details'.$vow['id_verification'].'" ><td><input type="checkbox" name="verification"id="verification" value='.$vow['id_verification'].$i.'>&nbsp'.ucfirst($vow['verification']).'';
             $i++;
           }
-      $html.='<tr><td><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs(); addNewDogsBis()"></td></tr>
-      <tr><td><input class="btn btn-warning" type="button" value="Enregistrer2" id="bAddDogs" onclick="addNewDogsBis()"></td></tr></table>';
+      $html.='<tr><td><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs();"></td></tr>
+      </table>';
 
     	$this->appli->news=$html;
     }

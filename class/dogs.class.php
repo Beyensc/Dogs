@@ -7,7 +7,7 @@ public function __construct($dbPdo){
 }
 	public function getListDogs(){
 
-		$sql=('SELECT id_race,race FROM race');
+		$sql=('SELECT id_race,race FROM race WHERE actif="O"');
 		return $this->pdo->query($sql)->fetchAll();
 	}
 
@@ -60,7 +60,8 @@ public function __construct($dbPdo){
 
     public function deleteRace($id){
 
-        $req=$this->pdo->exec('DELETE FROM race WHERE id_race="'.$id.'"');
+        //$req=$this->pdo->exec('DELETE FROM race WHERE id_race="'.$id.'"');
+        	$req=$this->pdo->exec('UPDATE race SET actif="N" WHERE id_race="'.$id.'"');
     }
 
     public function deleteVerification($id){
@@ -113,13 +114,13 @@ public function __construct($dbPdo){
 
 	public function addNewDogsBis($tab){
 
-		print_r($tab);
+		//print_r($tab);
 		
-		/*$req=$this->pdo->prepare('INSERT INTO chien(id_chien,nom,num_puce,id_race,id_proprietaire) VALUES (NULL,:nom,:num_puce,NULL,NULL)');
+		$req=$this->pdo->prepare('INSERT INTO chien(nom,num_puce) VALUES (:nom,:num_puce)');
 		
 		$req->bindParam(':nom_chien',$tab['nomDogs'],PDO::PARAM_STR);
 		$req->bindParam(':num_puce',$tab['numPuceDogs'],PDO::PARAM_STR);
-		$req->execute();*/
+		$req->execute();
 	}
 
 	public function addNewDogsList($tab){
