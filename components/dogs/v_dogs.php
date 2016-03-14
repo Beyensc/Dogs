@@ -16,7 +16,7 @@ class VDogs extends VBase {
       $this->appli->content=$html;
     }
 
-    public function listDogsPro($proprietaire/*,$race*/){
+    public function listDogsPro($proprietaire,$race){
 
         $html='';
 
@@ -45,11 +45,10 @@ class VDogs extends VBase {
                    <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="Téléphone" name="telMaster" id="telMaster'.$row['id_proprietaire'].'" value="'.$row['telephone'].'"></td>
                    <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="GSM" name="gsmMaster" id="gsmMaster'.$row['id_proprietaire'].'" value="'.$row['gsm'].'"></td>
                    </tr>
-                   <tr>';
-                  /* <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="Nom du chien" name="nomDogs" id="nomDogs'.$row['id_proprietaire'].'" value="'.ucfirst($row['nom_chien']).'"></td>
-                   <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="N° puce" name="numPuceDogs" id="numPuceDogs'.$row['id_proprietaire'].'" value="'.$row['num_puce'].'"></td>
+                   <tr>
+                  
                       <tr><td>Race du chien: </td><td><select class="form-control" name="raceDogs" id="raceDogs'.$row['id_proprietaire'].'">';
-                      
+                      //lier la table chien au proprio
                         foreach ($race as $key => $rowa) {
 
                          $html.='<option value="'.$rowa['id_race'].'"';
@@ -62,7 +61,7 @@ class VDogs extends VBase {
 
                             }
                           
-                   $html.='</select></tr>';*/
+                   $html.='</select></tr>';
                
                   $html.='<td><input class="btn btn-primary" type="button" value="modifier" id="modif" onclick="modifFild(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td></tr></table>';
          

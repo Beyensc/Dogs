@@ -16,7 +16,9 @@ public function __construct($dbPdo){
 		return $this->pdo->query($sql)->fetchAll();
 	}
 	public function getListNamDogs(){
-		$sql=('SELECT * FROM chien');
+		$sql=('SELECT * FROM chien a
+			   LEFT JOIN race b ON a.race = b.id_race');
+		
 		return $this->pdo->query($sql)->fetchAll();
 	}
 	public function getListPro(){
@@ -96,6 +98,7 @@ public function __construct($dbPdo){
 	}
 
 	public function addNewDogs($tab){
+
 		$req=$this->pdo->prepare('INSERT INTO proprietaire(nom,prenom,rue,numero,CP,ville,pays,mail,telephone,gsm) VALUES (:nom,:prenom,:rue,:numero,:CP,:ville,:pays,:mail,:telephone,:gsm)');
 
 		$req->bindParam(':nom',$tab['nomMaster'],PDO::PARAM_STR);
@@ -110,18 +113,17 @@ public function __construct($dbPdo){
 		$req->bindParam(':gsm',$tab['gsmMaster'],PDO::PARAM_STR);
 		
 		$req->execute();
+
+
+
+		$req=$this->pdo->prepare('INSERT INTO chien(nom,num_puce,race) VALUES (:nom,:num_puce,:race)');
+		
+		$req->bindParam(':nom',$tab['nomDogs'],PDO::PARAM_STR);
+		$req->bindParam(':num_puce',$tab['numPuceDogs'],PDO::PARAM_STR);
+		$req->bindParam(':race',$tab['raceDogs'],PDO::PARAM_STR);
+		$req->execute();
 	}
 
-	public function addNewDogsBis($tab){
-		echo "string";
-		//print_r($tab);
-		
-		//$req=$this->pdo->prepare('INSERT INTO chien(nom,num_puce) VALUES (:nom,:num_puce)');
-		
-		//$req->bindParam(':nom_chien',$tab['nomDogs'],PDO::PARAM_STR);
-		//$req->bindParam(':num_puce',$tab['numPuceDogs'],PDO::PARAM_STR);
-		//$req->execute();
-	}
 
 	public function addNewDogsList($tab){
 		$req=$this->pdo->prepare('INSERT INTO race (race) VALUES (:race)');
