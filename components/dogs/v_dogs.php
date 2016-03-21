@@ -69,23 +69,15 @@ class VDogs extends VBase {
                     
                   
                   
-                     $html.=' <td>Race du chien: </td><td><select class="form-control" name="raceDogs" id="raceDogs'.$row['id_proprietaire'].'">';
+                     $html.=' <td id="id_proprietaire"'.$dow['id_proprietaire'].'"><input class="form-control" type="text" placeholder="Nom du chien" name="nomDogs" id="nomDogs'.$dow['id_proprietaire'].'" value="'.$dow['nom'].'"></td>';
+        
+                    $html.='<td id="id_proprietaire"'.$dow['id_proprietaire'].'">Race du chien: </td><td><input class="form-control" type="text" id="raceDogs'.$dow['id_proprietaire'].'"placeholder="race du chien" value="'.$dow['id_race'].'"></td>';
                      
-                        foreach ($race as $key => $rowa) {
+                         
+                   $html.='<td id="id_proprietaire"'.$dow['id_proprietaire'].'"><input class="form-control" type="text" placeholder="Numéro de la puce" id="numPuceDogs'.$dow['id_proprietaire'].'" value="'.$dow['num_puce'].'"></td>
 
-                         $html.='<option value="'.$rowa['id_race'].$dow['id_proprietaire'].'"';
-
-                         if($rowa['id_race']==$dow['id_race']){
-                                      
-                                     $html.='selected';
-                            }
-                            $html.='>'.$rowa['race'].'</option>';
-
-                            }
-
-                          
-                   $html.='</select><td><input class="form-control" type="text" placeholder="Numéro de la puce" id="numPuceDogs" value"'.$dow['num_puce'].$dow['id_proprietaire'].'"></td><td><input class="btn btn-danger" type="button" value="supprimer" id="delete" onclick="deleteDogsList()"> </td></tr>';
-                   //echo $dow['num_puce'];
+                   <td><input class="btn btn-danger" type="button" value="supprimer" id="delete" onclick="deleteDogsList()"> </td></tr>';
+                  
                     }
 
 
