@@ -3,6 +3,7 @@ class Dogs{
 	private $pdo;
 
 public function __construct($dbPdo){
+	
 	$this->pdo=$dbPdo;
 }
 	public function getListDogs(){
@@ -16,12 +17,13 @@ public function __construct($dbPdo){
 		return $this->pdo->query($sql)->fetchAll();
 	}
 
-	public function getListNameDogs(){
-		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.race,a.id_race,a.id_proprietaire,b.id_race,c.id_proprietaire 
-			   FROM chien a
-			   LEFT JOIN race b ON a.id_race = b.id_race
-			   LEFT JOIN proprietaire c ON a.id_proprietaire = c.id_proprietaire');
+	public function dogs(){
+		$sql=('SELECT * FROM chien');
+		return $this->pdo->query($sql)->fetchAll();
+	}
 
+	public function getListNameDogs(){
+		$sql=('SELECT * FROM chien');
 		return $this->pdo->query($sql)->fetchAll();
 	}
 
@@ -105,12 +107,29 @@ public function __construct($dbPdo){
 
 
 
-		$req=$this->pdo->prepare('INSERT INTO chien(nom,num_puce,race) VALUES (:nom,:num_puce,:race)');
+		
+
+		/*$req=$this->pdo->prepare('UPDATE verification SET etat=:etat');
+
+		$req->bindParam(':etat',$tab['verification'],PDO::PARAM_BOOL);
+		$req->execute();*/
+	}
+
+	public function ajoutDogs($tab){
+		
+		$req=$this->pdo->prepare('INSERT INTO chien(nom,num_puce,id_race,id_proprietaire) 
+			VALUES (:nom,:num_puce,:id_race,:id_proprietaire)');
 		
 		$req->bindParam(':nom',$tab['nomDogs'],PDO::PARAM_STR);
 		$req->bindParam(':num_puce',$tab['numPuceDogs'],PDO::PARAM_STR);
-		$req->bindParam(':race',$tab['raceDogs'],PDO::PARAM_STR);
+		$req->bindParam(':id_race',$tab['raceDogs'],PDO::PARAM_STR);
+		$req->bindParam(':id_proprietaire',$tab['idp'],PDO::PARAM_INT);
+		
+		
+		
 		$req->execute();
+		return 'bdd';
+
 	}
 
 	public function addNewDogsList($tab){

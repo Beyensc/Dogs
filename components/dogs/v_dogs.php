@@ -16,20 +16,36 @@ class VDogs extends VBase {
       $this->appli->content=$html;
     }
 
-    public function listDogsPro($proprietaire,$race,$dogsName){
+    public function listDogsPro($proprietaire,$race,$dogs){
 
         $html='';
 
         $html.='<div id="form"><table class="table">';
     
-       foreach ($dogsName as $key => $dow) {
-        
-      
-        foreach ($proprietaire as $key => $row) {
+ 
+         foreach ($proprietaire as $key => $row) {
 
           $html.=' <div class="info">
-                  <tr><td>Nom : '.$row['nom'].'</br> Prénom : '.$row['prenom'].' </br> Adresse : rue '.$row['rue'].'&nbsp'.$row['numero'].'&nbsp'.$row['CP'].'&nbsp'.$row['ville'].'</br>Race du chien : '.$dow['race'].'</br> Numéro de la puce : '.$dow['num_puce'].'</br></br>
-                  <input class="btn btn-danger" type="button" value="supprimer" id="delete" onclick="desactProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"> <input class="btn btn-info" type="button" value="Détails" id="details" onclick="details('.$row['id_proprietaire'].');"</td></tr></div>
+                  <tr><td>Nom : '.$row['nom'].'&nbsp '.$row['prenom'].'</tr>
+                 <tr><td><input id="button" class="btn btn-danger" type="button" value="supprimer" id="delete" onclick="desactProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td><td> <input id="button" class="btn btn-info" type="button" value="Détails" id="details" onclick="details('.$row['id_proprietaire'].');"></td><td><input id="button" type="button" class="btn btn-success"value="Ajouter un chien" id="ajoutDogs" onclick="ajoutDogsForm('.$row['id_proprietaire'].');"></td></tr></div>
+
+
+                    <table class="table" id="ajoutDogsForm'.$row['id_proprietaire'].'" style="display:none;">
+                   <tr>
+                   <td><input class="form-control" type="text" placeholder="Nom du chien" name="nomDogs" id="nomDogs'.$row['id_proprietaire'].'"></td>
+                   <td><input class="form-control" type="text" placeholder="N° puce" name="numPuceDogs" id="numPuceDogs'.$row['id_proprietaire'].'"></td></tr>
+                   <tr><td>Race du chien (dangereux): </td><td><select class="form-control" name="raceDogs" id="raceDogs'.$row['id_proprietaire'].'">
+                   <option value=""  selected></option>';
+
+                               foreach ($race as $key => $rowa) {
+
+                                     $html.=' <option  value='.$rowa['id_race'].' >'.$rowa['race'].'</option>';
+        
+                               }
+                      $html.='</select></tr>
+                              <tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutDogs" onclick="ajoutDogs('.$row['id_proprietaire'].')""></td></tr>
+                              </table>
+
 
                   <table class="table"  id="details'.$row['id_proprietaire'].'" style="display:none;" >
                   <tr><td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control"  type="text" placeholder="Nom du maître" name="nomMaster" id="nomMaster'.$row['id_proprietaire'].'" value="'.ucfirst($row['nom']).'">
@@ -48,33 +64,42 @@ class VDogs extends VBase {
                    <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="Téléphone" name="telMaster" id="telMaster'.$row['id_proprietaire'].'" value="'.$row['telephone'].'"></td>
                    <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="GSM" name="gsmMaster" id="gsmMaster'.$row['id_proprietaire'].'" value="'.$row['gsm'].'"></td>
                    </tr>
-                   <tr>
+                   <tr>';
+                   foreach ($dogs as $key => $dow) {
+                    
                   
-                      <tr><td>Race du chien: </td><td><select class="form-control" name="raceDogs" id="raceDogs'.$row['id_proprietaire'].'">';
+                  
+                     $html.=' <td>Race du chien: </td><td><select class="form-control" name="raceDogs" id="raceDogs'.$row['id_proprietaire'].'">';
                      
                         foreach ($race as $key => $rowa) {
 
-                         $html.='<option value="'.$rowa['id_race'].'"';
+                         $html.='<option value="'.$rowa['id_race'].$dow['id_proprietaire'].'"';
 
-                         if($rowa['id_race']==$dow['race']){
+                         if($rowa['id_race']==$dow['id_race']){
                                       
                                      $html.='selected';
                             }
                             $html.='>'.$rowa['race'].'</option>';
 
                             }
+
                           
-                   $html.='</select></tr>';
+                   $html.='</select><td><input class="form-control" type="text" placeholder="Numéro de la puce" id="numPuceDogs" value"'.$dow['num_puce'].$dow['id_proprietaire'].'"></td><td><input class="btn btn-danger" type="button" value="supprimer" id="delete" onclick="deleteDogsList()"> </td></tr>';
+                   //echo $dow['num_puce'];
+                    }
+
+
                
                   $html.='<td><input class="btn btn-primary" type="button" value="modifier" id="modif" onclick="modifFild(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td></tr></table>';
          
              }
-          }
+
+        // }
 
                  $html.='</table></div>';
 
                 $this->appli->list=$html;
-    }
+        }
 
     public function listDogsProInactif($proprietaireIncatif){
 
@@ -144,8 +169,8 @@ class VDogs extends VBase {
        <td><input class="form-control" type="mail" placeholder="Mail" name="mailMaster" id="mailMaster"></td>
        <td><input class="form-control" type="text" placeholder="Téléphone" name="telMaster" id="telMaster"></td>
        <td><input class="form-control" type="text" placeholder="GSM" name="gsmMaster" id="gsmMaster"></td>
-       </tr>
-       <tr>
+       </tr>';
+       /*<tr>
        <td><input class="form-control" type="text" placeholder="Nom du chien" name="nomDogs" id="nomDogs"></td>
        <td><input class="form-control" type="text" placeholder="N° puce" name="numPuceDogs" id="numPuceDogs"></td></tr>
        <tr><td>Race du chien (dangereux): </td><td><select class="form-control" name="raceDogs" id="raceDogs">
@@ -161,9 +186,9 @@ class VDogs extends VBase {
       $i=0;
       foreach ($verification as $key => $vow) {
         
-      $html.='<tr id="details'.$vow['id_verification'].'" ><td><input type="checkbox" name="verification"id="verification" value='.$vow['id_verification'].$i.'>&nbsp'.ucfirst($vow['verification']).'';
+      $html.='<tr id="details'.$vow['id_verification'].'" ><td><input type="checkbox" name="verification"id="verification" value='.$vow['id_verification'].$i.' >&nbsp'.ucfirst($vow['verification']).'';
             $i++;
-          }
+          }*/
       $html.='<tr><td><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs();"></td></tr></table>';
 
     	$this->appli->news=$html;

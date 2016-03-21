@@ -32,6 +32,12 @@ class MDogs extends MBase {
 		return $dogsName->getListNameDogs();
 	}
 
+	public function Dogs(){
+		include_once('./class/dogs.class.php');
+		$dogs=new Dogs($this->appli->dbPdo);
+		return $dogs->Dogs();
+	}
+
 	public function getlistProInactif(){
 		include_once('./class/dogs.class.php');
 		$proprietaireInactif=new Dogs($this->appli->dbPdo);
@@ -41,6 +47,10 @@ class MDogs extends MBase {
 	public function addNewDogs(){
 		include_once('./class/dogs.class.php');
 		$newDogs=new Dogs($this->appli->dbPdo);
+	}
+	public function ajoutDogs(){
+		include_once('./class/dogs.class.php');
+		$ajoutDogs=new Dogs($this->appli->dbPdo);
 	}
 
 	public function addNewDogsBis(){

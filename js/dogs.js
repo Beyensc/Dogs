@@ -10,9 +10,9 @@ function addNewDogs(){
 	var mailMaster = document.getElementById('mailMaster').value;
 	var telMaster = document.getElementById('telMaster').value;
 	var gsmMaster = document.getElementById('gsmMaster').value;
-	var nomDogs = document.getElementById('nomDogs').value;
-	var numPuceDogs = document.getElementById('numPuceDogs').value;
-	var raceDogs = document.getElementById('raceDogs').value;
+	
+	
+	
 
 	if((nomMaster != '')){
 
@@ -30,9 +30,8 @@ function addNewDogs(){
 				mailMaster:mailMaster,
 				telMaster:telMaster,
 				gsmMaster:gsmMaster,
-				nomDogs:nomDogs,
-				numPuceDogs:numPuceDogs,
-				raceDogs:raceDogs,
+			
+			
 				
 			},
 
@@ -49,6 +48,47 @@ function addNewDogs(){
 
 			alert('Les champs requis ne sont pas remplis !')
 	}
+}
+
+function ajoutDogs(idp){
+
+		var nomDogs = document.getElementById('nomDogs'+idp+'').value;
+		var numPuceDogs = document.getElementById('numPuceDogs'+idp+'').value;
+		var raceDogs = document.getElementById('raceDogs'+idp+'').value;
+
+		
+
+
+		alert(idp);
+		alert(raceDogs);	
+
+		if((nomDogs != '')){
+
+		$.ajax({
+			type:"GET",
+			url:"js/php/dogs/NewDogs.php",
+			data:{
+				idp:idp,
+				nomDogs:nomDogs,
+				numPuceDogs:numPuceDogs,
+				raceDogs:raceDogs,
+			},
+
+			success:setTimeout(function(){
+				window.location.href="?component=dogs&action=actif";
+			
+
+
+		},
+
+		2000),
+		//success:function(retour){alert(retour);},
+	});
+		}else{
+
+			alert('Les champs requis ne sont pas remplis !')
+	}
+
 }
 
 function addverif(id){
@@ -255,6 +295,20 @@ function details(id){
     {
         
        document.getElementById('details'+id).style.display="block";
+
+    }
+    return true;
+}
+function ajoutDogsForm(id){
+	if(document.getElementById('ajoutDogsForm'+id).style.display=="block")
+    {
+       
+        document.getElementById('ajoutDogsForm'+id).style.display="none";
+    }
+    else
+    {
+        
+       document.getElementById('ajoutDogsForm'+id).style.display="block";
 
     }
     return true;
