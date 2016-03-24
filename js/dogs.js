@@ -10,9 +10,16 @@ function addNewDogs(){
 	var mailMaster = document.getElementById('mailMaster').value;
 	var telMaster = document.getElementById('telMaster').value;
 	var gsmMaster = document.getElementById('gsmMaster').value;
+	var dateNaissance = document.getElementById('dateNaissance').value;
+	var lieuNaissance = document.getElementById('lieuNaissance').value;
+	var periodeContact= document.getElementById('periodeContact').value;
+	var autreDispo = document.getElementById('autreDispo').value;
+	var nomContact = document.getElementById('nomContact').value;
+	var prenomContact = document.getElementById('prenomContact').value;
+	var telContact = document.getElementById('telContact').value;
+
 	
-	
-	
+
 
 	if((nomMaster != '')){
 
@@ -30,18 +37,24 @@ function addNewDogs(){
 				mailMaster:mailMaster,
 				telMaster:telMaster,
 				gsmMaster:gsmMaster,
-			
+				dateNaissance:dateNaissance,
+				lieuNaissance:lieuNaissance,
+				periodeContact:periodeContact,
+				autreDispo:autreDispo,
+				nomContact:nomContact,
+			    prenomContact:prenomContact,
+			    telContact:telContact,
 			
 				
 			},
-
+			//success:function(retour){alert(retour);},
 			success:setTimeout(function(){
 				window.location.href="?component=dogs&action=actif";
 			
 
 
 		},
-		2000),
+		1000),
 		//success:function(retour){alert(retour);},
 	});
 		}else{
@@ -59,9 +72,14 @@ function ajoutDogs(idp){
 		var puceDogs = document.getElementById('puceDogs'+idp+'').value;
 		var tatooDogs = document.getElementById('tatooDogs'+idp+'').value;
 		var sexe = document.getElementById('sexe_dogs'+idp+'').value;
+		var detention = document.getElementById('detention'+idp+'').value;
+		var club = document.getElementById('club'+idp+'').value;
+		var clubAdresse = document.getElementById('clubAdresse'+idp+'').value;
+		var mordant = document.getElementById('mordant'+idp+'').value;
+		var veto = document.getElementById('veto'+idp+'').value;
+		var vetoTel = document.getElementById('vetoTel'+idp+'').value;
 
 
-		
 
 
 				
@@ -80,6 +98,12 @@ function ajoutDogs(idp){
 						puceDogs:puceDogs,
 						tatooDogs:tatooDogs,
 						sexe:sexe,
+						detention:detention,
+						club:club,
+						clubAdresse:clubAdresse,
+						mordant:mordant,
+						veto:veto,
+						vetoTel:vetoTel,
 
 					},
 
@@ -247,9 +271,15 @@ function modifFild(id,nom){
 	var mailMaster = document.getElementById('mailMaster'+id+'').value;
 	var telMaster = document.getElementById('telMaster'+id+'').value;
 	var gsmMaster = document.getElementById('gsmMaster'+id+'').value;
-	//var nomDogs = document.getElementById('nomDogs'+id+'').value;
-	//var numPuceDogs = document.getElementById('numPuceDogs'+id+'').value;
-	//var raceDogs = document.getElementById('raceDogs'+id+'').value;
+	var dateNaissance = document.getElementById('dateNaissance'+id+'').value;
+	var lieuNaissance = document.getElementById('lieuNaissance'+id+'').value;
+	var periodeContact= document.getElementById('periodeContact'+id+'').value;
+	var autreDispo = document.getElementById('autreDispo'+id+'').value;
+	var nomContact = document.getElementById('nomContact'+id+'').value;
+	var prenomContact = document.getElementById('prenomContact'+id+'').value;
+	var telContact = document.getElementById('telContact'+id+'').value;
+
+	
 	
 
 	if(ok){
@@ -269,9 +299,13 @@ function modifFild(id,nom){
 				mailMaster:mailMaster,
 				telMaster:telMaster,
 				gsmMaster:gsmMaster,
-				//nomDogs:nomDogs,
-				//numPuceDogs:numPuceDogs,
-				//raceDogs:raceDogs,
+				dateNaissance:dateNaissance,
+				lieuNaissance:lieuNaissance,
+				periodeContact:periodeContact,
+				autreDispo:autreDispo,
+				nomContact:nomContact,
+			    prenomContact:prenomContact,
+			    telContact:telContact,
 				
 			},
 			success:setTimeout(function(){
