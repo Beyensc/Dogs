@@ -78,6 +78,12 @@ class MDogs extends MBase {
 		include_once('./class/dogs.class.php');
 		$deleteProprio=new Dogs($this->appli->dbPdo);
 	}
+	
+	public function dogsProprio(){
+		include_once('./class/dogs.class.php');
+		$dogsProprio=new Dogs($this->appli->dbPdo);
+		return $dogsProprio->dogsProprio();
+	}
 	public function deleteRace(){
 		include_once('./class/dogs.class.php');
 		$deleteRace=new Dogs($this->appli->dbPdo);

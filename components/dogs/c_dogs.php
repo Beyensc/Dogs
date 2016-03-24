@@ -23,6 +23,7 @@ public function actif(){
 	$dogs=$this->model->dogs();
 	$modifProprio=$this->model->modifProprio();
 	$race=$this->model->getListDogs();
+	//$dogsProprio=$this->model->dogsProprio();
 	$this->view->listDogsPro($proprietaire,$race,$dogs);
 }
 

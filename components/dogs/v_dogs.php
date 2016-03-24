@@ -18,7 +18,10 @@ class VDogs extends VBase {
 
     public function listDogsPro($proprietaire,$race,$dogs){
 
+
         $html='';
+
+      
 
         $html.='<div id="form"><table class="table">';
     
@@ -32,8 +35,15 @@ class VDogs extends VBase {
 
                     <table class="table" id="ajoutDogsForm'.$row['id_proprietaire'].'" style="display:none;">
                    <tr>
-                   <td><input class="form-control" type="text" placeholder="Nom du chien" name="nomDogs" id="nomDogs'.$row['id_proprietaire'].'"></td>
-                   <td><input class="form-control" type="text" placeholder="N° puce" name="numPuceDogs" id="numPuceDogs'.$row['id_proprietaire'].'"></td></tr>
+                   <td>Nom du chien  <input class="form-control" type="text" placeholder="Nom du chien" name="nomDogs" id="nomDogs'.$row['id_proprietaire'].'"></td>
+                   <td>Dog id <input class="form-control" type="text" placeholder="Dog id" name="numPuceDogs" id="numPuceDogs'.$row['id_proprietaire'].'"></td>
+                   <td>Date de naissance <input class="form-control" type="text" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'"></td></tr>
+                   <tr><td>Puce <input class="form-control" type="text" placeholder="Puce" name="puceDogs" id="puceDogs'.$row['id_proprietaire'].'"></td>
+                   <td>Tatouage <input class="form-control" type="text" placeholder="Tatouage" name="tatooDogs" id="tatooDogs'.$row['id_proprietaire'].'"></td>
+                   <td>Sexe <select class="form-control" name="sexe_dogs" id="sexe_dogs'.$row['id_proprietaire'].'">
+                   <option value=""></option>
+                   <option value="mâle">Mâle</option>
+                   <option value="femelle">Femelle</option> </td></tr>
                    <tr><td>Race du chien (dangereux): </td><td><select class="form-control" name="raceDogs" id="raceDogs'.$row['id_proprietaire'].'">
                    <option value=""  selected></option>';
 
@@ -64,31 +74,17 @@ class VDogs extends VBase {
                    <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="Téléphone" name="telMaster" id="telMaster'.$row['id_proprietaire'].'" value="'.$row['telephone'].'"></td>
                    <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="GSM" name="gsmMaster" id="gsmMaster'.$row['id_proprietaire'].'" value="'.$row['gsm'].'"></td>
                    </tr>
-                   <tr>';
-                   foreach ($dogs as $key => $dow) {
-                    
-                  
-                  
-                     $html.=' <td id="id_proprietaire"'.$dow['id_proprietaire'].'"><input class="form-control" type="text" placeholder="Nom du chien" name="nomDogs" id="nomDogs'.$dow['id_proprietaire'].'" value="'.$dow['nom'].'"></td>';
-        
-                    $html.='<td id="id_proprietaire"'.$dow['id_proprietaire'].'">Race du chien: </td><td><input class="form-control" type="text" id="raceDogs'.$dow['id_proprietaire'].'"placeholder="race du chien" value="'.$dow['id_race'].'"></td>';
-                     
-                         
-                   $html.='<td id="id_proprietaire"'.$dow['id_proprietaire'].'"><input class="form-control" type="text" placeholder="Numéro de la puce" id="numPuceDogs'.$dow['id_proprietaire'].'" value="'.$dow['num_puce'].'"></td>
+                   <tr><td><input class="btn btn-primary" type="button" value="modifier" id="modif" onclick="modifFild(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td>
+                  <td><input class="btn btn-primary" type="button" value="voir" id="dogsProprio" onclick="dogsProprioform('.$row['id_proprietaire'].'),dogsProprio('.$row['id_proprietaire'].')"></td></tr></table>';
 
-                   <td><input class="btn btn-danger" type="button" value="supprimer" id="delete" onclick="deleteDogsList()"> </td></tr>';
-                  
-                    }
+                       $html.='<div id="listDogs'.$row['id_proprietaire'].'"></div>';
+                       
 
-
-               
-                  $html.='<td><input class="btn btn-primary" type="button" value="modifier" id="modif" onclick="modifFild(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td></tr></table>';
-         
+                   
              }
 
-        // }
-
-                 $html.='</table></div>';
+         
+                 
 
                 $this->appli->list=$html;
         }
