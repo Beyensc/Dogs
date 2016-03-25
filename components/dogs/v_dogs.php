@@ -16,7 +16,7 @@ class VDogs extends VBase {
       $this->appli->content=$html;
     }
 
-    public function listDogsPro($proprietaire,$race,$dogs){
+    public function listDogsPro($proprietaire,$race,$dogs,$verification){
 
 
         $html='';
@@ -57,7 +57,9 @@ class VDogs extends VBase {
                               
 
                               <tr><td><h1><u>Divers</u></h1></td></tr>
-                              <tr><td>Lieu de détention du chien(si autre que celui de l adresse du propriétaire)<input class="form-control" type="text" placeholder="Lieu de détention" name="detention" id="detention'.$row['id_proprietaire'].'"></td></tr>
+                              <tr><td>Lieu de détention du chien(si autre que celui de l adresse du propriétaire)<input class="form-control" type="text" placeholder="Lieu de détention" name="detention" id="detention'.$row['id_proprietaire'].'"></td>
+                              </tr>
+                             
                               <tr><td>Club de dressage<input class="form-control" type="text" placeholder="Nom du club" name="club" id="club'.$row['id_proprietaire'].'"></td>
                               <td>Adresse du club<input class="form-control" type="text" placeholder="Adresse du club" name="clubAdresse" id="clubAdresse'.$row['id_proprietaire'].'"></td>
                               <td>Dressage mordant <select class="form-control" name="mordant" id="mordant'.$row['id_proprietaire'].'">
@@ -66,9 +68,25 @@ class VDogs extends VBase {
                                  <option value="non">non</option> </td></tr>
                               <tr><td>Vétérinaire<input class="form-control" type="text" placeholder="Vétérinaire" name="veto" id="veto'.$row['id_proprietaire'].'"></td>
                               <td>Téléphone du vétérinaire<input class="form-control" type="text" placeholder="Téléphone" name="vetoTel" id="vetoTel'.$row['id_proprietaire'].'"></td></tr>
-                              <tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutDogs" onclick="ajoutDogs('.$row['id_proprietaire'].')"></td></tr>
+                             
 
-                              </table>
+                              <tr><td><h1><u>Vérification</u></h1></td></tr>';
+
+                             /*  foreach ($verification as $key => $vow) {
+
+                                     $html.=' <tr><td><input class="form-control"type="text"id="verif'.$vow['id_verification'].'" value="'.ucfirst($vow['verification']).'"></td>
+                                    <td> <select class="form-control" id="verif'.$row['id_proprietaire'].'">
+                                    <option value=""></option>
+                                     <option value="ok">OK</option>
+                                     <option value="defaut">Defaut</option>
+                                     <select></td></tr>';
+        
+                               }*/
+                      
+
+                               $html.='<tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutDogs" onclick="ajoutDogs('.$row['id_proprietaire'].'),verif('.$row['id_proprietaire'].'\',\''.$vow['id_verification'].')"></td></tr>';
+
+                             $html.='</table>
 
 
                   <table class="table"  id="details'.$row['id_proprietaire'].'" style="display:none;" >
@@ -117,6 +135,7 @@ class VDogs extends VBase {
                  
 
                 $this->appli->list=$html;
+
         }
 
     public function listDogsProInactif($proprietaireIncatif){
@@ -149,11 +168,7 @@ class VDogs extends VBase {
        <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="Téléphone" name="telMaster" id="telMaster" value="'.$row['telephone'].'"></td>
        <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="GSM" name="gsmMaster" id="gsmMaster" value="'.$row['gsm'].'"></td>
        </tr>';
-       /*<tr>
-       <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="Nom du chien" name="nomDogs" id="nomDogs" value="'.ucfirst($row['nom_chien']).'"></td>
-       <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="N° puce" name="numPuceDogs" id="numPuceDogs" value="'.$row['num_puce'].'"></td>
-       <td> <input class="form-control" type="text" placeholder="race du chien (dangereux)" name="raceDogs" id="raceDogs" value="'.$row['race'].'"</td></tr>*/
-
+      
        $html.='<tr><td><input class="btn btn-success" type="button" value="Activer" id="delete" onclick="activProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td>
         <td><input class="btn btn-danger" type="button" value="Supprimer" id="delete" onclick="deleteProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td>
 
@@ -230,7 +245,7 @@ class VDogs extends VBase {
        $this->appli->list=$html;       
     } 
 
-    public function addNewListVerification($verification,$newListVerification){
+    public function addNewListVerification($verification,$newListVerification,$modifListVerification){
 
       $html='';
       $html.='<table class="table" id="formListDogs"><ul class="list-group">';
@@ -239,16 +254,17 @@ class VDogs extends VBase {
       foreach ($verification as $key => $vow) {
         
       
-      $html.='<tr><td><li class="list-group-item"'.$vow['id_verification'].'> '.ucfirst($vow['verification']).'</li>
+      $html.='<tr><td><li '.$vow['id_verification'].'> <input class="form-control"type="text" id="verif'.ucfirst($vow['id_verification']).'" value="'.$vow['verification'].'"></li>
 
-        <td><input class="btn btn-danger" type="button" value="Supprimer" id="deleteRace" onclick="deleteVerification(\''.$vow['id_verification'].'\',\''.$vow['verification'].'\')"></td></td></tr>';
+        <td><input class="btn btn-danger" type="button" value="Supprimer" id="deleteRace" onclick="deleteVerification(\''.$vow['id_verification'].'\',\''.$vow['verification'].'\')"></td><td><input class="btn btn-warning" type="button" name="bmodifListVerification" id="bmodifListVerification" value="Modifier" onclick="modifListVerification('.$vow['id_verification'].')"></td></td></tr>';
 
           }
       $html.='</table>';
 
       $html.='<table class="table" id="formList">
       <tr><td>Mise a jour de la liste des vérifications <input class="form-control" type="text" name="listVerification" id="listVerification" require autofocus></td></tr>
-              <tr><td><input class="btn btn-warning" type="button" name="bListVerification" id="bListVerification" value="ajouter" onclick="addNewListVerification()"></td></tr></table>';
+              <tr><td><input class="btn btn-warning" type="button" name="bListVerification" id="bListVerification" value="ajouter" onclick="addNewListVerification()"></td>
+              </tr></table>';
 
        $this->appli->list=$html;       
     }  

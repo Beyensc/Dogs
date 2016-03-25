@@ -24,7 +24,8 @@ public function actif(){
 	$modifProprio=$this->model->modifProprio();
 	$race=$this->model->getListDogs();
 	//$dogsProprio=$this->model->dogsProprio();
-	$this->view->listDogsPro($proprietaire,$race,$dogs);
+	$verification=$this->model->getListVerification();
+	$this->view->listDogsPro($proprietaire,$race,$dogs,$verification);
 }
 
 public function inactif(){
@@ -46,7 +47,8 @@ public function majListVerification(){
 
 	$verification=$this->model->getListVerification();
 	$newListVerification=$this->model->addNewListVerification();
-	$this->view->addNewListVerification($verification,$newListVerification);
+	$modifListVerification=$this->model->modifListVerification();
+	$this->view->addNewListVerification($verification,$newListVerification,$modifListVerification);
 }
 
 public function connexion(){

@@ -112,6 +112,17 @@ public function __construct($dbPdo){
 		$req->execute();
 	}
 
+	public function modifListVerification($tab){
+
+		$req=$this->pdo->prepare('UPDATE verification SET verification=:verification WHERE id_verification=:id');
+
+		$req->bindParam(':verification',$tab['verif'],PDO::PARAM_STR);
+		$req->bindParam(':id',$tab['id'],PDO::PARAM_INT);
+		$req->execute();
+
+
+	}
+
 	public function addNewDogs($tab){
 
 
@@ -139,7 +150,6 @@ public function __construct($dbPdo){
 
 		
 		$req->execute();
-
 
 	}
 

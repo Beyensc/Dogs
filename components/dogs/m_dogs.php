@@ -73,6 +73,10 @@ class MDogs extends MBase {
 		include_once('./class/dogs.class.php');
 		$modifProprio=new Dogs($this->appli->dbPdo);
 	}
+	public function modifListVerification(){
+		include_once('./class/dogs.class.php');
+		$modifListVerification=new Dogs($this->appli->dbPdo);
+	}
 	
 	public function deleteProprio(){
 		include_once('./class/dogs.class.php');

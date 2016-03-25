@@ -63,21 +63,21 @@ function addNewDogs(){
 	}
 }
 
-function ajoutDogs(idp){
+function ajoutDogs(id){
 
-		var nomDogs = document.getElementById('nomDogs'+idp+'').value;
-		var numPuceDogs = document.getElementById('numPuceDogs'+idp+'').value;
-		var raceDogs = document.getElementById('raceDogs'+idp+'').value;
+		var nomDogs = document.getElementById('nomDogs'+id+'').value;
+		var numPuceDogs = document.getElementById('numPuceDogs'+id+'').value;
+		var raceDogs = document.getElementById('raceDogs'+id+'').value;
 		var dateNaissance = document.getElementById('dateNaissance'+idp+'').value;
-		var puceDogs = document.getElementById('puceDogs'+idp+'').value;
-		var tatooDogs = document.getElementById('tatooDogs'+idp+'').value;
-		var sexe_dogs = document.getElementById('sexe_dogs'+idp+'').value;
-		var detention = document.getElementById('detention'+idp+'').value;
-		var club = document.getElementById('club'+idp+'').value;
-		var clubAdresse = document.getElementById('clubAdresse'+idp+'').value;
-		var mordant = document.getElementById('mordant'+idp+'').value;
-		var veto = document.getElementById('veto'+idp+'').value;
-		var vetoTel = document.getElementById('vetoTel'+idp+'').value;
+		var puceDogs = document.getElementById('puceDogs'+id+'').value;
+		var tatooDogs = document.getElementById('tatooDogs'+id+'').value;
+		var sexe_dogs = document.getElementById('sexe_dogs'+id+'').value;
+		var detention = document.getElementById('detention'+id+'').value;
+		var club = document.getElementById('club'+id+'').value;
+		var clubAdresse = document.getElementById('clubAdresse'+id+'').value;
+		var mordant = document.getElementById('mordant'+id+'').value;
+		var veto = document.getElementById('veto'+id+'').value;
+		var vetoTel = document.getElementById('vetoTel'+id+'').value;
 
 
 
@@ -121,6 +121,7 @@ function ajoutDogs(idp){
 					alert('Les champs requis ne sont pas remplis !')
 			}
 }
+
 function desactDogs(id,nom){
 
 	
@@ -147,17 +148,17 @@ function desactDogs(id,nom){
 			
 
 		});
-
 }
 
 function addverif(id){
+
 	var verif = document.getElementById('verification'+id+'').checked;
 	if(verif){
 		alert('TRUE');
 	}else{
 		alert('FALSE');
-	}}
-
+	}
+}
 
 function desactProprio(id,nom){
 
@@ -320,6 +321,30 @@ function modifFild(id,nom){
 			
 				window.location.href="?component=dogs&action=actif";
 	}
+}
+
+function modifListVerification(id){
+
+			var verif = document.getElementById('verif'+id+'').value;
+			
+
+			$.ajax({
+						type:"GET",
+						url:"js/php/dogs/modifListVerification.php",
+						data:{
+							id:id,
+							verif:verif,
+						
+							
+						},
+						success:setTimeout(function(){
+							window.location.href="?component=dogs&action=majListVerification";
+
+
+					},
+					1000),
+					//success:function(retour){alert(id);},
+				});
 }
 
 function deleteProprio(id,nom){
