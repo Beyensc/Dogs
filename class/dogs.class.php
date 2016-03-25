@@ -115,7 +115,8 @@ public function __construct($dbPdo){
 	public function addNewDogs($tab){
 
 
-		$req=$this->pdo->prepare('INSERT INTO proprietaire(nom,prenom,date_naissance,lieu_naissance,rue,numero,CP,ville,pays,mail,telephone,gsm,periode_dispo,autre_dispo,nom_contact,prenom_contact,num_contact) VALUES (:nom,:prenom,:date_naissance,:lieu_naissance,:rue,:numero,:CP,:ville,:pays,:mail,:telephone,:gsm,:periode_dispo,:autre_dispo,:nom_contact,:prenom_contact,:num_contact)');
+		$req=$this->pdo->prepare('INSERT INTO proprietaire(nom,prenom,date_naissance,lieu_naissance,rue,numero,CP,ville,pays,mail,telephone,gsm,periode_dispo,autre_dispo,nom_contact,prenom_contact,num_contact) 
+			VALUES (:nom,:prenom,:date_naissance,:lieu_naissance,:rue,:numero,:CP,:ville,:pays,:mail,:telephone,:gsm,:periode_dispo,:autre_dispo,:nom_contact,:prenom_contact,:num_contact)');
 
 		$req->bindParam(':nom',$tab['nomMaster'],PDO::PARAM_STR);
 		$req->bindParam(':prenom',$tab['prenomMaster'],PDO::PARAM_STR);
@@ -145,28 +146,28 @@ public function __construct($dbPdo){
 	public function ajoutDogs($tab){
 		
 		
-		$req=$this->pdo->prepare('INSERT INTO chien(nom,num_puce,date_naissance,puce_dogs,tatoo_dogs,sexe,club,detention,club_adresse,mordant,veto,vetotel,id_race,id_proprietaire) 
-			VALUES (:nom,:num_puce,:date_naissance,:puce_dogs,:tatoo_dogs,:sexe,:detention,:club,:club_adresse,:mordant,:veto,:vetotel,:id_race,:id_proprietaire)');
+		$req=$this->pdo->prepare('INSERT INTO chien(nom,num_puce,sexe,date_naissance,puce_dogs,tatoo_dogs,detention,club,club_adresse,mordant,veto,vetotel,id_race,id_proprietaire) 
+			VALUES (:nom,:num_puce,:sexe,:date_naissance,:puce_dogs,:tatoo_dogs,:detention,:club,:club_adresse,:mordant,:veto,:vetotel,:id_race,:id_proprietaire)');
 		
 		$req->bindParam(':nom',$tab['nomDogs'],PDO::PARAM_STR);
 		$req->bindParam(':num_puce',$tab['numPuceDogs'],PDO::PARAM_STR);
-		$req->bindParam(':id_race',$tab['raceDogs'],PDO::PARAM_STR);
-		$req->bindParam(':id_proprietaire',$tab['idp'],PDO::PARAM_INT);
+		$req->bindParam(':sexe',$tab['sexe_dogs'],PDO::PARAM_STR);
 		$req->bindParam(':date_naissance',$tab['dateNaissance'],PDO::PARAM_STR);
 		$req->bindParam(':puce_dogs',$tab['puceDogs'],PDO::PARAM_STR);
 		$req->bindParam(':tatoo_dogs',$tab['tatooDogs'],PDO::PARAM_STR);
-		$req->bindParam(':sexe',$tab['sexe'],PDO::PARAM_STR);
 		$req->bindParam(':detention',$tab['detention'],PDO::PARAM_STR);
 		$req->bindParam(':club',$tab['club'],PDO::PARAM_STR);
 		$req->bindParam(':club_adresse',$tab['clubAdresse'],PDO::PARAM_STR);
 		$req->bindParam(':mordant',$tab['mordant'],PDO::PARAM_STR);
 		$req->bindParam(':veto',$tab['veto'],PDO::PARAM_STR);
 		$req->bindParam(':vetotel',$tab['vetoTel'],PDO::PARAM_STR);
+		$req->bindParam(':id_race',$tab['raceDogs'],PDO::PARAM_INT);
+		$req->bindParam(':id_proprietaire',$tab['idp'],PDO::PARAM_INT);
 
 
 		
 		$req->execute();
-		
+		return $tab;		
 	}
 
 	public function addNewDogsList($tab){

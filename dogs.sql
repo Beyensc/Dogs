@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Lun 14 Mars 2016 à 09:26
+-- Généré le: Ven 25 Mars 2016 à 08:48
 -- Version du serveur: 5.5.47-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4.14
 
@@ -48,19 +48,31 @@ CREATE TABLE IF NOT EXISTS `chien` (
   `id_chien` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(25) DEFAULT NULL,
   `num_puce` varchar(200) DEFAULT NULL,
+  `sexe` varchar(200) NOT NULL,
+  `date_naissance` varchar(200) NOT NULL,
+  `puce_dogs` varchar(200) NOT NULL,
+  `tatoo_dogs` varchar(200) NOT NULL,
+  `detention` varchar(250) NOT NULL,
+  `club` varchar(200) NOT NULL,
+  `club_adresse` varchar(250) NOT NULL,
+  `mordant` varchar(3) NOT NULL,
+  `veto` varchar(200) NOT NULL,
+  `vetotel` varchar(200) NOT NULL,
+  `actif` varchar(1) NOT NULL DEFAULT 'O',
   `id_race` int(11) DEFAULT NULL,
   `id_proprietaire` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_chien`),
   KEY `FK_chien_id_race` (`id_race`),
   KEY `FK_chien_id_proprietaire` (`id_proprietaire`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=95 ;
 
 --
 -- Contenu de la table `chien`
 --
 
-INSERT INTO `chien` (`id_chien`, `nom`, `num_puce`, `id_race`, `id_proprietaire`) VALUES
-(1, 'brutus', NULL, NULL, NULL);
+INSERT INTO `chien` (`id_chien`, `nom`, `num_puce`, `sexe`, `date_naissance`, `puce_dogs`, `tatoo_dogs`, `detention`, `club`, `club_adresse`, `mordant`, `veto`, `vetotel`, `actif`, `id_race`, `id_proprietaire`) VALUES
+(88, 'm', NULL, '', '', '', '', '', '', '', '', '', '', 'O', NULL, 67),
+(90, 'loulou', '12367', 'male', '30/07/1991', '27537', '37783', '/', '/', '/', 'oui', '/', '/', 'O', 9, 67);
 
 -- --------------------------------------------------------
 
@@ -85,6 +97,8 @@ CREATE TABLE IF NOT EXISTS `proprietaire` (
   `id_proprietaire` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(25) DEFAULT NULL,
   `prenom` varchar(100) DEFAULT NULL,
+  `date_naissance` varchar(200) NOT NULL,
+  `lieu_naissance` varchar(200) NOT NULL,
   `rue` varchar(100) DEFAULT NULL,
   `numero` varchar(100) DEFAULT NULL,
   `CP` varchar(25) DEFAULT NULL,
@@ -93,17 +107,21 @@ CREATE TABLE IF NOT EXISTS `proprietaire` (
   `mail` varchar(100) DEFAULT NULL,
   `telephone` varchar(100) DEFAULT NULL,
   `gsm` varchar(100) DEFAULT NULL,
+  `periode_dispo` varchar(200) NOT NULL,
+  `autre_dispo` varchar(200) NOT NULL,
+  `nom_contact` varchar(200) NOT NULL,
+  `prenom_contact` varchar(200) NOT NULL,
+  `num_contact` varchar(200) NOT NULL,
   `actif` varchar(1) DEFAULT 'O',
   PRIMARY KEY (`id_proprietaire`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=68 ;
 
 --
 -- Contenu de la table `proprietaire`
 --
 
-INSERT INTO `proprietaire` (`id_proprietaire`, `nom`, `prenom`, `rue`, `numero`, `CP`, `ville`, `pays`, `mail`, `telephone`, `gsm`, `actif`) VALUES
-(2, 'Beyens', 'ClÃ©ment', 'Dragon', '113', '7700', 'Mouscron', 'Belgique', 'beyens.c@gmail.com', '/', '0474667069', 'O'),
-(20, 'test', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'O');
+INSERT INTO `proprietaire` (`id_proprietaire`, `nom`, `prenom`, `date_naissance`, `lieu_naissance`, `rue`, `numero`, `CP`, `ville`, `pays`, `mail`, `telephone`, `gsm`, `periode_dispo`, `autre_dispo`, `nom_contact`, `prenom_contact`, `num_contact`, `actif`) VALUES
+(67, 'Beyens', 'ClÃ©ment', '', 'Mouscron', 'Du dragon', '113', '7700', 'Mouscron', 'Belgique', 'beyens.c@gmail.com', '056336720', '0474667069', 'matin', 'vers 17h', 'test', 'test', 'test', 'O');
 
 -- --------------------------------------------------------
 
@@ -130,8 +148,8 @@ INSERT INTO `race` (`id_race`, `race`, `id_chien`, `actif`) VALUES
 (3, 'Band dog', NULL, 'O'),
 (4, 'Bull terrier', NULL, 'O'),
 (5, 'Dogo Argentino', NULL, 'O'),
-(6, 'Dog de Bordeaux', NULL, 'O'),
-(7, 'English terrier (staffordshire bull-terrier', NULL, 'O'),
+(6, 'Dogue de Bordeaux', NULL, 'O'),
+(7, 'English terrier', NULL, 'O'),
 (8, 'Fila Braziliero', NULL, 'O'),
 (9, 'Mastiff (toutes origines)', NULL, 'O'),
 (10, 'Pit bull terrier', NULL, 'O'),
@@ -173,7 +191,15 @@ CREATE TABLE IF NOT EXISTS `verification` (
   `etat` tinyint(1) DEFAULT NULL,
   `date_verification` date DEFAULT NULL,
   PRIMARY KEY (`id_verification`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `verification`
+--
+
+INSERT INTO `verification` (`id_verification`, `verification`, `etat`, `date_verification`) VALUES
+(1, 'test', 0, NULL),
+(2, 'test2', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -184,6 +210,7 @@ CREATE TABLE IF NOT EXISTS `verification` (
 CREATE TABLE IF NOT EXISTS `verifier` (
   `id_proprietaire` int(11) NOT NULL,
   `id_verification` int(11) NOT NULL,
+  `date` date NOT NULL,
   PRIMARY KEY (`id_proprietaire`,`id_verification`),
   KEY `FK_verifier_id_verification` (`id_verification`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

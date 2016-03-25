@@ -49,7 +49,7 @@ function addNewDogs(){
 			},
 			//success:function(retour){alert(retour);},
 			success:setTimeout(function(){
-				window.location.href="?component=dogs&action=actif";
+			window.location.href="?component=dogs&action=actif";
 			
 
 
@@ -71,14 +71,13 @@ function ajoutDogs(idp){
 		var dateNaissance = document.getElementById('dateNaissance'+idp+'').value;
 		var puceDogs = document.getElementById('puceDogs'+idp+'').value;
 		var tatooDogs = document.getElementById('tatooDogs'+idp+'').value;
-		var sexe = document.getElementById('sexe_dogs'+idp+'').value;
+		var sexe_dogs = document.getElementById('sexe_dogs'+idp+'').value;
 		var detention = document.getElementById('detention'+idp+'').value;
 		var club = document.getElementById('club'+idp+'').value;
 		var clubAdresse = document.getElementById('clubAdresse'+idp+'').value;
 		var mordant = document.getElementById('mordant'+idp+'').value;
 		var veto = document.getElementById('veto'+idp+'').value;
 		var vetoTel = document.getElementById('vetoTel'+idp+'').value;
-
 
 
 
@@ -97,7 +96,7 @@ function ajoutDogs(idp){
 						dateNaissance:dateNaissance,
 						puceDogs:puceDogs,
 						tatooDogs:tatooDogs,
-						sexe:sexe,
+						sexe_dogs:sexe_dogs,
 						detention:detention,
 						club:club,
 						clubAdresse:clubAdresse,
