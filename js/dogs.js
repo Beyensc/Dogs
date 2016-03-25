@@ -68,7 +68,7 @@ function ajoutDogs(id){
 		var nomDogs = document.getElementById('nomDogs'+id+'').value;
 		var numPuceDogs = document.getElementById('numPuceDogs'+id+'').value;
 		var raceDogs = document.getElementById('raceDogs'+id+'').value;
-		var dateNaissance = document.getElementById('dateNaissance'+idp+'').value;
+		var dateNaissance = document.getElementById('dateNaissance'+id+'').value;
 		var puceDogs = document.getElementById('puceDogs'+id+'').value;
 		var tatooDogs = document.getElementById('tatooDogs'+id+'').value;
 		var sexe_dogs = document.getElementById('sexe_dogs'+id+'').value;
@@ -79,7 +79,7 @@ function ajoutDogs(id){
 		var veto = document.getElementById('veto'+id+'').value;
 		var vetoTel = document.getElementById('vetoTel'+id+'').value;
 
-
+alert(id);
 
 				
 
@@ -89,7 +89,7 @@ function ajoutDogs(id){
 					type:"GET",
 					url:"js/php/dogs/NewDogs.php",
 					data:{
-						idp:idp,
+						id:id,
 						nomDogs:nomDogs,
 						numPuceDogs:numPuceDogs,
 						raceDogs:raceDogs,
@@ -106,15 +106,15 @@ function ajoutDogs(id){
 
 					},
 
-					success:setTimeout(function(){
-						window.location.href="?component=dogs&action=actif";
+					///success:setTimeout(function(){
+						//window.location.href="?component=dogs&action=actif";
 					
 
 
-				},
+				//},
 
-				1000),
-				//success:function(retour){alert(retour);},
+				//1000),
+				success:function(retour){alert(retour);},
 			});
 				}else{
 

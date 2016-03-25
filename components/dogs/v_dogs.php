@@ -84,7 +84,7 @@ class VDogs extends VBase {
                                }*/
                       
 
-                               $html.='<tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutDogs" onclick="ajoutDogs('.$row['id_proprietaire'].'),verif('.$row['id_proprietaire'].'\',\''.$vow['id_verification'].')"></td></tr>';
+                               $html.='<tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutDogs" onclick="ajoutDogs('.$row['id_proprietaire'].')"></td></tr>';
 
                              $html.='</table>
 
