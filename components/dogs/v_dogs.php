@@ -29,7 +29,7 @@ class VDogs extends VBase {
          foreach ($proprietaire as $key => $row) {
 
           $html.=' <div class="info">
-                  <tr><td>Nom : '.$row['nom'].'&nbsp '.$row['prenom'].'</tr>
+                  <tr><td>Nom : '.ucfirst($row['nom']).'&nbsp'.ucfirst($row['prenom']).'</tr></td>
                  <tr><td><input id="button" class="btn btn-danger" type="button" value="supprimer" id="delete" onclick="desactProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td><td> <input id="button" class="btn btn-info" type="button" value="Détails" id="details" onclick="details('.$row['id_proprietaire'].');"></td><td><input id="button" type="button" class="btn btn-success"value="Ajouter un chien" id="ajoutDogs" onclick="ajoutDogsForm('.$row['id_proprietaire'].');"></td></tr></div>
 
 
@@ -37,7 +37,7 @@ class VDogs extends VBase {
                     <tr><td><h1><u>Chien</u></h1></td></tr>
                    <tr>
                    <td>Nom du chien  <input class="form-control" type="text" placeholder="Nom du chien" name="nomDogs" id="nomDogs'.$row['id_proprietaire'].'"></td>
-                   <td>Dog id <input class="form-control" type="text" placeholder="Dog id" name="numPuceDogs" id="numPuceDogs'.$row['id_proprietaire'].'"></td>
+                   <td>Dog id <input class="form-control" type="text" placeholder="xxx-xxx-xxxx" name="numPuceDogs" id="numPuceDogs'.$row['id_proprietaire'].'"></td>
                    <td>Date de naissance <input class="form-control" type="text" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'"></td></tr>
                    <tr><td>Puce <input class="form-control" type="text" placeholder="Puce" name="puceDogs" id="puceDogs'.$row['id_proprietaire'].'"></td>
                    <td>Tatouage <input class="form-control" type="text" placeholder="Tatouage" name="tatooDogs" id="tatooDogs'.$row['id_proprietaire'].'"></td>
@@ -70,9 +70,10 @@ class VDogs extends VBase {
                               <td>Téléphone du vétérinaire<input class="form-control" type="text" placeholder="Téléphone" name="vetoTel" id="vetoTel'.$row['id_proprietaire'].'"></td></tr>
                              
 
-                              <tr><td><h1><u>Vérification</u></h1></td></tr>';
+                              <tr><td><h1><u>Remarque(s)</u></h1></td></tr>
+                              <tr><td><textarea class="form-control" id="remarques'.$row['id_proprietaire'].'"></textarea>';
 
-                             /*  foreach ($verification as $key => $vow) {
+                             /* foreach ($verification as $key => $vow) {
 
                                      $html.=' <tr><td><input class="form-control"type="text"id="verif'.$vow['id_verification'].'" value="'.ucfirst($vow['verification']).'"></td>
                                     <td> <select class="form-control" id="verif'.$row['id_proprietaire'].'">
@@ -84,7 +85,7 @@ class VDogs extends VBase {
                                }*/
                       
 
-                               $html.='<tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutDogs" onclick="ajoutDogs('.$row['id_proprietaire'].')"></td></tr>';
+                               $html.='<tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutDogs" onclick="ajoutDogs('.$row['id_proprietaire'].'),ajoutVerifPro('.$row['id_proprietaire'].')"></td></tr>';
 
                              $html.='</table>
 
@@ -96,7 +97,7 @@ class VDogs extends VBase {
                    
                    <td id="id_proprietaire"'.$row['id_proprietaire'].'">Prénom<input class="form-control"  type="text" placeholder="Prénom du maître" name="prenomMaster" id="prenomMaster'.$row['id_proprietaire'].'" value="'.ucfirst($row['prenom']).'"></tr>
 
-                   <tr><td id="id_proprietaire"'.$row['id_proprietaire'].'">Date de naissance<input class="form-control"  type="text" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'" value="'.ucfirst($row['date_naissance']).'"></td>
+                   <tr><td id="id_proprietaire"'.$row['id_proprietaire'].'">Date de naissance<input class="form-control"  type="text" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'" value="'.$row['date_naissance'].'"></td>
 
                    <td id="id_proprietaire"'.$row['id_proprietaire'].'">Lieu de naissance<input class="form-control"  type="text" placeholder="Lieu de naissance" name="lieuNaissance" id="lieuNaissance'.$row['id_proprietaire'].'" value="'.ucfirst($row['lieu_naissance']).'"></td>
                    </tr>
@@ -146,8 +147,9 @@ class VDogs extends VBase {
         foreach ($proprietaireIncatif as $key => $row) {
 
           $html.=' <div class="info">
-          <tr><td>Nom : '.$row['nom'].'</br> Prénom : '.$row['prenom'].' </br> Adresse : rue '.$row['rue'].'&nbsp'.$row['numero'].'&nbsp'.$row['CP'].'&nbsp'.$row['ville'].'</br>Race du chien : </br> Numéro de la puce : </br></br>
-                   <input class="btn btn-info" type="button" value="Détails" id="details" onclick="details('.$row['id_proprietaire'].');"></td></tr></div>
+          <tr><td>Nom : '.ucfirst($row['nom']).'&nbsp'.ucfirst($row['prenom']).'</td></tr
+                   <tr><td><input class="btn btn-info" type="button" value="Détails" id="details" onclick="details('.$row['id_proprietaire'].');"></td><td><input class="btn btn-success" type="button" value="Activer" id="delete" onclick="activProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td>
+        <td><input class="btn btn-danger" type="button" value="Supprimer" id="delete" onclick="deleteProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td></tr></div>
 
                   <table  class="table"  id="details'.$row['id_proprietaire'].'" style="display:none;" >
 

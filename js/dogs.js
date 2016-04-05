@@ -79,7 +79,7 @@ function ajoutDogs(id){
 		var veto = document.getElementById('veto'+id+'').value;
 		var vetoTel = document.getElementById('vetoTel'+id+'').value;
 
-alert(id);
+
 
 				
 
@@ -106,15 +106,15 @@ alert(id);
 
 					},
 
-					///success:setTimeout(function(){
-						//window.location.href="?component=dogs&action=actif";
+					success:setTimeout(function(){
+						window.location.href="?component=dogs&action=actif";
 					
 
 
-				//},
+				},
 
-				//1000),
-				success:function(retour){alert(retour);},
+				1000),
+				//success:function(retour){alert(retour);},
 			});
 				}else{
 
@@ -323,6 +323,74 @@ function modifFild(id,nom){
 	}
 }
 
+function modifDogs(id){
+
+		var nomDogs = document.getElementById('nomDogs'+id+'').value;
+		var numPuceDogs = document.getElementById('numPuceDogs'+id+'').value;
+		var raceDogs = document.getElementById('raceDogs'+id+'').value;
+		var dateNaissance = document.getElementById('dateNaissance'+id+'').value;
+		var puceDogs = document.getElementById('puceDogs'+id+'').value;
+		var tatooDogs = document.getElementById('tatooDogs'+id+'').value;
+		var sexe_dogs = document.getElementById('sexe_dogs'+id+'').value;
+		var detention = document.getElementById('detention'+id+'').value;
+		var club = document.getElementById('club'+id+'').value;
+		var clubAdresse = document.getElementById('clubAdresse'+id+'').value;
+		var mordant = document.getElementById('mordant'+id+'').value;
+		var veto = document.getElementById('veto'+id+'').value;
+		var vetoTel = document.getElementById('vetoTel'+id+'').value;
+		var remarques = document.getElementById('remarques'+id+'').value;
+		alert(remarques);
+
+
+
+
+				
+
+				if((nomDogs != '')){
+
+				$.ajax({
+					type:"GET",
+					url:"js/php/dogs/modifDogs.php",
+					data:{
+						id:id,
+						nomDogs:nomDogs,
+						numPuceDogs:numPuceDogs,
+						raceDogs:raceDogs,
+						dateNaissance:dateNaissance,
+						puceDogs:puceDogs,
+						tatooDogs:tatooDogs,
+						sexe_dogs:sexe_dogs,
+						detention:detention,
+						club:club,
+						clubAdresse:clubAdresse,
+						mordant:mordant,
+						veto:veto,
+						vetoTel:vetoTel,
+						remarques:remarques,
+
+					},
+
+					success:setTimeout(function(){
+						window.location.href="?component=dogs&action=actif";
+					
+
+
+				},
+
+				1000),
+				//success:function(retour){alert(retour);},
+			});
+				}else{
+
+					alert('Les champs requis ne sont pas remplis !')
+			}
+}
+function ajoutVerifPro(id,idv){
+	alert(id);
+
+	
+}
+
 function modifListVerification(id){
 
 			var verif = document.getElementById('verif'+id+'').value;
@@ -422,11 +490,15 @@ function details(id){
     {
        
         document.getElementById('details'+id).style.display="none";
+        document.getElementById('listDogs'+id).style.display="none";
+        document.getElementById('ajoutDogsForm'+id).style.display="none";
     }
+
     else
     {
         
        document.getElementById('details'+id).style.display="block";
+
 
 
 			
@@ -446,10 +518,19 @@ function ajoutDogsForm(id){
     {
         
        document.getElementById('ajoutDogsForm'+id).style.display="block";
+   
 
 
     }
     return true;
+
+        //$(document).ready(function(){
+   		//$("ajoutDogs").click(function(){
+        //$("#ajoutDogsForm"+id).fadeIn();
+       // $("#ajoutDogsForm"+id).fadeIn("slow");
+        //$("#ajoutDogsForm"+id).fadeIn(3000);
+//         //   });
+//});
 }
 
 function deleteRace(id,nom){

@@ -27,10 +27,10 @@ public function __construct($dbPdo){
 
 	public function dogsProprio($id){
 
-		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.date_naissance,a.puce_dogs,a.tatoo_dogs,a.sexe,a.id_race,b.race,a.id_proprietaire
+		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.date_naissance,a.puce_dogs,a.tatoo_dogs,a.sexe,a.detention,a.club,a.club_adresse,a.mordant,a.veto,a.vetotel,a.remarques,a.id_race,b.race,a.id_proprietaire
 			FROM chien a
 			LEFT JOIN race b ON b.id_race = a.id_race
-			WHERE id_proprietaire="'.$id.'"');
+			WHERE id_proprietaire="'.$id.'"  ');
 		//$sql=('SELECT * FROM chien WHERE actif="O"');
 		return $this->pdo->query($sql)->fetchAll();
 		
@@ -87,6 +87,7 @@ public function __construct($dbPdo){
 	}
 
 	public function modifProprio($tab){
+		print_r($tab);
 		$req=$this->pdo->prepare('UPDATE proprietaire SET nom=:nom,prenom=:prenom,date_naissance=:date_naissance,lieu_naissance=:lieu_naissance,rue=:rue,numero=:numero,CP=:CP,ville=:ville,pays=:pays,mail=:mail,telephone=:telephone,gsm=:gsm,periode_dispo=:periode_dispo,autre_dispo=:autre_dispo,nom_contact=:nom_contact,prenom_contact=:prenom_contact,num_contact=:num_contact
 			WHERE id_proprietaire=:id');
 
@@ -119,15 +120,13 @@ public function __construct($dbPdo){
 		$req->bindParam(':verification',$tab['verif'],PDO::PARAM_STR);
 		$req->bindParam(':id',$tab['id'],PDO::PARAM_INT);
 		$req->execute();
-
-
 	}
 
 	public function addNewDogs($tab){
 
 
-		$req=$this->pdo->prepare('INSERT INTO proprietaire(nom,prenom,date_naissance,lieu_naissance,rue,numero,CP,ville,pays,mail,telephone,gsm,periode_dispo,autre_dispo,nom_contact,prenom_contact,num_contact) 
-			VALUES (:nom,:prenom,:date_naissance,:lieu_naissance,:rue,:numero,:CP,:ville,:pays,:mail,:telephone,:gsm,:periode_dispo,:autre_dispo,:nom_contact,:prenom_contact,:num_contact)');
+		$req=$this->pdo->prepare('INSERT INTO proprietaire(nom,prenom,date_naissance,lieu_naissance,rue,numero,CP,ville,pays,mail,telephone,gsm,periode_dispo,autre_dispo,nom_contact,prenom_contact,num_contact,remarques) 
+			VALUES (:nom,:prenom,:date_naissance,:lieu_naissance,:rue,:numero,:CP,:ville,:pays,:mail,:telephone,:gsm,:periode_dispo,:autre_dispo,:nom_contact,:prenom_contact,:num_contact,:remarques)');
 
 		$req->bindParam(':nom',$tab['nomMaster'],PDO::PARAM_STR);
 		$req->bindParam(':prenom',$tab['prenomMaster'],PDO::PARAM_STR);
@@ -146,11 +145,11 @@ public function __construct($dbPdo){
 		$req->bindParam(':nom_contact',$tab['nomContact'],PDO::PARAM_STR);
 		$req->bindParam(':prenom_contact',$tab['prenomContact'],PDO::PARAM_STR);
 		$req->bindParam(':num_contact',$tab['telContact'],PDO::PARAM_STR);
+		$req->bindParam(':remarques',$tab['remarques'],PDO::PARAM_STR);
 
 
 		
 		$req->execute();
-
 	}
 
 	public function ajoutDogs($tab){
@@ -176,9 +175,31 @@ public function __construct($dbPdo){
 		$req->bindParam(':id_proprietaire',$tab['id'],PDO::PARAM_INT);
 
 
-		print_r($tab);	
+		//print_r($tab);	
+		$req->execute();	
+	}
+
+	public function modifDogs($tab){
+		
+
+		$req=$this->pdo->prepare('UPDATE chien 
+			SET nom=:nom,num_puce=:num_puce,sexe=:sexe,date_naissance=:date_naissance,puce_dogs=:puce_dogs,tatoo_dogs=:tatoo_dogs,detention=:detention,club=:club,club_adresse=:club_adresse,mordant=:mordant,veto=:veto,vetotel=:vetotel WHERE id_chien=:id');
+
+		$req->bindParam(':id',$tab['id'],PDO::PARAM_INT);
+		$req->bindParam(':nom',$tab['nomDogs'],PDO::PARAM_STR);
+		$req->bindParam(':num_puce',$tab['numPuceDogs'],PDO::PARAM_STR);
+		$req->bindParam(':sexe',$tab['sexe_dogs'],PDO::PARAM_STR);
+		$req->bindParam(':date_naissance',$tab['dateNaissance'],PDO::PARAM_STR);
+		$req->bindParam(':puce_dogs',$tab['puceDogs'],PDO::PARAM_STR);
+		$req->bindParam(':tatoo_dogs',$tab['tatooDogs'],PDO::PARAM_STR);
+		$req->bindParam(':detention',$tab['detention'],PDO::PARAM_STR);
+		$req->bindParam(':club',$tab['club'],PDO::PARAM_STR);
+		$req->bindParam(':club_adresse',$tab['clubAdresse'],PDO::PARAM_STR);
+		$req->bindParam(':mordant',$tab['mordant'],PDO::PARAM_STR);
+		$req->bindParam(':veto',$tab['veto'],PDO::PARAM_STR);
+		$req->bindParam(':vetotel',$tab['vetoTel'],PDO::PARAM_STR);
+
 		$req->execute();
-			
 	}
 
 	public function addNewDogsList($tab){
