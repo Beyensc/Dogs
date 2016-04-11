@@ -78,6 +78,8 @@ function ajoutDogs(id){
 		var mordant = document.getElementById('mordant'+id+'').value;
 		var veto = document.getElementById('veto'+id+'').value;
 		var vetoTel = document.getElementById('vetoTel'+id+'').value;
+		var remarques= document.getElementById('remarques'+id+'').value;
+		
 
 
 
@@ -103,6 +105,7 @@ function ajoutDogs(id){
 						mordant:mordant,
 						veto:veto,
 						vetoTel:vetoTel,
+						remarques:remarques,
 
 					},
 
@@ -339,7 +342,7 @@ function modifDogs(id){
 		var veto = document.getElementById('veto'+id+'').value;
 		var vetoTel = document.getElementById('vetoTel'+id+'').value;
 		var remarques = document.getElementById('remarques'+id+'').value;
-		alert(remarques);
+	
 
 
 
@@ -385,11 +388,12 @@ function modifDogs(id){
 					alert('Les champs requis ne sont pas remplis !')
 			}
 }
-function ajoutVerifPro(id,idv){
+
+/*function ajoutVerifPro(id,idv){
 	alert(id);
 
 	
-}
+}*/
 
 function modifListVerification(id){
 

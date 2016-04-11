@@ -28,7 +28,10 @@ if(isset($_GET['id'])){
 	     <td>Vétérinaire <input class="form-control" type="text" id="veto'.$value['id_chien'].'" value="'.$value['veto'].'"></td>
 	     <td>Téléphone(vétérinaire) <input class="form-control" id="vetoTel'.$value['id_chien'].'" type="text" value="'.$value['vetotel'].'"></td></tr>
 	     <tr><td><h1><u>Remarque(s)</u></h1></td></tr>
-	     <tr><td><textarea class="form-control" id="remarques'.$value['id_chien'].'">'.$value['remarques'].'</textarea></td></tr>
+
+	     <tr><td><input class="form-control" type="text" id="remarques'.$value['id_chien'].'"value="'.$value['remarques'].'">
+	     </td></tr>
+
 	     <tr><td><input class="btn btn-danger" type="button" value="Supprimer" id="delete" onclick="desactDogs(\''.$value['id_chien'].'\',\''.$value['nom'].'\')"><td>
 	     <td><input class="btn btn-primary" type="button" value="Modifier" id="delete" onclick="modifDogs(\''.$value['id_chien'].'\',\''.$value['nom'].'\')"><td></tr>
 	     </table>';
