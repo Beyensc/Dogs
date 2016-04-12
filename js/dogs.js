@@ -1,3 +1,6 @@
+$(function(){
+	$("#dateNaissance").datepicker();
+});
 function addNewDogs(){
 
 	var nomMaster = document.getElementById('nomMaster').value;
