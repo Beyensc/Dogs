@@ -23,14 +23,20 @@ class VDogs extends VBase {
 
       
 
-        $html.='<div id="form"><table class="table">';
+        $html.='<div id="form"><table class="table" id="formListDogs"><ul class="list-group">';
     
  
          foreach ($proprietaire as $key => $row) {
 
-          $html.=' <div class="info">
-                  <tr><td>Nom : '.ucfirst($row['nom']).'&nbsp'.ucfirst($row['prenom']).'</tr></td>
-                 <tr><td><input id="button" class="btn btn-danger" type="button" value="supprimer" id="delete" onclick="desactProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td><td> <input id="button" class="btn btn-info" type="button" value="Détails" id="details" onclick="details('.$row['id_proprietaire'].');"></td><td><input id="button" type="button" class="btn btn-success"value="Ajouter un chien" id="ajoutDogs" onclick="ajoutDogsForm('.$row['id_proprietaire'].');"></td></tr></div>
+          $html.=' <div id="form"><table class="table" id="formListDogs"><ul class="list-group">
+
+                  <tr><td><li class="list-group-item"> '.ucfirst($row['nom']).'&nbsp'.ucfirst($row['prenom']).'</li></td>
+
+                 <td><input id="button" class="btn btn-danger" type="button" value="supprimer" id="delete" onclick="desactProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td>
+
+                 <td> <input id="button" class="btn btn-info" type="button" value="Détails" id="details" onclick="details('.$row['id_proprietaire'].');"></td>
+
+                 <td><input id="button" type="button" class="btn btn-success"value="Ajouter un chien" id="ajoutDogs" onclick="ajoutDogsForm('.$row['id_proprietaire'].');"></td></tr></ul></table></div>
 
 
                     <table class="table" id="ajoutDogsForm'.$row['id_proprietaire'].'" style="display:none;">
@@ -92,12 +98,13 @@ class VDogs extends VBase {
 
                   <table class="table"  id="details'.$row['id_proprietaire'].'" style="display:none;" >
                   <tr><td><h1><u>Maître</u></h1></td></tr>
+                  <tr><td id="id_proprietaire"'.$row['id_proprietaire'].'">Enregistrer le '.$row['datesave'].'</td></tr>
                   <tr><td id="id_proprietaire"'.$row['id_proprietaire'].'">Nom<input class="form-control"  type="text" placeholder="Nom du maître" name="nomMaster" id="nomMaster'.$row['id_proprietaire'].'" value="'.ucfirst($row['nom']).'">
                    </td>
                    
                    <td id="id_proprietaire"'.$row['id_proprietaire'].'">Prénom<input class="form-control"  type="text" placeholder="Prénom du maître" name="prenomMaster" id="prenomMaster'.$row['id_proprietaire'].'" value="'.ucfirst($row['prenom']).'"></tr>
 
-                   <tr><td id="id_proprietaire"'.$row['id_proprietaire'].'">Date de naissance<input class="form-control"  type="text" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'" value="'.$row['date_naissance'].'"></td>
+                   <tr><td id="id_proprietaire"'.$row['id_proprietaire'].'">Date de naissance<input class="form-control"  type="text" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'" value="'.$row['date_naissance'].'"readonly></td>
 
                    <td id="id_proprietaire"'.$row['id_proprietaire'].'">Lieu de naissance<input class="form-control"  type="text" placeholder="Lieu de naissance" name="lieuNaissance" id="lieuNaissance'.$row['id_proprietaire'].'" value="'.ucfirst($row['lieu_naissance']).'"></td>
                    </tr>
@@ -142,44 +149,25 @@ class VDogs extends VBase {
     public function listDogsProInactif($proprietaireIncatif){
 
         $html='';
-        $html.='<div id="form"><table class="table">';
-        $html.='<table class="table" id="formList">';
+        
+        $html.='<table class="table" id="formListDogs"><ul class="list-group">';
         foreach ($proprietaireIncatif as $key => $row) {
 
-          $html.=' <div class="info">
-          <tr><td>Nom : '.ucfirst($row['nom']).'&nbsp'.ucfirst($row['prenom']).'</td></tr
-                   <tr><td><input class="btn btn-info" type="button" value="Détails" id="details" onclick="details('.$row['id_proprietaire'].');"></td><td><input class="btn btn-success" type="button" value="Activer" id="delete" onclick="activProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td>
-        <td><input class="btn btn-danger" type="button" value="Supprimer" id="delete" onclick="deleteProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td></tr></div>
+          $html.=' 
+    
+          
+          <tr><td><li class="list-group-item">'.ucfirst($row['nom']).'&nbsp'.ucfirst($row['prenom']).'</li>
 
-                  <table  class="table"  id="details'.$row['id_proprietaire'].'" style="display:none;" >
+                   <td><input class="btn btn-success" type="button" value="Activer" id="delete" onclick="activProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')">
 
-          <tr>
-                 <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control"type="text" placeholder="Nom du maître" name="nomMaster" id="nomMaster"  value="'.ucfirst($row['nom']).'"required autofocus></td>
+        <td><input class="btn btn-danger" type="button" value="Supprimer" id="delete" onclick="deleteProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td></td></td></tr>';
 
-               <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control"  type="text" placeholder="Prénom du maître" name="prenomMaster" id="prenomMaster" value="'.ucfirst($row['prenom']).'"></td>
-       </tr>
-       <tr>
-       <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text"placeholder="Rue" name="rueMaster" id="rueMaster" value="'.ucfirst($row['rue']).'"></td>
-       <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="Numéro" name="numMaster" id="numMaster" value="'.$row['numero'].'"></td>
-       <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="Code postal" name="cpMaster" id="cpMaster" value="'.$row['CP'].'"></td></tr>
-       <tr><td><input class="form-control" type="text" placeholder="Ville" name="villeMaster" id="villeMaster" value="'.ucfirst($row['ville']).'"></td>
-       <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="Pays" name="paysMaster" id="paysMaster" value="'.ucfirst($row['pays']).'"></td>
-       </tr>
-       <tr>
-       <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="mail" placeholder="Mail" name="mailMaster" id="mailMaster" value="'.$row['mail'].'"></td>
-       <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="Téléphone" name="telMaster" id="telMaster" value="'.$row['telephone'].'"></td>
-       <td id="id_proprietaire"'.$row['id_proprietaire'].'"><input class="form-control" type="text" placeholder="GSM" name="gsmMaster" id="gsmMaster" value="'.$row['gsm'].'"></td>
-       </tr>';
-      
-       $html.='<tr><td><input class="btn btn-success" type="button" value="Activer" id="delete" onclick="activProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td>
-        <td><input class="btn btn-danger" type="button" value="Supprimer" id="delete" onclick="deleteProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td>
 
-       </tr></table> ';
-
+                  
         }
         
 
-        $html.='</table></div>';
+        $html.='</ul></table>';
 
         $this->appli->list=$html;
     }
@@ -220,6 +208,7 @@ class VDogs extends VBase {
        <td>Prénom<input class="form-control" type="text" placeholder="Prénom" name="prenomContact" id="prenomContact"></td>
        <td>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telContact" id="telContact"></td></tr>
        </tr>
+       <tr><td>Date d&#145;enregistrement<input class="form-control" type="text" placeholder="Date d&#145;enregistrement" name="date" id="date"></td></tr>
        <tr><td><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs();"></td></tr></table>';
 
     	$this->appli->news=$html;

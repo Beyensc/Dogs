@@ -1,6 +1,23 @@
-$(function(){
-	$("#dateNaissance").datepicker();
+
+$(function() {
+$( '#date' ).datepicker({
+altField: "#date",
+closeText: 'Fermer',
+prevText: 'Précédent',
+nextText: 'Suivant',
+currentText: 'Aujourd\'hui',
+monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+dayNamesShort: ['Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.','Dim.'],
+dayNamesMin: ['L', 'M', 'M', 'J', 'V', 'S','D'],
+weekHeader: 'Sem.',
+dateFormat: 'dd-mm-yy'
 });
+});;
+
+
+
 function addNewDogs(){
 
 	var nomMaster = document.getElementById('nomMaster').value;
@@ -20,6 +37,8 @@ function addNewDogs(){
 	var nomContact = document.getElementById('nomContact').value;
 	var prenomContact = document.getElementById('prenomContact').value;
 	var telContact = document.getElementById('telContact').value;
+	var date = document.getElementById('date').value;
+	alert(date);
 
 	
 
@@ -47,6 +66,7 @@ function addNewDogs(){
 				nomContact:nomContact,
 			    prenomContact:prenomContact,
 			    telContact:telContact,
+			    date:date,
 			
 				
 			},

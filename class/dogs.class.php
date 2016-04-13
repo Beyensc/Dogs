@@ -127,8 +127,8 @@ public function __construct($dbPdo){
 		print_r($tab);
 		echo "string";
 
-		$req=$this->pdo->prepare('INSERT INTO proprietaire(nom,prenom,date_naissance,lieu_naissance,rue,numero,CP,ville,pays,mail,telephone,gsm,periode_dispo,autre_dispo,nom_contact,prenom_contact,num_contact,remarques) 
-			VALUES (:nom,:prenom,:date_naissance,:lieu_naissance,:rue,:numero,:CP,:ville,:pays,:mail,:telephone,:gsm,:periode_dispo,:autre_dispo,:nom_contact,:prenom_contact,:num_contact,:remarques)');
+		$req=$this->pdo->prepare('INSERT INTO proprietaire(nom,prenom,date_naissance,lieu_naissance,rue,numero,CP,ville,pays,mail,telephone,gsm,periode_dispo,autre_dispo,nom_contact,prenom_contact,num_contact,datesave) 
+			VALUES (:nom,:prenom,:date_naissance,:lieu_naissance,:rue,:numero,:CP,:ville,:pays,:mail,:telephone,:gsm,:periode_dispo,:autre_dispo,:nom_contact,:prenom_contact,:num_contact,:datesave)');
 
 		$req->bindParam(':nom',$tab['nomMaster'],PDO::PARAM_STR);
 		$req->bindParam(':prenom',$tab['prenomMaster'],PDO::PARAM_STR);
@@ -147,6 +147,7 @@ public function __construct($dbPdo){
 		$req->bindParam(':nom_contact',$tab['nomContact'],PDO::PARAM_STR);
 		$req->bindParam(':prenom_contact',$tab['prenomContact'],PDO::PARAM_STR);
 		$req->bindParam(':num_contact',$tab['telContact'],PDO::PARAM_STR);
+		$req->bindParam(':datesave',$tab['date'],PDO::PARAM_STR);
 		
 
 
