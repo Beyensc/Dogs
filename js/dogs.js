@@ -1,22 +1,21 @@
 
-$(function() {
-$( '#date' ).datepicker({
-altField: "#date",
-closeText: 'Fermer',
-prevText: 'Précédent',
-nextText: 'Suivant',
-currentText: 'Aujourd\'hui',
-monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
-dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-dayNamesShort: ['Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.','Dim.'],
-dayNamesMin: ['L', 'M', 'M', 'J', 'V', 'S','D'],
-weekHeader: 'Sem.',
-dateFormat: 'dd-mm-yy'
-});
-});;
+/*$(function() {
 
-
+		$( '#date' ).datepicker({
+		altField: "#date",
+		closeText: 'Fermer',
+		prevText: 'Précédent',
+		nextText: 'Suivant',
+		currentText: 'Aujourd\'hui',
+		monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+		monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+		dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+		dayNamesShort: ['Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.','Dim.'],
+		dayNamesMin: ['L', 'M', 'M', 'J', 'V', 'S','D'],
+		weekHeader: 'Sem.',
+		dateFormat: 'dd-mm-yy'
+		});
+});*/
 
 function addNewDogs(){
 
@@ -38,7 +37,7 @@ function addNewDogs(){
 	var prenomContact = document.getElementById('prenomContact').value;
 	var telContact = document.getElementById('telContact').value;
 	var date = document.getElementById('date').value;
-	alert(date);
+	
 
 	
 
@@ -102,6 +101,7 @@ function ajoutDogs(id){
 		var veto = document.getElementById('veto'+id+'').value;
 		var vetoTel = document.getElementById('vetoTel'+id+'').value;
 		var remarques= document.getElementById('remarques'+id+'').value;
+		
 		
 
 
@@ -551,13 +551,7 @@ function ajoutDogsForm(id){
     }
     return true;
 
-        //$(document).ready(function(){
-   		//$("ajoutDogs").click(function(){
-        //$("#ajoutDogsForm"+id).fadeIn();
-       // $("#ajoutDogsForm"+id).fadeIn("slow");
-        //$("#ajoutDogsForm"+id).fadeIn(3000);
-//         //   });
-//});
+
 }
 
 function deleteRace(id,nom){

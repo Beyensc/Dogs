@@ -30,8 +30,8 @@ public function __construct($dbPdo){
 		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.date_naissance,a.puce_dogs,a.tatoo_dogs,a.sexe,a.detention,a.club,a.club_adresse,a.mordant,a.veto,a.vetotel,a.remarques,a.id_race,b.race,a.id_proprietaire
 			FROM chien a
 			LEFT JOIN race b ON b.id_race = a.id_race
-			WHERE id_proprietaire='.$id.' ');
-		//$sql=('SELECT * FROM chien WHERE actif="O"');
+			WHERE id_proprietaire='.$id.'');                     //prob ici!!!!!
+		//$sql=('SELECT * FROM chien WHERE actif="O"');          
 		return $this->pdo->query($sql)->fetchAll();
 		
 
@@ -49,7 +49,7 @@ public function __construct($dbPdo){
 	public function getListPro(){
 		$sql=('SELECT * 
 				FROM proprietaire
-				WHERE actif="O"');
+				WHERE actif="O" ORDER BY  nom DESC');
 		return $this->pdo->query($sql)->fetchAll();
 	}
 
@@ -156,8 +156,6 @@ public function __construct($dbPdo){
 	}
 
 	public function ajoutDogs($tab){
-		print_r($tab);
-		echo "string";
 		
 		
 		$req=$this->pdo->prepare('INSERT INTO chien(nom,num_puce,sexe,date_naissance,puce_dogs,tatoo_dogs,detention,club,club_adresse,mordant,veto,vetotel,remarques,id_race,id_proprietaire) 

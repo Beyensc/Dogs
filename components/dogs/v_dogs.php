@@ -44,7 +44,7 @@ class VDogs extends VBase {
                    <tr>
                    <td>Nom du chien  <input class="form-control" type="text" placeholder="Nom du chien" name="nomDogs" id="nomDogs'.$row['id_proprietaire'].'"></td>
                    <td>Dog id <input class="form-control" type="text" placeholder="xxx-xxx-xxxx" name="numPuceDogs" id="numPuceDogs'.$row['id_proprietaire'].'"></td>
-                   <td>Date de naissance <input class="form-control" type="text" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'"></td></tr>
+                   <td>Date de naissance <input class="form-control" type="date" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'"></td></tr>
                    <tr><td>Puce <input class="form-control" type="text" placeholder="Puce" name="puceDogs" id="puceDogs'.$row['id_proprietaire'].'"></td>
                    <td>Tatouage <input class="form-control" type="text" placeholder="Tatouage" name="tatooDogs" id="tatooDogs'.$row['id_proprietaire'].'"></td>
                    <td>Sexe <select class="form-control" name="sexe_dogs" id="sexe_dogs'.$row['id_proprietaire'].'">
@@ -77,7 +77,7 @@ class VDogs extends VBase {
                              
 
                               <tr><td><h1><u>Remarque(s)</u></h1></td></tr>
-                              <tr><td><textarea class="form-control" id="remarques'.$row['id_proprietaire'].'"></textarea>';
+                              <tr><td><textarea class="form-control" id="remarques'.$row['id_proprietaire'].'"></textarea></td></tr>';
 
                              /* foreach ($verification as $key => $vow) {
 
@@ -104,7 +104,7 @@ class VDogs extends VBase {
                    
                    <td id="id_proprietaire"'.$row['id_proprietaire'].'">Prénom<input class="form-control"  type="text" placeholder="Prénom du maître" name="prenomMaster" id="prenomMaster'.$row['id_proprietaire'].'" value="'.ucfirst($row['prenom']).'"></tr>
 
-                   <tr><td id="id_proprietaire"'.$row['id_proprietaire'].'">Date de naissance<input class="form-control"  type="text" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'" value="'.$row['date_naissance'].'"readonly></td>
+                   <tr><td id="id_proprietaire"'.$row['id_proprietaire'].'">Date de naissance<input class="form-control"  type="text" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'" value="'.$row['date_naissance'].'"></td>
 
                    <td id="id_proprietaire"'.$row['id_proprietaire'].'">Lieu de naissance<input class="form-control"  type="text" placeholder="Lieu de naissance" name="lieuNaissance" id="lieuNaissance'.$row['id_proprietaire'].'" value="'.ucfirst($row['lieu_naissance']).'"></td>
                    </tr>
@@ -182,7 +182,7 @@ class VDogs extends VBase {
        <td>Nom<input class="form-control"type="text" placeholder="Nom du maître" name="nomMaster" id="nomMaster" required autofocus></td>
        <td>Prénom<input class="form-control"  type="text" placeholder="Prénom du maître" name="prenomMaster" id="prenomMaster"></td>
        </tr>
-       <tr><td>Date de naissance<input class="form-control"  type="text" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance"></td>
+       <tr><td>Date de naissance<input class="form-control"  type="date" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance"></td>
        <td>Lieu de naissance<input class="form-control"  type="text" placeholder="Lieu de naissance" name="lieuNaissance" id="lieuNaissance"></td></tr>
        <tr>
        <td>Rue<input class="form-control" type="text"placeholder="Rue" name="rueMaster" id="rueMaster"></td>
@@ -208,7 +208,7 @@ class VDogs extends VBase {
        <td>Prénom<input class="form-control" type="text" placeholder="Prénom" name="prenomContact" id="prenomContact"></td>
        <td>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telContact" id="telContact"></td></tr>
        </tr>
-       <tr><td>Date d&#145;enregistrement<input class="form-control" type="text" placeholder="Date d&#145;enregistrement" name="date" id="date"></td></tr>
+       <tr><td>Date d&#145;enregistrement<input class="form-control" type="date" placeholder="Date d&#145;enregistrement" name="date" id="date"></td></tr>
        <tr><td><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs();"></td></tr></table>';
 
     	$this->appli->news=$html;
