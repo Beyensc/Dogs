@@ -223,7 +223,7 @@ public function __construct($dbPdo){
    	public function connexion(){
 
    		$sql=$this->pdo->exec('SELECT * FROM agent');
-   		return $this->pdo->query($sql)->fetchAll();
+   		//return $this->pdo->query($sql)->fetchAll();
    	}
 
 	
