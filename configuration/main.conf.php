@@ -35,7 +35,7 @@ $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
 $pdo = new PDO('mysql:host=localhost;dbname=dogs','root','ClemBey1991',$pdo_options);
 $this->dbPdo = $pdo;
 
-$this->defaultComponent = 'dogs';  //Composant appelé par défaut à l'arrivée sur la page index.php
-$this->defaultAction = 'actif'; //Action appelée par défaut à l'arrivée sur la page index.php
+$this->defaultComponent = 'connexion';  //Composant appelé par défaut à l'arrivée sur la page index.php
+$this->defaultAction = 'connexion'; //Action appelée par défaut à l'arrivée sur la page index.php
 
 ?>
