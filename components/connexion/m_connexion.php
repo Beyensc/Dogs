@@ -12,7 +12,7 @@ class MConnexion extends MBase {
 	public function connexion(){
 		include_once('./class/dogs.class.php');
 		$connexion=new Dogs($this->appli->dbPdo);
-		return $connexion->connexion();
+		//return $connexion->connexion();
 	}
 
 	
