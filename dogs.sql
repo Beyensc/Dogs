@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Ven 15 Avril 2016 à 11:05
+-- Généré le: Jeu 21 Avril 2016 à 18:47
 -- Version du serveur: 5.5.47-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4.14
 
@@ -36,14 +36,15 @@ CREATE TABLE IF NOT EXISTS `agent` (
   `id_type` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   KEY `FK_agent_id_type` (`id_type`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `agent`
 --
 
 INSERT INTO `agent` (`id_user`, `nom`, `prenom`, `matricule`, `login`, `mdp`, `id_type`) VALUES
-(1, 'Beyens', 'Clément', '123456789', 'master', 'eb0a191797624dd3a48fa681d', 1);
+(4, NULL, NULL, NULL, 'admin', 'admin', 1),
+(5, NULL, NULL, NULL, 'agent', 'agent', 2);
 
 -- --------------------------------------------------------
 
@@ -72,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `chien` (
   PRIMARY KEY (`id_chien`),
   KEY `FK_chien_id_race` (`id_race`),
   KEY `FK_chien_id_proprietaire` (`id_proprietaire`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=147 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=148 ;
 
 --
 -- Contenu de la table `chien`
@@ -80,7 +81,8 @@ CREATE TABLE IF NOT EXISTS `chien` (
 
 INSERT INTO `chien` (`id_chien`, `nom`, `num_puce`, `sexe`, `date_naissance`, `puce_dogs`, `tatoo_dogs`, `detention`, `club`, `club_adresse`, `mordant`, `veto`, `vetotel`, `remarques`, `actif`, `id_race`, `id_proprietaire`) VALUES
 (124, 'loulou', '123-456-7412', 'mÃ¢le', '2016-05-05', '12345678910121314', '12359845', 'cave', 'canigou', 'rue rachel-lagast 33 7700 mouscron', 'non', 'radoux', '056847216', 'chien violent', 'N', 5, 71),
-(146, 'testdate', '', 'mÃ¢le', '2000-05-02', '', '', '', '', '', '', '', '', '', 'O', 9, 74);
+(146, 'testdate', '', 'mÃ¢le', '2000-05-02', '', '', 'cave', '', '', '', '', '', '', 'O', 9, 74),
+(147, 'pomme', '1234568746', 'mÃ¢le', '2016-04-21', '135315', '151314', '', '', '', '', '', '', '', 'O', 6, 75);
 
 -- --------------------------------------------------------
 
@@ -133,8 +135,8 @@ INSERT INTO `proprietaire` (`id_proprietaire`, `nom`, `prenom`, `date_naissance`
 (71, 'Beyens', 'clÃ©ment', '', 'Mouscron', 'Du dragon', '33', '7700', 'Mouscron', 'Belgique', 'beyens.c@gmail.com', '', '0474667069', 'soir', '', 'sam', '', '', '', 'O'),
 (72, 'Tes', 'Testst', '', 'Mouscron', 'Achille de backer', '55', '7700', 'Mouscron', 'Belgique', '/', '056887744', '0468795316', 'matin', '/', '', '', '', '', 'N'),
 (73, 'Robert', 'Petit', '', 'Mouscron', '/', '/', '/', '/', '/', '/', '/', '/', 'midi', '/', '/', '/', '/', '', 'N'),
-(74, 'Coca', 'Cola', '', 'Mouscron', 'Rue congo', '56', '7700', 'Mouscron', 'Belgique', 'coca@gmail.com', '05677849512', '256847125', 'midi', '/', 'fanta', 'orange', '0568432', '13-04-2016', 'O'),
-(75, 'tutu', '', '2016-04-14', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2016-04-14', 'O');
+(74, 'dupont', 'arnaud', '', 'Mouscron', 'Rue congo', '56', '7700', 'Mouscron', 'Belgique', 'coca@gmail.com', '05677849512', '256847125', 'midi', '/', 'fanta', 'orange', '0568432', '13-04-2016', 'O'),
+(75, 'tutu', '', '2016-04-14', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2016-04-14', 'N');
 
 -- --------------------------------------------------------
 
