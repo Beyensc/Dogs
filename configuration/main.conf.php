@@ -32,10 +32,18 @@ define('BASE_URL', 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME
 $this->pathArticles = 'articles/';
 
 $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-$pdo = new PDO('mysql:host=localhost;dbname=dogs','root','ClemBey1991',$pdo_options);
+try
+{
+	$pdo = new PDO('mysql:host=localhost;dbname=dogs','root','',$pdo_options);
+}
+catch (Exception $e)
+{
+	die('Erreur : '. $e->getMessage());
+}
+
 $this->dbPdo = $pdo;
 
-$this->defaultComponent = 'connexion';  //Composant appelé par défaut à l'arrivée sur la page index.php
-$this->defaultAction = 'connexion'; //Action appelée par défaut à l'arrivée sur la page index.php
+$this->defaultComponent = '';  //Composant appelé par défaut à l'arrivée sur la page index.php
+$this->defaultAction = ''; //Action appelée par défaut à l'arrivée sur la page index.php
 
 ?>

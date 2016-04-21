@@ -1,3 +1,3 @@
 <?php
-$this->modules['moduleTest']='';
+$this->modules['index_admin']='';
 ?>

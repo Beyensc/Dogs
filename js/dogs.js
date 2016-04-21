@@ -1,21 +1,21 @@
 
-/*$(function() {
-
-		$( '#date' ).datepicker({
-		altField: "#date",
-		closeText: 'Fermer',
-		prevText: 'Précédent',
-		nextText: 'Suivant',
-		currentText: 'Aujourd\'hui',
-		monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-		monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
-		dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-		dayNamesShort: ['Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.','Dim.'],
-		dayNamesMin: ['L', 'M', 'M', 'J', 'V', 'S','D'],
-		weekHeader: 'Sem.',
-		dateFormat: 'dd-mm-yy'
-		});
-});*/
+$(document).ready(function () {
+    
+    
+    $('li').click(function () {
+        $('#recherche').val($(this).html());
+    });
+ 
+    
+    $('#recherche').change(function () {
+        var result= $.trim($(this).val());
+        if (!result) {
+            $('ul>li').show();
+        } else {
+            $('ul>li').show().not(':contains(' + result  + ')').hide();
+        }
+    });
+});
 
 function addNewDogs(){
 
@@ -71,7 +71,7 @@ function addNewDogs(){
 			},
 			//success:function(retour){alert(retour);},
 			success:setTimeout(function(){
-			window.location.href="?component=dogs&action=actif";
+			window.location.href="?component=admin&action=actif";
 			
 
 
@@ -133,7 +133,7 @@ function ajoutDogs(id){
 					},
 
 					success:setTimeout(function(){
-						window.location.href="?component=dogs&action=actif";
+						window.location.href="?component=admin&action=actif";
 					
 
 
@@ -162,7 +162,7 @@ function desactDogs(id,nom){
 
 			},
 				success:setTimeout(function(){
-						window.location.href="?component=dogs&action=actif";
+						window.location.href="?component=admin&action=actif";
 					
 
 
@@ -204,7 +204,7 @@ function desactProprio(id,nom){
 
 			// },
 			success:setTimeout(function(){
-				window.location.href="?component=dogs&action=actif";
+				window.location.href="?component=admin&action=actif";
 				
 				
 			},
@@ -214,7 +214,7 @@ function desactProprio(id,nom){
 
 	}
 	else{
-		window.location.href="?component=dogs&action=actif";
+		window.location.href="?component=admin&action=actif";
 	}
 }
 
@@ -236,7 +236,7 @@ function activProprio(id,nom){
 
 			// },
 			success:setTimeout(function(){
-				window.location.href="?component=dogs&action=actif";
+				window.location.href="?component=admin&action=actif";
 				
 				
 			},
@@ -246,7 +246,7 @@ function activProprio(id,nom){
 
 	}
 	else{
-		window.location.href="?component=dogs&action=inactif";
+		window.location.href="?component=admin&action=inactif";
 	}
 }
 
@@ -265,7 +265,7 @@ function addNewDogsList(){
 
            },
            success:setTimeout(function(){
-				window.location.href="?component=dogs&action=majListDogs";
+				window.location.href="?component=admin&action=majListDogs";
 				
 				
 			},
@@ -279,7 +279,7 @@ function addNewDogsList(){
 
 
 	}else{
-		window.location.href="?component=dogs&action=majListDogs";
+		window.location.href="?component=admin&action=majListDogs";
 	}
 }
 
@@ -335,7 +335,7 @@ function modifFild(id,nom){
 				
 			},
 			success:setTimeout(function(){
-				window.location.href="?component=dogs&action=actif";
+				window.location.href="?component=admin&action=actif";
 
 
 		},
@@ -345,7 +345,7 @@ function modifFild(id,nom){
 		}else{
 
 			
-				window.location.href="?component=dogs&action=actif";
+				window.location.href="?component=admin&action=actif";
 	}
 }
 
@@ -397,7 +397,7 @@ function modifDogs(id){
 					},
 
 					success:setTimeout(function(){
-						window.location.href="?component=dogs&action=actif";
+						window.location.href="?component=admin&action=actif";
 					
 
 
@@ -411,12 +411,6 @@ function modifDogs(id){
 					alert('Les champs requis ne sont pas remplis !')
 			}
 }
-
-/*function ajoutVerifPro(id,idv){
-	alert(id);
-
-	
-}*/
 
 function modifListVerification(id){
 
@@ -433,7 +427,7 @@ function modifListVerification(id){
 							
 						},
 						success:setTimeout(function(){
-							window.location.href="?component=dogs&action=majListVerification";
+							window.location.href="?component=admin&action=majListVerification";
 
 
 					},
@@ -460,7 +454,7 @@ function deleteProprio(id,nom){
 
 			// },
 			success:setTimeout(function(){
-				window.location.href="?component=dogs&action=inactif";
+				window.location.href="?component=admin&action=inactif";
 				
 				
 			},
@@ -470,7 +464,7 @@ function deleteProprio(id,nom){
 
 	}
 	else{
-		window.location.href="?component=dogs&action=actif";
+		window.location.href="?component=admin&action=actif";
 	}
 }
 
@@ -551,7 +545,6 @@ function ajoutDogsForm(id){
     }
     return true;
 
-
 }
 
 function deleteRace(id,nom){
@@ -573,7 +566,7 @@ function deleteRace(id,nom){
 
 			// },
 			success:setTimeout(function(){
-				window.location.href="?component=dogs&action=majListDogs";
+				window.location.href="?component=admin&action=majListDogs";
 				
 				
 			},
@@ -583,7 +576,7 @@ function deleteRace(id,nom){
 
 		}
 		else{
-			window.location.href="?component=dogs&action=majListDogs";
+			window.location.href="?component=admin&action=majListDogs";
 		}
 }
 
@@ -606,7 +599,7 @@ function deleteVerification(id,nom){
 
 			// },
 			success:setTimeout(function(){
-				window.location.href="?component=dogs&action=majListVerification";
+				window.location.href="?component=admin&action=majListVerification";
 				
 				
 			},
@@ -616,7 +609,7 @@ function deleteVerification(id,nom){
 
 		}
 		else{
-			window.location.href="?component=dogs&action=majListVerification";
+			window.location.href="?component=admin&action=majListVerification";
 		}
 
 }
@@ -635,7 +628,7 @@ function addNewListVerification(){
 
            },
            success:setTimeout(function(){
-				window.location.href="?component=dogs&action=majListVerification";
+				window.location.href="?component=admin&action=majListVerification";
 				
 				
 			},
@@ -649,53 +642,11 @@ function addNewListVerification(){
 
 
 	}else{
-		window.location.href="?component=dogs&action=majListVerification";
+		window.location.href="?component=admin&action=majListVerification";
 	}
 }
 
-/*function connexion(){
 
-	var login = document.getElementById('login').value;
-	var mdp = document.getElementById('mdp').value;
-
-	if((login !='')&&(mdp !='')){
-
-		$.ajax({
-			type:"GET",
-			url:"js/php/dogs/connexion.php",
-			data:{
-				login:login,
-				mdp:mdp,
-
-           
-
-           },
-           success:setTimeout(function(){
-				window.location.href="?component=dogs&action=actif";
-				
-				
-			},
-			2000),
-
-
-
-		});
-
-
-
-
-	}else{
-		window.location.href="?component=dogs&action=connexion";
-	}
-
-
-
-
-
-
-		});
-	}
-}*/
 
 
 

@@ -1,6 +1,12 @@
 <?php
-
-$pdo = new PDO('mysql:host=localhost;dbname=dogs','root','ClemBey1991');
+try
+{
+	$pdo = new PDO('mysql:host=localhost;dbname=dogs','root','');
+}
+catch (Exception $e)
+{
+	die('Erreur : ' . $e->getMessage());
+}
 
 
 

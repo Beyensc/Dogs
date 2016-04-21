@@ -30,7 +30,7 @@ public function __construct($dbPdo){
 		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.date_naissance,a.puce_dogs,a.tatoo_dogs,a.sexe,a.detention,a.club,a.club_adresse,a.mordant,a.veto,a.vetotel,a.remarques,a.id_race,b.race,a.id_proprietaire
 			FROM chien a
 			LEFT JOIN race b ON b.id_race = a.id_race
-			WHERE id_proprietaire='.$id.'');                     //prob ici!!!!!
+			WHERE a.id_proprietaire='.$id.'');                     //prob ici!!!!!
 		//$sql=('SELECT * FROM chien WHERE actif="O"');          
 		return $this->pdo->query($sql)->fetchAll();
 		
@@ -221,9 +221,32 @@ public function __construct($dbPdo){
 	}
     
    	public function connexion(){
+   		$login=$_POST['login'];
+   		$mdp=$_POST['mdp'];
 
-   		$sql=$this->pdo->exec('SELECT * FROM agent');
-   		return $this->pdo->query($sql)->fetchAll();
+
+   		$req=$this->pdo->prepare('SELECT login,mdp,id_type FROM agent WHERE login=:login AND mdp=:mdp');
+   		$req->bindParam(':login',$_POST['login'],PDO::PARAM_STR);
+   		$req->bindParam(':mdp',$_POST['mdp'],PDO::PARAM_STR);
+   		$req->execute();
+   		$count=$req->rowCount();
+
+
+   		if($count == 1){
+   			while($row=$req->fetch()){
+   			
+
+   				$_SESSION['type'] = $row['id_type'];
+   				return $row['id_type'];
+
+   			}
+
+   			
+   		}
+   		else echo 'pas good';
+
+   		
+   		
    	}
 
 	
