@@ -30,14 +30,14 @@ if(isset($_GET['id'])){
 	     <tr><td><h1><u>Remarque(s)</u></h1></td></tr>
 
 	     <tr><td><input class="form-control" type="text"id="remarques'.$value['id_chien'].'"value="'.$value['remarques'].'"style="margin:.2em .5em;
-padding:0.1em .5em;
-border:2px solid black;
-background-color: red;
-color:#FFF;">
+				padding:0.1em .5em;
+				border:2px solid black;
+				background-color: red;
+				color:#FFF;">
 	     </td></tr>
 
-	     <tr><td><input class="btn btn-danger" type="button" value="Supprimer" id="delete" onclick="desactDogs(\''.$value['id_chien'].'\',\''.$value['nom'].'\')"><td>
-	     <td><input class="btn btn-primary" type="button" value="Modifier" id="delete" onclick="modifDogs(\''.$value['id_chien'].'\',\''.$value['nom'].'\')"><td></tr>
+	     <tr><td><img src="img/can.png" id="delete" onclick="desactDogs(\''.$value['id_chien'].'\',\''.$value['nom'].'\')"><td>
+	     <td><img src="img/edit.png" title="Modifier" id="delete" onclick="modifDogs(\''.$value['id_chien'].'\',\''.$value['nom'].'\')"><td></tr>
 	     </table>';
 
     }

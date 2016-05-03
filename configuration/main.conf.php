@@ -34,7 +34,7 @@ $this->pathArticles = 'articles/';
 $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
 try
 {
-	$pdo = new PDO('mysql:host=localhost;dbname=dogs','root','',$pdo_options);
+	$pdo = new PDO('mysql:host=localhost;dbname=dogs','root','ClemBey1991',$pdo_options);
 }
 catch (Exception $e)
 {

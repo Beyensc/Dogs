@@ -14,7 +14,7 @@ if((isset($_SESSION['type'])) && ($_SESSION['type'] == 1)){
 		      <li><a href="?component=admin&action=inactif">Inactif</a></li>
 		      <li><a href="?component=admin&action=majListDogs" > MAJ Liste des chiens</a></li>
 		      <li><a href="?component=admin&action=majListVerification" > MAJ Liste des vérifications</a></li>
-		      <li><a href="?component=connexion&action=deconnexion" >deconnexion</a></li>
+		      <li><a href="?component=connexion&action=deconnexion"><img src="img/broken-link.png" title="Déconnexion"></a></li>
 		    </ul>
 		  </div>
 		</nav> ';
@@ -29,7 +29,7 @@ else if((isset($_SESSION['type'])) && ($_SESSION['type'] == 2))
 		      <a class="navbar-brand" href="?component=agent&action=actif">Police</a>
 		    </div>
 		    <ul class="nav navbar-nav">
-		      <li><a href="?component=connexion&action=deconnexion" > deconnexion</a></li>
+		      <li><a href="?component=connexion&action=deconnexion" ><img src="img/broken-link.png" title="Déconnexion"></a></li>
 		    </ul>
 		  </div>
 		</nav>';
@@ -59,6 +59,6 @@ else
 }	
 
 
-$this->index_admin = $html;
+$this->index = $html;
 
 ?>

@@ -2,7 +2,7 @@
 $(document).ready(function () {
     
     
-    $('li').click(function () {
+    $('#recherche').click(function () {
         $('#recherche').val($(this).html());
     });
  
@@ -10,9 +10,9 @@ $(document).ready(function () {
     $('#recherche').change(function () {
         var result= $.trim($(this).val());
         if (!result) {
-            $('ul>li').show();
+            $('tr').show();
         } else {
-            $('ul>li').show().not(':contains(' + result  + ')').hide();
+            $('tr').show().not(':contains(' + result  + ')').hide();
         }
     });
 });
