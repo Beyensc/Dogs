@@ -101,6 +101,18 @@ color:#FFF;"
 img:hover{
     cursor: pointer;
 }
+#footer{
+    
+        padding: 40px 20px 30px 20px;
+            margin-top: 80px;
+}
+#connexion{
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+}
+ 
  
 
 

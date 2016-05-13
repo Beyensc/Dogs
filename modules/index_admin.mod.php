@@ -37,25 +37,52 @@ else if((isset($_SESSION['type'])) && ($_SESSION['type'] == 2))
 else
 {
 	 $html=' 
-       		<form class="form-horizontal" method="POST" action="?component=connexion&action=connexion" >
+	 <link href="templates/dogs/css/connexion.css" rel="stylesheet">
+	 <div class="container">
+<div class="row">
+<div class="col-xs-12">
+    
+    <div class="main">
+            
+        <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+                    
+            
+                    
+            <form class="form-horizontal" method="POST" action="?component=connexion&action=connexion" accept-charset="utf-8">
                 <div class="form-group">
-	                <div class="col-md-8">
-	                	<input name="login" placeholder="Login" class="form-control" type="text" id="login"/>
-	                </div>
-                </div> 
-                
-                <div class="form-group">
-	                <div class="col-md-8">
-	                	<input name="mdp" placeholder="Mot de passe" class="form-control" type="password" id="mdp"/>
-	                </div>
-                </div> 
-                
-                <div class="form-group">
-	                <div class="col-md-offset-0 col-md-8">
-	                	<input  class="btn btn-success btn btn-success" type="submit" name="bconnexion " value="Connexion"/>
-	                </div>
+                <div class="col-md-8">
+                <input name="login" placeholder="Login" class="form-control" type="text" id="login" required/>
                 </div>
-            </form>';
+                </div> 
+                
+                <div class="form-group">
+                <div class="col-md-8">
+                <input name="mdp" placeholder="Mot de passe" class="form-control" type="password" id="mdp" required/>
+                </div>
+                </div> 
+                
+                <div class="form-group">
+                <div class="col-md-offset-0 col-md-8">
+                <input  class="btn btn-success btn btn-success" type="submit" name="bconnexion" value="Connexion"/></div>
+                </div>
+            
+            </form>
+            
+        </div>
+        </div>
+        
+    </div>
+</div>
+</div>
+</div>
+
+       		
+
+
+		        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+		        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:400,700,300" />
+            ';
 }	
 
 

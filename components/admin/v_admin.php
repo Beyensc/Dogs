@@ -23,10 +23,30 @@ class VAdmin extends VBase {
 
 
         $html='';
+        $html2='';
+        $html2.='<table class="table" id ="listpro" border=1>
+                                ';
 
   
 
+ foreach ($proprietaire as $key => $pow) {
 
+
+                $html2.=' 
+                                <tr>
+                                  <td>'.ucfirst($pow['nom']).'</td>
+                                  <td>'.ucfirst($pow['prenom']).'</td>
+                                  <td>'.ucfirst($pow['numero']).'&nbsp rue &nbsp'.ucfirst($pow['rue']).'&nbsp'.ucfirst($pow['CP']).'&nbsp'.ucfirst($pow['ville']).'</td>
+                                  <td> <img src="img/business.png" id="button"   id="details" onclick="details('.$pow['id_proprietaire'].');"></td>
+                                  <td><img src="img/dog.png" id="ajoutDogs" a title="Ajouter un nouveau chien." onclick="ajoutDogsForm('.$pow['id_proprietaire'].');"></td>
+                                  <td><img src="img/can.png" id="delete" onclick="desactProprio(\''.$pow['id_proprietaire'].'\',\''.$pow['nom'].'\')"></td>
+                                </tr>
+                              
+                            ';
+                          }
+
+                          $html2.='  
+                              </table>';
     
  
          foreach ($proprietaire as $key => $row) {
@@ -34,18 +54,7 @@ class VAdmin extends VBase {
 
                 $html.=' 
                             
-                              <table class="table" id "listpro" border=1>
-                                <tr>
-                                  <td>'.ucfirst($row['nom']).'</td>
-                                  <td>'.ucfirst($row['prenom']).'</td>
-                                  <td>'.ucfirst($row['numero']).'&nbsp rue &nbsp'.ucfirst($row['rue']).'&nbsp'.ucfirst($row['CP']).'&nbsp'.ucfirst($row['ville']).'</td>
-                                  <td></td>
-                                  <td> <img src="img/business.png" id="button"   id="details" onclick="details('.$row['id_proprietaire'].');"></td>
-                                  <td><img src="img/dog.png" id="ajoutDogs" a title="Ajouter un nouveau chien." onclick="ajoutDogsForm('.$row['id_proprietaire'].');"></td>
-                                  <td><img src="img/can.png" id="delete" onclick="desactProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td>
-                                </tr>
-                              </table>
-                            
+                             
                     
 
 
@@ -188,6 +197,7 @@ class VAdmin extends VBase {
                  
 
                 $this->appli->list=$html;
+                $this->appli->tab=$html2;
 
         }
 
