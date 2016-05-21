@@ -52,6 +52,13 @@ public function majListVerification(){
 	$this->view->addNewListVerification($verification,$newListVerification,$modifListVerification);
 }
 
+public function pdf(){
+	$this->view->pdf();
+	
+}
+
+
+
 
 
 }

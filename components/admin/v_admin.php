@@ -40,7 +40,7 @@ class VAdmin extends VBase {
                                   <td> <img src="img/business.png" id="button"   id="details" onclick="details('.$pow['id_proprietaire'].');"></td>
                                   <td><img src="img/dog.png" id="ajoutDogs" a title="Ajouter un nouveau chien." onclick="ajoutDogsForm('.$pow['id_proprietaire'].');"></td>
                                   <td><img src="img/can.png" id="delete" onclick="desactProprio(\''.$pow['id_proprietaire'].'\',\''.$pow['nom'].'\')"></td>
-                                  <td><img src="img/pdf.png"></td>
+                                  <td><a href="?component=admin&action=pdf" target=\"_blank\"><img src="img/pdf.png"></a></td>
                                 </tr>
                               
                             ';
@@ -54,13 +54,6 @@ class VAdmin extends VBase {
 
 
                 $html.=' 
-                            
-                             
-                    
-
-
-                   
-
 
                 <div id="formdogs">
                   <table class="table" id="ajoutDogsForm'.$row['id_proprietaire'].'" style="display:none;">
@@ -315,6 +308,28 @@ class VAdmin extends VBase {
 
        $this->appli->list=$html;       
     }  
+
+    public function pdf(){
+
+          require('fpdf.php');
+
+
+
+          $pdf = new FPDF('P','mm','A4');
+          $pdf->AddPage();
+          $pdf->Image('img/logo.png',10,6,30);
+          $pdf->SetFont('Arial','B',16);
+          $pdf->Cell(100,100,'test PDF');
+          $pdf->Output();
+
+    }
+
+
+
+
+  
+
+
 
 
 
