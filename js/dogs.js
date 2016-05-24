@@ -316,7 +316,7 @@ function modifFild(id,nom){
 	var mailMaster = document.getElementById('mailMaster'+id+'').value;
 	var telMaster = document.getElementById('telMaster'+id+'').value;
 	var gsmMaster = document.getElementById('gsmMaster'+id+'').value;
-	var dateNaissance = document.getElementById('dateNaissance'+id+'').value;
+	
 	var lieuNaissance = document.getElementById('lieuNaissance'+id+'').value;
 	var periodeContact= document.getElementById('periodeContact'+id+'').value;
 	var autreDispo = document.getElementById('autreDispo'+id+'').value;
@@ -344,7 +344,7 @@ function modifFild(id,nom){
 				mailMaster:mailMaster,
 				telMaster:telMaster,
 				gsmMaster:gsmMaster,
-				dateNaissance:dateNaissance,
+				
 				lieuNaissance:lieuNaissance,
 				periodeContact:periodeContact,
 				autreDispo:autreDispo,

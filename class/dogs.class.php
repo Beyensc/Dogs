@@ -88,13 +88,12 @@ public function __construct($dbPdo){
 
 	public function modifProprio($tab){
 		print_r($tab);
-		$req=$this->pdo->prepare('UPDATE proprietaire SET nom=:nom,prenom=:prenom,date_naissance=:date_naissance,lieu_naissance=:lieu_naissance,rue=:rue,numero=:numero,CP=:CP,ville=:ville,pays=:pays,mail=:mail,telephone=:telephone,gsm=:gsm,periode_dispo=:periode_dispo,autre_dispo=:autre_dispo,nom_contact=:nom_contact,prenom_contact=:prenom_contact,num_contact=:num_contact
+		$req=$this->pdo->prepare('UPDATE proprietaire SET nom=:nom,prenom=:prenom,lieu_naissance=:lieu_naissance,rue=:rue,numero=:numero,CP=:CP,ville=:ville,pays=:pays,mail=:mail,telephone=:telephone,gsm=:gsm,periode_dispo=:periode_dispo,autre_dispo=:autre_dispo,nom_contact=:nom_contact,prenom_contact=:prenom_contact,num_contact=:num_contact
 			WHERE id_proprietaire=:id');
 
 		$req->bindParam(':id',$tab['id'],PDO::PARAM_INT);
 		$req->bindParam(':nom',$tab['nomMaster'],PDO::PARAM_STR);
 		$req->bindParam(':prenom',$tab['prenomMaster'],PDO::PARAM_STR);
-		$req->bindParam(':date_naissance',$tab['dateNaissance'],PDO::PARAM_STR);
 		$req->bindParam(':lieu_naissance',$tab['lieuNaissance'],PDO::PARAM_STR);
 		$req->bindParam(':rue',$tab['rueMaster'],PDO::PARAM_STR);
 		$req->bindParam(':numero',$tab['numMaster'],PDO::PARAM_STR);

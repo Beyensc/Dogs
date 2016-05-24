@@ -24,8 +24,9 @@ class VAdmin extends VBase {
 
         $html='';
         $html2='';
+        $html.='<div class="main">';
         $html2.='<table class="table" id ="listpro" border=1>
-                                ';
+                                '; 
 
   
 
@@ -41,13 +42,10 @@ class VAdmin extends VBase {
                                   <td><img src="img/dog.png" id="ajoutDogs" a title="Ajouter un nouveau chien." onclick="ajoutDogsForm('.$pow['id_proprietaire'].');"></td>
                                   <td><img src="img/can.png" id="delete" onclick="desactProprio(\''.$pow['id_proprietaire'].'\',\''.$pow['nom'].'\')"></td>
                                   <td><a href="?component=admin&action=pdf" target=\"_blank\"><img src="img/pdf.png"></a></td>
-                                </tr>
-                              
-                            ';
+                                </tr>';
                           }
 
-                          $html2.='  
-                              </table>';
+                          $html2.='</table>';
     
  
          foreach ($proprietaire as $key => $row) {
@@ -181,7 +179,7 @@ class VAdmin extends VBase {
                   </div>';
 
                        $html.='<div id="listDogs'.$row['id_proprietaire'].'"></div>
-                       ';
+                        </div>';
                        
 
                    
@@ -228,21 +226,21 @@ class VAdmin extends VBase {
        
        <tr>
        <tr><td><h1><u>Maître</u><h1></td></tr>
-       <td>Nom<input class="form-control"type="text" placeholder="Nom du maître" name="nomMaster" id="nomMaster" required autofocus></td>
-       <td>Prénom<input class="form-control"  type="text" placeholder="Prénom du maître" name="prenomMaster" id="prenomMaster"></td>
+       <td>Nom<input class="form-control"type="text" placeholder="Nom du maître" name="nomMaster" id="nomMaster"  autofocus required ></td>
+       <td>Prénom<input class="form-control"  type="text" placeholder="Prénom du maître" name="prenomMaster" id="prenomMaster" required></td>
        </tr>
-       <tr><td>Date de naissance<input class="form-control"  type="date" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance"></td>
+       <tr><td>Date de naissance<input class="form-control"  type="date" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance" required></td>
        <td>Lieu de naissance<input class="form-control"  type="text" placeholder="Lieu de naissance" name="lieuNaissance" id="lieuNaissance"></td></tr>
        <tr>
-       <td>Rue<input class="form-control" type="text"placeholder="Rue" name="rueMaster" id="rueMaster"></td>
-       <td>N°<input class="form-control" type="text" placeholder="Numéro" name="numMaster" id="numMaster"></td>
-       <td>Code Postal<input class="form-control" type="text" placeholder="Code postal" name="cpMaster" id="cpMaster"></td></tr>
-       <tr><td>Ville<input class="form-control" type="text" placeholder="Ville" name="villeMaster" id="villeMaster"></td>
-       <td>Pays<input class="form-control" type="text" placeholder="Pays" name="paysMaster" id="paysMaster"></td>
+       <td>Rue<input class="form-control" type="text"placeholder="Rue" name="rueMaster" id="rueMaster" required></td>
+       <td>N°<input class="form-control" type="text" placeholder="Numéro" name="numMaster" id="numMaster" required></td>
+       <td>Code Postal<input class="form-control" type="text" placeholder="Code postal" name="cpMaster" id="cpMaster" required></td></tr>
+       <tr><td>Ville<input class="form-control" type="text" placeholder="Ville" name="villeMaster" id="villeMaster" required></td>
+       <td>Pays<input class="form-control" type="text" placeholder="Pays" name="paysMaster" id="paysMaster" required></td>
        </tr>
-       <tr>
+       <tr> 
        <td>Mail<input class="form-control" type="mail" placeholder="Mail" name="mailMaster" id="mailMaster"></td>
-       <td>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telMaster" id="telMaster"></td>
+       <td>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telMaster" id="telMaster" required></td>
        <td>GSM<input class="form-control" type="text" placeholder="GSM" name="gsmMaster" id="gsmMaster"></td>
        
        <tr><td>Période contactable<select class="form-control" name="periodeContact" id="periodeContact">
@@ -319,7 +317,7 @@ class VAdmin extends VBase {
           $pdf->AddPage();
           $pdf->Image('img/logo.png',10,6,30);
           $pdf->SetFont('Arial','B',16);
-          $pdf->Cell(100,100,'test PDF');
+          $pdf->Cell(100,100,'Immatriculation provisoire au registre des chiens dangereux');
           $pdf->Output();
 
     }

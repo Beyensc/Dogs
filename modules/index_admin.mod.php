@@ -80,8 +80,7 @@ else
        		
 
 
-		        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
-		        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:400,700,300" />
+		        
             ';
 }	
 
