@@ -1,0 +1,8 @@
+**** 2011.05.04
+Changement du nom de la classe webapp
+split dossier mvc vers model view controller
+domain vers component
+
+
+
+
