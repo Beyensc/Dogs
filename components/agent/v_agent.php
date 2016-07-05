@@ -6,18 +6,18 @@ class VAgent extends VBase {
         parent::__construct($appli, $model);
     }
 
+//La vue agent affiche que la liste des propriétaire et la listes des chiens attaché au propriétaire
+   public function recherche(){
 
-         public function recherche(){
+        $html='';
+        $html.=' <div id="formRecherche">
+          <input type="text" class="form-control" placeholder="Recherche" require autofocus></br>
+          <input type ="submit" class="btn btn-info" value ="Recherche" style="width:200px" onclick="recherche()">
+          </div>';
+        $this->appli->content=$html;
+    }
 
-          $html='';
-           $html.=' <div id="formRecherche">
-           <input type="text" class="form-control" placeholder="Recherche" require autofocus></br>
-           <input type ="submit" class="btn btn-info" value ="Recherche" style="width:200px" onclick="recherche()">
-           </div>';
-          $this->appli->content=$html;
-        }
-
-     function listDogsPro($proprietaire,$race,$dogs,$verification){
+     public function listDogsPro($proprietaire,$race,$dogs,$verification){
 
 
         $html='';

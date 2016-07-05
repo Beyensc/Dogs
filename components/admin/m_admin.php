@@ -8,7 +8,7 @@ class MAdmin extends MBase {
 	public function __construct($appli) {
 		parent::__construct($appli);
 	}
-
+	//La listes des différents models pour le projet,les requêtes se font dans la class dogs.class.php
 	public function getListDogs(){
 		include_once('./class/dogs.class.php');
 		$race=new Dogs($this->appli->dbPdo);
@@ -26,6 +26,7 @@ class MAdmin extends MBase {
 		$proprietaire=new Dogs($this->appli->dbPdo);
 		return $proprietaire->getListpro();
 	}
+
 	public function getListNameDogs(){
 		include_once('./class/dogs.class.php');
 		$dogsName=new Dogs($this->appli->dbPdo);
@@ -48,6 +49,7 @@ class MAdmin extends MBase {
 		include_once('./class/dogs.class.php');
 		$newDogs=new Dogs($this->appli->dbPdo);
 	}
+
 	public function ajoutDogs(){
 		include_once('./class/dogs.class.php');
 		$ajoutDogs=new Dogs($this->appli->dbPdo);
@@ -57,7 +59,6 @@ class MAdmin extends MBase {
 		include_once('./class/dogs.class.php');
 		$newDogsBis=new Dogs($this->appli->dbPdo);
 	}
-
 
 	public function addNewDogsList(){
 		include_once('./class/dogs.class.php');

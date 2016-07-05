@@ -1,5 +1,5 @@
 <?php
-
+//la barre de navigation pour les admin 
 if((isset($_SESSION['type'])) && ($_SESSION['type'] == 1)){
 
 		$html='
@@ -19,6 +19,7 @@ if((isset($_SESSION['type'])) && ($_SESSION['type'] == 1)){
 		  </div>
 		</nav> ';
 }
+//la barre de navigation pour les agents
 else if((isset($_SESSION['type'])) && ($_SESSION['type'] == 2))
 {
 

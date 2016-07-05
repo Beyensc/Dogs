@@ -8,7 +8,7 @@ class MAgent extends MBase {
 		parent::__construct($appli);
 		
 	}
-	
+	//La listes des différents models pour le projet,les requetes ce font dans la class dogs.class.php
 	public function getListPro(){
 		include_once('./class/dogs.class.php');
 		$proprietaire=new Dogs($this->appli->dbPdo);

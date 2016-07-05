@@ -7,7 +7,7 @@ class CAdmin extends CBase {
         parent::__construct($appli);
     }
 
-
+//La liste des différents contrôleur du projet qui appelle les models et les vues 
 public function ajout(){
 	$race=$this->model->getListDogs();
 	$verification=$this->model->getListVerification();
@@ -53,8 +53,8 @@ public function majListVerification(){
 }
 
 public function pdf(){
+
 	$this->view->pdf();
-	
 }
 
 
