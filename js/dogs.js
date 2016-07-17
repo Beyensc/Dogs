@@ -6,7 +6,9 @@ $(document).ready(function () {
         $('#recherche').val($(this).html());
     });
  
-    
+    //lors d'une recherche affacer le input lors du click???
+    //ajouter un lien retour lors d'une recherche
+    //la recherche ok , mais pour afficher le détails il faut mettre un espace dans le barre de rcherche puis enter pour afficher le détails
     $('#recherche').change(function () {
         var result= $.trim($(this).val());
         if (!result) {
@@ -497,11 +499,13 @@ function dogsProprioform(id){
     {
        
         document.getElementById('listDogs'+id).style.display="none";
+
     }
     else
     {
         
        document.getElementById('listDogs'+id).style.display="block";
+
     
     return true;
     }	
@@ -519,7 +523,7 @@ function dogsProprio(id){
 				//success:function(retour){alert(retour);},
 			});	
 }
-
+//dipsarition/apparition du tableau récapitulatif des maîtres pareille pour le détails
 function details(id){
 
 	
@@ -532,12 +536,14 @@ function details(id){
         document.getElementById('details'+id).style.display="none";
         document.getElementById('listDogs'+id).style.display="none";
         document.getElementById('ajoutDogsForm'+id).style.display="none";
+
     }
 
     else
     {
         
        document.getElementById('details'+id).style.display="block";
+       document.getElementById('listpro').style.display="none";
 
 
 
@@ -553,11 +559,13 @@ function ajoutDogsForm(id){
     {
        
         document.getElementById('ajoutDogsForm'+id).style.display="none";
+
     }
     else
     {
         
        document.getElementById('ajoutDogsForm'+id).style.display="block";
+       document.getElementById('listpro').style.display="none";
    
 
 

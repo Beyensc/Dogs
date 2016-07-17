@@ -9,13 +9,12 @@ class VAdmin extends VBase {
     public function recherche(){
 
       $html='';
-       $html.=' <div id="formRecherche">
+      $html.=' <div id="formRecherche">
        
        <input type="text" class="form-control" placeholder="Recherche"  id="recherche"require autofocus></br>
-
-       
        
        </div>';
+
       $this->appli->content=$html;
     }
     //Fonction qui permet de lister les propriétaires et leurs chiens 
@@ -25,8 +24,7 @@ class VAdmin extends VBase {
         $html='';
         $html2='';
         $html.='<div class="main">';
-        $html2.='<table class="table" id ="listpro" border=1>
-                                '; 
+        $html2.='<table class="table" id ="listpro" border=1 style="display:block;">'; 
 
           foreach ($proprietaire as $key => $pow) {
 
@@ -54,6 +52,7 @@ class VAdmin extends VBase {
                           <div id="formdogs">
                             <table class="table" id="ajoutDogsForm'.$row['id_proprietaire'].'" style="display:none;">
                                   <tr><td><h1><u>Chien</u></h1></td></tr>
+                                  <tr><td><a href="?component=admin&action=actif">Retour</a></td></tr>
                                  <tr>
                                    <td>Nom du chien  <input class="form-control" type="text" placeholder="Nom du chien" name="nomDogs" id="nomDogs'.$row['id_proprietaire'].'"></td>
                                    <td>Dog id <input class="form-control" type="text" placeholder="xxx-xxx-xxxx" name="numPuceDogs" id="numPuceDogs'.$row['id_proprietaire'].'"></td>
@@ -126,12 +125,13 @@ class VAdmin extends VBase {
                                              }*/
                                     
 
-                                  $html.='<tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutDogs" onclick="ajoutDogs('.$row['id_proprietaire'].'),ajoutVerifPro('.$row['id_proprietaire'].')"></td></tr>';
+                                  $html.='<tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutDogs" onclick="ajoutDogs('.$row['id_proprietaire'].')"/></td></tr>';
 
                                   $html.='</table></div>
 
                                 <div id="maitre">
                                 <table class="table"  id="details'.$row['id_proprietaire'].'" style="display:none;" >
+                                <tr><td><a href="?component=admin&action=actif">Retour</a></td></tr>
 
                                     <tr><td><h1><u>Maître</u></h1></td></tr>
                                     <tr>
@@ -167,8 +167,8 @@ class VAdmin extends VBase {
 
                                      <td id="id_proprietaire"'.$row['id_proprietaire'].'"> Autre période contactable<input class="form-control" type="text" placeholder=" Autre période contactable" name="autreDispo" id="autreDispo'.$row['id_proprietaire'].'" value="'.$row['autre_dispo'].'"></td></tr>
                                      <tr><td><h1><u>Personne de contact</u></h1></td></tr>
-                                     <tr> <td id="id_proprietaire"'.$row['id_proprietaire'].'"> Nom<input class="form-control" type="text" placeholder=" Nom" name="nomContact" id="nomContact'.$row['id_proprietaire'].'" value="'.$row['nom_contact'].'"></td>
-                                     <td id="id_proprietaire"'.$row['id_proprietaire'].'"> Prénom<input class="form-control" type="text" placeholder=" Prénom" name="prenomContact" id="prenomContact'.$row['id_proprietaire'].'" value="'.$row['prenom_contact'].'"></td>
+                                     <tr> <td id="id_proprietaire"'.$row['id_proprietaire'].'"> Nom<input class="form-control" type="text" placeholder=" Nom" name="nomContact" id="nomContact'.$row['id_proprietaire'].'" value="'.ucfirst($row['nom_contact']).'"></td>
+                                     <td id="id_proprietaire"'.$row['id_proprietaire'].'"> Prénom<input class="form-control" type="text" placeholder=" Prénom" name="prenomContact" id="prenomContact'.$row['id_proprietaire'].'" value="'.ucfirst($row['prenom_contact']).'"></td>
                                      <td id="id_proprietaire"'.$row['id_proprietaire'].'"> Téléphone<input class="form-control" type="text" placeholder=" Téléphone" name="telContact" id="telContact'.$row['id_proprietaire'].'" value="'.$row['num_contact'].'"></td></tr>
 
                                      <tr><td><img src="img/edit.png" title="Modifier"  id="modif" onclick="modifFild(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\')"></td>
@@ -224,39 +224,39 @@ class VAdmin extends VBase {
     	$html.='
        <table class="table" id="formAjout">
        
-       <tr>
-       <tr><td><h1><u>Maître</u><h1></td></tr>
-       <td>Nom<input class="form-control"type="text" placeholder="Nom du maître" name="nomMaster" id="nomMaster"  autofocus required ></td>
-       <td>Prénom<input class="form-control"  type="text" placeholder="Prénom du maître" name="prenomMaster" id="prenomMaster" required></td>
-       </tr>
-       <tr><td>Date de naissance<input class="form-control"  type="date" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance" required></td>
-       <td>Lieu de naissance<input class="form-control"  type="text" placeholder="Lieu de naissance" name="lieuNaissance" id="lieuNaissance"></td></tr>
-       <tr>
-       <td>Rue<input class="form-control" type="text"placeholder="Rue" name="rueMaster" id="rueMaster" required></td>
-       <td>N°<input class="form-control" type="text" placeholder="Numéro" name="numMaster" id="numMaster" required></td>
-       <td>Code Postal<input class="form-control" type="text" placeholder="Code postal" name="cpMaster" id="cpMaster" required></td></tr>
-       <tr><td>Ville<input class="form-control" type="text" placeholder="Ville" name="villeMaster" id="villeMaster" required></td>
-       <td>Pays<input class="form-control" type="text" placeholder="Pays" name="paysMaster" id="paysMaster" required></td>
-       </tr>
-       <tr> 
-       <td>Mail<input class="form-control" type="mail" placeholder="Mail" name="mailMaster" id="mailMaster"></td>
-       <td>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telMaster" id="telMaster" required></td>
-       <td>GSM<input class="form-control" type="text" placeholder="GSM" name="gsmMaster" id="gsmMaster"></td>
        
-       <tr><td>Période contactable<select class="form-control" name="periodeContact" id="periodeContact">
+       <tr><h1><u>Maître</u><h1></tr>
+       <tr>Nom<input class="form-control"type="text" placeholder="Nom du maître" name="nomMaster" id="nomMaster"  required autofocus></tr>
+       <tr>Prénom<input class="form-control"  type="text" placeholder="Prénom du maître" name="prenomMaster" id="prenomMaster" required></tr>
+       
+       <tr>Date de naissance<input class="form-control"  type="date" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance" required></tr>
+       <tr>Lieu de naissance<input class="form-control"  type="text" placeholder="Lieu de naissance" name="lieuNaissance" id="lieuNaissance"></tr>
+       
+       <tr>Rue<input class="form-control" type="text"placeholder="Rue" name="rueMaster" id="rueMaster" required></tr>
+       <tr>N°<input class="form-control" type="text" placeholder="Numéro" name="numMaster" id="numMaster" required></tr>
+       <tr>Code Postal<input class="form-control" type="text" placeholder="Code postal" name="cpMaster" id="cpMaster" required></tr>
+       <tr>Ville<input class="form-control" type="text" placeholder="Ville" name="villeMaster" id="villeMaster" required></tr>
+       <tr>Pays<input class="form-control" type="text" placeholder="Pays" name="paysMaster" id="paysMaster" required></tr>
+       
+        
+       <tr>Mail<input class="form-control" type="mail" placeholder="Mail" name="mailMaster" id="mailMaster"></tr>
+       <tr>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telMaster" id="telMaster" required></tr>
+       <tr>GSM<input class="form-control" type="text" placeholder="GSM" name="gsmMaster" id="gsmMaster"></tr>
+       
+       <tr>Période contactable<select class="form-control" name="periodeContact" id="periodeContact">
        <option value=""></option>
        <option value="matin">Matin</option>
        <option value="midi">Midi</option>
        <option value="soir">Soir</option></td>
-       <td>Autre<input class="form-control" type="text" placeholder="Autre" name="autreDispo" id="autreDispo"></td></tr>
-       <tr><td><h1><u>Personne de contact</u><h1></td></tr>
+       <tr>Autre<input class="form-control" type="text" placeholder="Autre" name="autreDispo" id="autreDispo"></tr>
+       <tr><h1><u>Personne de contact</u><h1></tr>
 
-       <tr><td>Nom<input class="form-control" type="text" placeholder="Nom" name="nomContact" id="nomContact"></td>
-       <td>Prénom<input class="form-control" type="text" placeholder="Prénom" name="prenomContact" id="prenomContact"></td>
-       <td>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telContact" id="telContact"></td></tr>
-       </tr>
-       <tr><td>Date d&#145;enregistrement<input class="form-control" type="date" placeholder="Date d&#145;enregistrement" name="date" id="date"></td></tr>
-       <tr><td><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs();"></td></tr></table>';
+       <tr>Nom<input class="form-control" type="text" placeholder="Nom" name="nomContact" id="nomContact"></tr>
+       <tr>Prénom<input class="form-control" type="text" placeholder="Prénom" name="prenomContact" id="prenomContact"></tr>
+       <tr>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telContact" id="telContact"></tr>
+      
+       <tr>Date d&#145;enregistrement<input class="form-control" type="date" placeholder="Date d&#145;enregistrement" name="date" id="date"></tr></br>
+       <tr><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs();"></tr></table>';
 
     	$this->appli->news=$html;
     }

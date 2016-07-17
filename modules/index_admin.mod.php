@@ -53,7 +53,7 @@ else
             <form class="form-horizontal" method="POST" action="?component=connexion&action=connexion" accept-charset="utf-8">
                 <div class="form-group">
                 <div class="col-md-8">
-                <input name="login" placeholder="Login" class="form-control" type="text" id="login" required/>
+                <input name="login" placeholder="Login" class="form-control" type="text" id="login" required autofocus/>
                 </div>
                 </div> 
                 
