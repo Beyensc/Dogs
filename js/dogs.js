@@ -106,6 +106,7 @@ function addNewDogs(){
 	}
 }
 
+
 function ajoutDogs(id){
 
 		var nomDogs = document.getElementById('nomDogs'+id+'').value;
@@ -124,7 +125,7 @@ function ajoutDogs(id){
 		var remarques= document.getElementById('remarques'+id+'').value;
 		
 		
-
+alert(nomDogs);
 
 
 				
@@ -153,15 +154,15 @@ function ajoutDogs(id){
 
 					},
 
-					success:setTimeout(function(){
-						window.location.href="?component=admin&action=actif";
+					//success:setTimeout(function(){
+						//window.location.href="?component=admin&action=actif";
 					
 
 
-				},
+				//},
 
-				1000),
-				//success:function(retour){alert(retour);},
+				//1000),
+				success:function(retour){alert(retour);},
 			});
 				}else{
 
@@ -471,22 +472,20 @@ function deleteProprio(id,nom){
 				
 
 			},
-			//success:function(retour){alert(retour);
-
-			// },
-			success:setTimeout(function(){
-				window.location.href="?component=admin&action=inactif";
+			success:function(retour){alert(retour);},
+			//success:setTimeout(function(){
+			//	window.location.href="?component=admin&action=inactif";
 				
 				
-			},
-			2000),
+			//},
+			//2000),
 
 		});
 
 	}
-	else{
-		window.location.href="?component=admin&action=actif";
-	}
+	//else{
+		//window.location.href="?component=admin&action=actif";
+	//}
 }
 
 function dogsProprioform(id){

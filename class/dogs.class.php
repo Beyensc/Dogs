@@ -38,7 +38,7 @@ public function __construct($dbPdo){
 	}
 	public function desactDogs($id){
 
-		$req=$this->pdo->exec('UPDATE chien SET actif="N" WHERE id_chien="'.$id.'"');
+		$req=$this->pdo->exec('DELETE FROM chien WHERE id_chien="'.$id.'"');
 	}
 
 	public function getListNameDogs(){
@@ -66,6 +66,7 @@ public function __construct($dbPdo){
 	}
 
 	public function deleteProprio($id){
+		print_r($id);
 
 		$req=$this->pdo->exec('DELETE FROM proprietaire WHERE id_proprietaire="'.$id.'"');
 	}
@@ -243,9 +244,6 @@ public function __construct($dbPdo){
    			
    		}
    		else echo 'pas good';
-
-   		
-   		
    	}
 
 	

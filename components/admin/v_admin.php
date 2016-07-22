@@ -11,7 +11,7 @@ class VAdmin extends VBase {
       $html='';
       $html.=' <div id="formRecherche">
        
-       <input type="text" class="form-control" placeholder="Recherche"  id="recherche"require autofocus></br>
+       <input type="text" class="form-control" placeholder="Recherche"  id="recherche"></br>
        
        </div>';
 
@@ -125,7 +125,7 @@ class VAdmin extends VBase {
                                              }*/
                                     
 
-                                  $html.='<tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutDogs" onclick="ajoutDogs('.$row['id_proprietaire'].')"/></td></tr>';
+                                  $html.='<tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutDogs" onclick="ajoutDogs(\''.$row['id_proprietaire'].'\')" ></td></tr>';
 
                                   $html.='</table></div>
 

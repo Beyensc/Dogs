@@ -37,7 +37,7 @@ if(isset($_GET['id'])){
 	     </td></tr>
 
 	     <tr><td><img src="img/can.png" id="delete" onclick="desactDogs(\''.$value['id_chien'].'\',\''.$value['nom'].'\')"><td>
-	     <td><img src="img/edit.png" title="Modifier" id="delete" onclick="modifDogs(\''.$value['id_chien'].'\',\''.$value['nom'].'\')"><td></tr>
+	     <td><img src="img/edit.png" title="Modifier" id="modif" onclick="modifDogs(\''.$value['id_chien'].'\',\''.$value['nom'].'\')"><td></tr>
 	     </table>';
 
     }
