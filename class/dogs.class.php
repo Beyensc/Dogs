@@ -67,8 +67,9 @@ public function __construct($dbPdo){
 
 	public function deleteProprio($id){
 		print_r($id);
-
+		$req=$this->pdo->exec('DELETE FROM chien WHERE id_proprietaire="'.$id.'"');
 		$req=$this->pdo->exec('DELETE FROM proprietaire WHERE id_proprietaire="'.$id.'"');
+		
 	}
 
     public function deleteRace($id){

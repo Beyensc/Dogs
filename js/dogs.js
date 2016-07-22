@@ -19,6 +19,23 @@ $(document).ready(function () {
     });
 });
 
+ $(function() {
+$( "#datepicker,#datepickerNaissance" ).datepicker({
+altField: "#datepicker",
+closeText: 'Fermer',
+prevText: 'Précédent',
+nextText: 'Suivant',
+currentText: 'Aujourd\'hui',
+monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+weekHeader: 'Sem.',
+dateFormat: 'dd-mm-yy'
+});
+});
+
 
 
 $( ".input" ).focusin(function() {
@@ -50,14 +67,14 @@ function addNewDogs(){
 	var mailMaster = document.getElementById('mailMaster').value;
 	var telMaster = document.getElementById('telMaster').value;
 	var gsmMaster = document.getElementById('gsmMaster').value;
-	var dateNaissance = document.getElementById('dateNaissance').value;
+	var dateNaissance = document.getElementById('datepickerNaissance').value;
 	var lieuNaissance = document.getElementById('lieuNaissance').value;
 	var periodeContact= document.getElementById('periodeContact').value;
 	var autreDispo = document.getElementById('autreDispo').value;
 	var nomContact = document.getElementById('nomContact').value;
 	var prenomContact = document.getElementById('prenomContact').value;
 	var telContact = document.getElementById('telContact').value;
-	var date = document.getElementById('date').value;
+	var date = document.getElementById('datepicker').value;
 	
 
 	
@@ -91,13 +108,20 @@ function addNewDogs(){
 				
 			},
 			//success:function(retour){alert(retour);},
-			success:setTimeout(function(){
-			window.location.href="?component=admin&action=actif";
+			//success:setTimeout(function(){
+			//window.location.href="?component=admin&action=actif";
+			success:function(data){
+                 alert('L\'ajout a bien été effectuée');
+                //console.log(data);
+                 window.location.assign("?component=admin&action=actif");
+              }
+
+
 			
 
 
-		},
-		1000),
+		//},
+		//1000),
 		//success:function(retour){alert(retour);},
 	});
 		}else{
@@ -125,7 +149,6 @@ function ajoutDogs(id){
 		var remarques= document.getElementById('remarques'+id+'').value;
 		
 		
-alert(nomDogs);
 
 
 				
@@ -158,11 +181,15 @@ alert(nomDogs);
 						//window.location.href="?component=admin&action=actif";
 					
 
-
+						success:function(data){
+                 			alert('L\'ajout du chien a bien été effectuée');
+                		//console.log(data);
+                 			window.location.assign("?component=admin&action=actif");
+              }
 				//},
 
 				//1000),
-				success:function(retour){alert(retour);},
+				//success:function(retour){alert(retour);},
 			});
 				}else{
 
@@ -230,7 +257,7 @@ function desactProprio(id,nom){
 				
 				
 			},
-			2000),
+			1000),
 
 		});
 
@@ -262,7 +289,7 @@ function activProprio(id,nom){
 				
 				
 			},
-			2000),
+			1000),
 
 		});
 
@@ -319,7 +346,6 @@ function modifFild(id,nom){
 	var mailMaster = document.getElementById('mailMaster'+id+'').value;
 	var telMaster = document.getElementById('telMaster'+id+'').value;
 	var gsmMaster = document.getElementById('gsmMaster'+id+'').value;
-	
 	var lieuNaissance = document.getElementById('lieuNaissance'+id+'').value;
 	var periodeContact= document.getElementById('periodeContact'+id+'').value;
 	var autreDispo = document.getElementById('autreDispo'+id+'').value;
@@ -361,7 +387,7 @@ function modifFild(id,nom){
 
 
 		},
-		2000),
+		1000),
 		//success:function(retour){alert(retour);},
 	});
 		}else{
@@ -472,20 +498,20 @@ function deleteProprio(id,nom){
 				
 
 			},
-			success:function(retour){alert(retour);},
-			//success:setTimeout(function(){
-			//	window.location.href="?component=admin&action=inactif";
+			//success:function(retour){alert(retour);},
+			success:setTimeout(function(){
+				window.location.href="?component=admin&action=inactif";
 				
 				
-			//},
-			//2000),
+			},
+			1000),
 
 		});
 
 	}
-	//else{
-		//window.location.href="?component=admin&action=actif";
-	//}
+	else{
+		window.location.href="?component=admin&action=actif";
+	}
 }
 
 function dogsProprioform(id){
@@ -596,7 +622,7 @@ function deleteRace(id,nom){
 				
 				
 			},
-			2000),
+			1000),
 
 		});
 
@@ -629,7 +655,7 @@ function deleteVerification(id,nom){
 				
 				
 			},
-			2000),
+			1000),
 
 		});
 
@@ -658,7 +684,7 @@ function addNewListVerification(){
 				
 				
 			},
-			2000),
+			1000),
 
 
 
