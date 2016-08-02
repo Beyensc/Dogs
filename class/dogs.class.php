@@ -110,6 +110,7 @@ public function __construct($dbPdo){
 		$req->bindParam(':nom_contact',$tab['nomContact'],PDO::PARAM_STR);
 		$req->bindParam(':prenom_contact',$tab['prenomContact'],PDO::PARAM_STR);
 		$req->bindParam(':num_contact',$tab['telContact'],PDO::PARAM_STR);
+		
 	
 		$req->execute();
 	}

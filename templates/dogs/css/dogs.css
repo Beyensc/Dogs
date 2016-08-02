@@ -54,6 +54,11 @@ td,tr{
 
 }
 
+td{
+
+    width: 400px;
+}
+
 
 #bAddDogs{
     margin:auto;
@@ -72,6 +77,13 @@ td,tr{
      margin-bottom: 50px;
      vertical-align: baseline;
      border-spacing: 5px 8px; 
+
+}
+
+#formdogs{
+    width: auto;
+    /*left: 0px;
+    right: 0px;*/
 }
 
 

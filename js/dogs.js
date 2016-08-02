@@ -352,6 +352,7 @@ function modifFild(id,nom){
 	var nomContact = document.getElementById('nomContact'+id+'').value;
 	var prenomContact = document.getElementById('prenomContact'+id+'').value;
 	var telContact = document.getElementById('telContact'+id+'').value;
+	
 
 	
 	
@@ -380,6 +381,7 @@ function modifFild(id,nom){
 				nomContact:nomContact,
 			    prenomContact:prenomContact,
 			    telContact:telContact,
+			    
 				
 			},
 			success:setTimeout(function(){

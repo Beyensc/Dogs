@@ -70,7 +70,7 @@ class VAdmin extends VBase {
                                    <td>Dog id <input class="form-control" type="text" placeholder="xxx-xxx-xxxx" name="numPuceDogs" id="numPuceDogs'.$row['id_proprietaire'].'"></td>
                                  </tr>
                                  <tr>  
-                                   <td>Date de naissance <input class="form-control" type="date" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'"></td>
+                                   <td>Date de naissance <input class="form-control" type="text" placeholder="J/M/A" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'"></td>
                                  </tr>
                                  <tr>
                                    <td>Puce <input class="form-control" type="text" placeholder="Puce" name="puceDogs" id="puceDogs'.$row['id_proprietaire'].'"></td>
@@ -103,6 +103,12 @@ class VAdmin extends VBase {
                                         $html.='</select>
                                     </td> 
                                     </tr> 
+                                    <tr>
+                                      <td>Photo du chien</td>
+                                    </tr>
+                                    <tr>
+                                      <td><input type="file" name="photoDog" size="30"></td>
+                                     </tr> 
                                   </tr>
 
                                   <tr><td><h1><u>Divers</u></h1></td></tr>
@@ -151,7 +157,7 @@ class VAdmin extends VBase {
                       
                                              }*/
                                     
-
+                                              //test onmousedown : NOK
                                   $html.='<tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutDogs" onclick="ajoutDogs(\''.$row['id_proprietaire'].'\');" ></td></tr>';
 
                                   $html.='</table></div>
@@ -220,7 +226,7 @@ class VAdmin extends VBase {
                                     <tr> 
                                      <td id="id_proprietaire"'.$row['id_proprietaire'].'"> Téléphone<input class="form-control" type="text" placeholder=" Téléphone" name="telContact" id="telContact'.$row['id_proprietaire'].'" value="'.$row['num_contact'].'"></td>
                                     </tr>
-
+                                  
                                      <tr><td><img src="img/edit.png" title="Modifier"  id="modif" onclick="modifFild(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\');"></td>
                                     <td><input class="btn_listdog" type="button" value="voir" id="dogsProprio" onclick="dogsProprioform('.$row['id_proprietaire'].'),dogsProprio('.$row['id_proprietaire'].')"></td></tr>
                                </table>
@@ -307,7 +313,7 @@ class VAdmin extends VBase {
        <tr>Nom<input class="form-control"type="text" placeholder="Nom du maître" name="nomMaster" id="nomMaster"  required autofocus></tr>
        <tr>Prénom<input class="form-control"  type="text" placeholder="Prénom du maître" name="prenomMaster" id="prenomMaster" required></tr>
        
-       <tr>Date de naissance<input class="form-control"  type="text" placeholder="Date de naissance" name="dateNaissance" id="datepickerNaissance" required></tr>
+       <tr>Date de naissance<input class="form-control"  type="text" placeholder="J/M/A" name="dateNaissance" id="datepickerNaissance" required></tr>
        <tr>Lieu de naissance<input class="form-control"  type="text" placeholder="Lieu de naissance" name="lieuNaissance" id="lieuNaissance"></tr>
        
        <tr>Rue<input class="form-control" type="text"placeholder="Rue" name="rueMaster" id="rueMaster" required></tr>
@@ -355,7 +361,7 @@ class VAdmin extends VBase {
       $html.='</ul></table>';
 
       $html.='<table class="table" id="formList">
-      <tr><td>Mise a jour de la liste <input class="form-control" type="text" name="listDogs" id="listDogs" require autofocus></td></tr>
+      <tr><td>Mise a jour de la liste <input class="form-control" type="text" name="listDogs" id="listDogs" require ></td></tr>
               <tr><td><input class="btn btn-warning" type="button" name="bListDogs" id="bListdogs" value="ajouter" onclick="addNewDogsList();"></td></tr></table>';
 
        $this->appli->list=$html;       
@@ -378,7 +384,7 @@ class VAdmin extends VBase {
       $html.='</table>';
 
       $html.='<table class="table" id="formList">
-      <tr><td>Mise a jour de la liste des vérifications <input class="form-control" type="text" name="listVerification" id="listVerification" require autofocus></td></tr>
+      <tr><td>Mise a jour de la liste des vérifications <input class="form-control" type="text" name="listVerification" id="listVerification" require ></td></tr>
               <tr><td><input class="btn btn-warning" type="button" name="bListVerification" id="bListVerification" value="ajouter" onclick="addNewListVerification();"></td>
               </tr></table>';
 
