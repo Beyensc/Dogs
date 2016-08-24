@@ -54,7 +54,12 @@ public function majListVerification(){
 
 public function pdf(){
 
-	$this->view->pdf();
+	$proprietaire=$this->model->getlistPro();
+	$race=$this->model->getListDogs();
+	$dogs=$this->model->dogs();
+	$dogsProprio=$this->model->dogsProprio();
+	$dogsName=$this->model->getListNameDogs();
+	$this->view->pdf($proprietaire,$race,$dogs,$dogsProprio);
 }
 
 

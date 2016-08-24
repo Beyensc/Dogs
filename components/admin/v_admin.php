@@ -47,7 +47,7 @@ class VAdmin extends VBase {
                                             <td> <img src="img/business.png" id="button"   id="details" onclick="details('.$pow['id_proprietaire'].');"></td>
                                             <td><img src="img/dog.png" id="ajoutDogs" a title="Ajouter un nouveau chien." onclick="ajoutDogsForm('.$pow['id_proprietaire'].');"></td>
                                             <td><img src="img/can.png" id="delete" onclick="desactProprio(\''.$pow['id_proprietaire'].'\',\''.$pow['nom'].'\')"></td>
-                                            <td><a href="?component=admin&action=pdf" target=\"_blank\"><img src="img/pdf.png"></a></td>
+                                            <td><a href="?component=admin&action=pdf&id'.$pow['id_proprietaire'].'" target=\"_blank\"><img src="img/pdf.png"></a></td>
                                           </tr>';
                                     }
 
@@ -158,9 +158,9 @@ class VAdmin extends VBase {
                                              }*/
                                     
                                               //test onmousedown : NOK
-                                  $html.='<tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutDogs" onclick="ajoutDogs(\''.$row['id_proprietaire'].'\');" ></td></tr>';
+                                  $html.='<tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutDogs" onclick="ajoutDogs(\''.$row['id_proprietaire'].'\');"></td></tr>
 
-                                  $html.='</table></div>
+                                  </table></div>
 
                                 <div id="maitre">
                                 <table class="table"  id="details'.$row['id_proprietaire'].'" style="display:none;" >
@@ -391,15 +391,98 @@ class VAdmin extends VBase {
        $this->appli->list=$html;       
     }  
     //La fonction pour la sortie en PDF avec les données du propriétaire et du/des chien(s)
-    public function pdf(){
+    
+    public function pdf($proprietaire,$race,$dogs,$dogsProprio) {
+      /*echo "<pre>";
+      print_r($dogs);
+      echo "</pre>";  *///pk? dogsproprio ne fonctionne pas???? j'ai du rajouter les infos manquante dans le model dogs(a modifier)
+    $html="";  
+    $html.= "<page>
+           
+            <fieldset>
+                <h1><img style=\"width: 20%;\"src=\"img/Police-logo.png\"><br>Immatriculation provisoire au registre des chiens dangereux</h1>
+            </fieldset>";
+           
+            foreach ($proprietaire as $key => $value) {
+              # code...
+            
+            
+                $html.="<h2>Maître</h2>
 
-          require('fpdf.php');
-          $pdf = new FPDF('P','mm','A4');
-          $pdf->AddPage();
-          $pdf->Image('img/logo.png',10,6,30);
-          $pdf->SetFont('Arial','B',16);
-          $pdf->Cell(100,100,'Immatriculation provisoire au registre des chiens dangereux');
-          $pdf->Output();
+                <table>
+                <tr>
+                  <td ".$value['id_proprietaire'].">Nom : ".ucfirst($value['nom'])." ".ucfirst($value['prenom'])."</td> 
+                </tr>
+                <tr>
+                  <td ".$value['id_proprietaire'].">Lieu et date de naissance : ".ucfirst($value['lieu_naissance'])." ,le ".$value['date_naissance']."</td>
+                </tr> 
+                <tr>
+                  <td ".$value['id_proprietaire'].">Adresse : ".$value['rue']." ".$value['numero']." , ".$value['CP']." ".ucfirst($value['ville'])."</td>
+                </tr>
+                <tr>
+                  <td ".$value['id_proprietaire'].">Téléphone : ".$value['telephone']."</td>
+                </tr> 
+                 <tr>
+                  <td ".$value['id_proprietaire'].">Téléphone (GSM) : ".$value['gsm']."</td>
+                </tr> 
+                <tr>
+                  <td ".$value['id_proprietaire'].">Période contactable : ".$value['periode_dispo']." ".$value['autre_dispo']."</td>
+                </tr>
+                </table>";
+                }
+                foreach ($dogs as $key => $val) {   //dogproprio 
+                  
+                $html.="<h2>Chien</h2>
+
+                <table>
+                <tr>
+                  <td ".$val['id_proprietaire'].">Nom : ".ucfirst($val['nom'])." </td>
+                </tr>
+                <tr>
+                  <td ".$val['id_proprietaire'].">Sexe : ".$val['sexe']." </td>
+                </tr>
+                <tr>
+                  <td ".$val['id_proprietaire'].">Date de naissance : ".$val['date_naissance']."</td>
+                </tr>
+                <tr>
+                  <td ".$val['id_proprietaire'].">N° d'identification Dog-id : ".$val['num_puce']." </td>
+                </tr>
+                <tr>
+                  <td ".$val['id_proprietaire'].">Puce : ".$val['puce_dogs']."</td>
+                </tr>
+                <tr>
+                  <td ".$val['id_proprietaire'].">Tatouage : ".$val['tatoo_dogs']."</td>
+                </tr>
+                <tr>
+                  <td ".$val['id_proprietaire'].">Race : ".$val['race']."</td>
+                </tr>            
+                </table>
+
+                <h2>Divers</h2>
+
+                <table>
+                <tr>
+                  <td ".$val['id_proprietaire'].">Lieu de détention du chien (si autre que celui de l'adresse du propriétaire) : ".ucfirst($val['detention'])."</td>
+                </tr>
+                <tr>
+                  <td ".$val['id_proprietaire'].">Nom et téléphone du vétérinaire traitant : ".ucfirst($val['veto'])." ".$val['vetotel']."</td>
+                </tr>
+                <tr>
+                  <td ".$val['id_proprietaire'].">Le chien est-il inscrit à un club de dressage? ".ucfirst($val['club'])."</td>
+                </tr>
+                <tr>
+                  <td ".$val['id_proprietaire'].">Si oui,nom et adresse du club : ".$val['club_adresse']."</td>
+                </tr>
+                       
+                </table>";
+              }
+            $html.="</page>"
+            ;
+        
+    require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
+    $html2pdf = new HTML2PDF('P','A4','fr');
+    $html2pdf->WriteHTML($html);
+    $html2pdf->Output('exemple.pdf');
     }
 
 

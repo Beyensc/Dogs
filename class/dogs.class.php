@@ -18,7 +18,8 @@ public function __construct($dbPdo){
 	}
 
 	public function dogs(){
-		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.id_race,b.race,a.id_proprietaire,c.id_proprietaire 
+		//$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.id_race,b.race,a.id_proprietaire,c.id_proprietaire 
+		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.date_naissance,a.puce_dogs,a.tatoo_dogs,a.sexe,a.detention,a.club,a.club_adresse,a.mordant,a.veto,a.vetotel,a.remarques,a.id_race,b.race,a.id_proprietaire,b.race,a.id_proprietaire,c.id_proprietaire
 			FROM chien a
 			LEFT JOIN race b ON b.id_race = a.id_race
 			LEFT JOIN proprietaire c ON c.id_proprietaire = a.id_proprietaire');

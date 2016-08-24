@@ -1,4 +1,6 @@
 
+
+
 $(document).ready(function () {
     
     
@@ -20,7 +22,7 @@ $(document).ready(function () {
 });
 
  $(function() {
-$( "#datepicker,#datepickerNaissance" ).datepicker({
+$( "#datepicker" ).datepicker({
 altField: "#datepicker",
 closeText: 'Fermer',
 prevText: 'Précédent',
@@ -35,6 +37,24 @@ weekHeader: 'Sem.',
 dateFormat: 'dd-mm-yy'
 });
 });
+
+  $(function() {
+$( "#datepickerNaissance" ).datepicker({
+altField: "#datepickerNaissance",
+closeText: 'Fermer',
+prevText: 'Précédent',
+nextText: 'Suivant',
+currentText: 'Aujourd\'hui',
+monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+weekHeader: 'Sem.',
+dateFormat: 'dd-mm-yy'
+});
+});
+
 
 
 
@@ -56,6 +76,7 @@ $(".login").submit(function(){
 
 
 function addNewDogs(){
+	alert('test');
 
 	var nomMaster = document.getElementById('nomMaster').value;
 	var prenomMaster = document.getElementById('prenomMaster').value;
@@ -132,6 +153,8 @@ function addNewDogs(){
 
 
 function ajoutDogs(id){
+
+alert('AjoutDog');
 
 		var nomDogs = document.getElementById('nomDogs'+id+'').value;
 		var numPuceDogs = document.getElementById('numPuceDogs'+id+'').value;
@@ -550,6 +573,7 @@ function dogsProprio(id){
 				//success:function(retour){alert(retour);},
 			});	
 }
+
 //dipsarition/apparition du tableau récapitulatif des maîtres pareille pour le détails
 function details(id){
 

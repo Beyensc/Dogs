@@ -87,7 +87,7 @@ class MAdmin extends MBase {
 	public function dogsProprio(){
 		include_once('./class/dogs.class.php');
 		$dogsProprio=new Dogs($this->appli->dbPdo);
-		return $dogsProprio->dogsProprio();
+		//return $dogsProprio->dogsProprio();
 	}
 	public function deleteRace(){
 		include_once('./class/dogs.class.php');
