@@ -48,6 +48,7 @@ class VAdmin extends VBase {
                                             <td><img src="img/dog.png" id="ajoutDogs" a title="Ajouter un nouveau chien." onclick="ajoutDogsForm('.$pow['id_proprietaire'].');"></td>
                                             <td><img src="img/can.png" id="delete" onclick="desactProprio(\''.$pow['id_proprietaire'].'\',\''.$pow['nom'].'\')"></td>
                                             <td><a href="?component=admin&action=pdf&id'.$pow['id_proprietaire'].'" target=\"_blank\"><img src="img/pdf.png"></a></td>
+                                            <td><img src="img/pdf.png" id="pdf" onclick="pdf(\''.$pow['id_proprietaire'].'\')" target=\"_blank\"></td>
                                           </tr>';
                                     }
 
@@ -369,6 +370,7 @@ class VAdmin extends VBase {
     //La liste des différentes vérifications effectuées par les agents lors d'un passage et aussi ma possibilité de mettre à jour la liste
     public function addNewListVerification($verification,$newListVerification,$modifListVerification){
 
+
       $html='';
       $html.='<table class="table" id="formListDogs"><ul class="list-group">';
 
@@ -392,10 +394,12 @@ class VAdmin extends VBase {
     }  
     //La fonction pour la sortie en PDF avec les données du propriétaire et du/des chien(s)
     
-    public function pdf($proprietaire,$race,$dogs,$dogsProprio) {
+    public function pdf($proprietaire,$race,$dogs) {
       /*echo "<pre>";
       print_r($dogs);
       echo "</pre>";  *///pk? dogsproprio ne fonctionne pas???? j'ai du rajouter les infos manquante dans le model dogs(a modifier)
+    
+
     $html="";  
     $html.= "<page>
            
@@ -409,7 +413,7 @@ class VAdmin extends VBase {
             
                 $html.="<h2>Maître</h2>
 
-                <table>
+                <table ".$value['id_proprietaire'].">
                 <tr>
                   <td ".$value['id_proprietaire'].">Nom : ".ucfirst($value['nom'])." ".ucfirst($value['prenom'])."</td> 
                 </tr>
@@ -430,7 +434,7 @@ class VAdmin extends VBase {
                 </tr>
                 </table>";
                 }
-                foreach ($dogs as $key => $val) {   //dogproprio 
+                foreach ($dogs as $key => $val) {   
                   
                 $html.="<h2>Chien</h2>
 

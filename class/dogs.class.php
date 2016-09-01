@@ -23,6 +23,7 @@ public function __construct($dbPdo){
 			FROM chien a
 			LEFT JOIN race b ON b.id_race = a.id_race
 			LEFT JOIN proprietaire c ON c.id_proprietaire = a.id_proprietaire');
+		
 			return $this->pdo->query($sql)->fetchAll();
 	}
 

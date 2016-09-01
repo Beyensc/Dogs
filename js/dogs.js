@@ -154,7 +154,7 @@ function addNewDogs(){
 
 function ajoutDogs(id){
 
-alert('AjoutDog');
+
 
 		var nomDogs = document.getElementById('nomDogs'+id+'').value;
 		var numPuceDogs = document.getElementById('numPuceDogs'+id+'').value;
@@ -724,6 +724,25 @@ function addNewListVerification(){
 	}
 }
 
+function pdf(id){
+
+
+	$.ajax({
+			type:"GET",
+			url:"js/php/dogs/pdf.php",
+			data:{
+				id:id,
+				
+				
+
+			},
+			success:function(retour){alert(retour);},
+			
+
+		});
+
+	//alert('pdf');
+}
 
 
 
