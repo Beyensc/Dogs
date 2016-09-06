@@ -47,13 +47,13 @@ class VAdmin extends VBase {
                                             <td> <img src="img/business.png" id="button"   id="details" onclick="details('.$pow['id_proprietaire'].');"></td>
                                             <td><img src="img/dog.png" id="ajoutDogs" a title="Ajouter un nouveau chien." onclick="ajoutDogsForm('.$pow['id_proprietaire'].');"></td>
                                             <td><img src="img/can.png" id="delete" onclick="desactProprio(\''.$pow['id_proprietaire'].'\',\''.$pow['nom'].'\')"></td>
-                                            <td><a href="?component=admin&action=pdf&id'.$pow['id_proprietaire'].'" target=\"_blank\"><img src="img/pdf.png"></a></td>
-                                            <td><img src="img/pdf.png" id="pdf" onclick="pdf(\''.$pow['id_proprietaire'].'\')" target=\"_blank\"></td>
+                                            <td><a href="?component=admin&action=pdf&id='.$pow['id_proprietaire'].'" target=\"_blank\"><img src="img/pdf.png"></a></td>
+                                            
                                           </tr>';
                                     }
 
                                     $html2.='</table>';
-              
+                                            //<td><img src="img/pdf.png" id="pdf" onclick="pdf(\''.$pow['id_proprietaire'].'\')" target=\"_blank\"></td>
            
                    foreach ($proprietaire as $key => $row) {
 
@@ -398,90 +398,99 @@ class VAdmin extends VBase {
       /*echo "<pre>";
       print_r($dogs);
       echo "</pre>";  *///pk? dogsproprio ne fonctionne pas???? j'ai du rajouter les infos manquante dans le model dogs(a modifier)
-    
+   
+        foreach ($proprietaire as $key => $value) {
+              foreach ($dogs as $key => $val) {  
 
-    $html="";  
-    $html.= "<page>
-           
-            <fieldset>
-                <h1><img style=\"width: 20%;\"src=\"img/Police-logo.png\"><br>Immatriculation provisoire au registre des chiens dangereux</h1>
-            </fieldset>";
-           
-            foreach ($proprietaire as $key => $value) {
-              # code...
-            
-            
-                $html.="<h2>Maître</h2>
+                $value['id_proprietaire']=$_GET['id'];
 
-                <table ".$value['id_proprietaire'].">
-                <tr>
-                  <td ".$value['id_proprietaire'].">Nom : ".ucfirst($value['nom'])." ".ucfirst($value['prenom'])."</td> 
-                </tr>
-                <tr>
-                  <td ".$value['id_proprietaire'].">Lieu et date de naissance : ".ucfirst($value['lieu_naissance'])." ,le ".$value['date_naissance']."</td>
-                </tr> 
-                <tr>
-                  <td ".$value['id_proprietaire'].">Adresse : ".$value['rue']." ".$value['numero']." , ".$value['CP']." ".ucfirst($value['ville'])."</td>
-                </tr>
-                <tr>
-                  <td ".$value['id_proprietaire'].">Téléphone : ".$value['telephone']."</td>
-                </tr> 
-                 <tr>
-                  <td ".$value['id_proprietaire'].">Téléphone (GSM) : ".$value['gsm']."</td>
-                </tr> 
-                <tr>
-                  <td ".$value['id_proprietaire'].">Période contactable : ".$value['periode_dispo']." ".$value['autre_dispo']."</td>
-                </tr>
-                </table>";
-                }
-                foreach ($dogs as $key => $val) {   
-                  
-                $html.="<h2>Chien</h2>
+                /* echo "<pre>";
+                  print_r($value['id_proprietaire']);
+                echo "</pre>";*/
 
-                <table>
-                <tr>
-                  <td ".$val['id_proprietaire'].">Nom : ".ucfirst($val['nom'])." </td>
-                </tr>
-                <tr>
-                  <td ".$val['id_proprietaire'].">Sexe : ".$val['sexe']." </td>
-                </tr>
-                <tr>
-                  <td ".$val['id_proprietaire'].">Date de naissance : ".$val['date_naissance']."</td>
-                </tr>
-                <tr>
-                  <td ".$val['id_proprietaire'].">N° d'identification Dog-id : ".$val['num_puce']." </td>
-                </tr>
-                <tr>
-                  <td ".$val['id_proprietaire'].">Puce : ".$val['puce_dogs']."</td>
-                </tr>
-                <tr>
-                  <td ".$val['id_proprietaire'].">Tatouage : ".$val['tatoo_dogs']."</td>
-                </tr>
-                <tr>
-                  <td ".$val['id_proprietaire'].">Race : ".$val['race']."</td>
-                </tr>            
-                </table>
+        $html="";  
+        $html.= "<page>
+               
+                <fieldset>
+                    <h1><img style=\"width: 20%;\"src=\"img/Police-logo.png\"><br>Immatriculation provisoire au registre des chiens dangereux</h1>
+                </fieldset>";
+               
+                        
+                
+                
+                    $html.="<h2>Maître</h2>
 
-                <h2>Divers</h2>
+                    <table ".$value['id_proprietaire'].">
+                    <tr>
+                      <td ".$value['id_proprietaire'].">Nom : ".ucfirst($value['nom'])." ".ucfirst($value['prenom'])."</td> 
+                    </tr>
+                    <tr>
+                      <td ".$value['id_proprietaire'].">Lieu et date de naissance : ".ucfirst($value['lieu_naissance'])." ,le ".$value['date_naissance']."</td>
+                    </tr> 
+                    <tr>
+                      <td ".$value['id_proprietaire'].">Adresse : ".$value['rue']." ".$value['numero']." , ".$value['CP']." ".ucfirst($value['ville'])."</td>
+                    </tr>
+                    <tr>
+                      <td ".$value['id_proprietaire'].">Téléphone : ".$value['telephone']."</td>
+                    </tr> 
+                     <tr>
+                      <td ".$value['id_proprietaire'].">Téléphone (GSM) : ".$value['gsm']."</td>
+                    </tr> 
+                    <tr>
+                      <td ".$value['id_proprietaire'].">Période contactable : ".$value['periode_dispo']." ".$value['autre_dispo']."</td>
+                    </tr>
+                    </table>
+                    
+                     
+                      
+                    <h2>Chien</h2>
 
-                <table>
-                <tr>
-                  <td ".$val['id_proprietaire'].">Lieu de détention du chien (si autre que celui de l'adresse du propriétaire) : ".ucfirst($val['detention'])."</td>
-                </tr>
-                <tr>
-                  <td ".$val['id_proprietaire'].">Nom et téléphone du vétérinaire traitant : ".ucfirst($val['veto'])." ".$val['vetotel']."</td>
-                </tr>
-                <tr>
-                  <td ".$val['id_proprietaire'].">Le chien est-il inscrit à un club de dressage? ".ucfirst($val['club'])."</td>
-                </tr>
-                <tr>
-                  <td ".$val['id_proprietaire'].">Si oui,nom et adresse du club : ".$val['club_adresse']."</td>
-                </tr>
-                       
-                </table>";
+                    <table ".$val['id_proprietaire'].">
+                    <tr>
+                      <td ".$val['id_proprietaire'].">Nom : ".ucfirst($val['nom'])." </td>
+                    </tr>
+                    <tr>
+                      <td ".$val['id_proprietaire'].">Sexe : ".$val['sexe']." </td>
+                    </tr>
+                    <tr>
+                      <td ".$val['id_proprietaire'].">Date de naissance : ".$val['date_naissance']."</td>
+                    </tr>
+                    <tr>
+                      <td ".$val['id_proprietaire'].">N° d'identification Dog-id : ".$val['num_puce']." </td>
+                    </tr>
+                    <tr>
+                      <td ".$val['id_proprietaire'].">Puce : ".$val['puce_dogs']."</td>
+                    </tr>
+                    <tr>
+                      <td ".$val['id_proprietaire'].">Tatouage : ".$val['tatoo_dogs']."</td>
+                    </tr>
+                    <tr>
+                      <td ".$val['id_proprietaire'].">Race : ".$val['race']."</td>
+                    </tr>            
+                    </table>
+
+                    <h2>Divers</h2>
+
+                    <table>
+                    <tr>
+                      <td ".$val['id_proprietaire'].">Lieu de détention du chien (si autre que celui de l'adresse du propriétaire) : ".ucfirst($val['detention'])."</td>
+                    </tr>
+                    <tr>
+                      <td ".$val['id_proprietaire'].">Nom et téléphone du vétérinaire traitant : ".ucfirst($val['veto'])." ".$val['vetotel']."</td>
+                    </tr>
+                    <tr>
+                      <td ".$val['id_proprietaire'].">Le chien est-il inscrit à un club de dressage? ".ucfirst($val['club'])."</td>
+                    </tr>
+                    <tr>
+                      <td ".$val['id_proprietaire'].">Si oui,nom et adresse du club : ".$val['club_adresse']."</td>
+                    </tr>
+                           
+                    </table>";
+                      
+                    $html.="</page>";
+                    
+                 }
               }
-            $html.="</page>"
-            ;
         
     require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
     $html2pdf = new HTML2PDF('P','A4','fr');
