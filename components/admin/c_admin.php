@@ -24,7 +24,6 @@ public function actif(){
 	$dogs=$this->model->dogs();
 	$modifProprio=$this->model->modifProprio();
 	$race=$this->model->getListDogs();
-	//$dogsProprio=$this->model->dogsProprio();
 	$verification=$this->model->getListVerification();
 	$this->view->listDogsPro($proprietaire,$race,$dogs,$verification);
 }
@@ -54,12 +53,13 @@ public function majListVerification(){
 
 public function pdf(){
 
-	$proprietaire=$this->model->getlistPro();
+	
 	$race=$this->model->getListDogs();
 	$dogs=$this->model->dogs();
 	$dogsProprio=$this->model->dogsProprio();
-	$dogsName=$this->model->getListNameDogs();
-	$this->view->pdf($proprietaire,$race,$dogs,$dogsProprio);
+	$proprietaire=$this->model->getlistPro();
+	//$dogsName=$this->model->getListNameDogs();
+	$this->view->pdf($race,$dogs,$dogsProprio,$proprietaire);
 }
 
 

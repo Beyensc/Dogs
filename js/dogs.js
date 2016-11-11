@@ -8,8 +8,6 @@ $(document).ready(function () {
         $('#recherche').val($(this).html());
     });
  
-    //lors d'une recherche affacer le input lors du click???
-    //ajouter un lien retour lors d'une recherche
     //la recherche ok , mais pour afficher le détails il faut mettre un espace dans le barre de rcherche puis enter pour afficher le détails
     $('#recherche').change(function () {
         var result= $.trim($(this).val());
@@ -22,39 +20,21 @@ $(document).ready(function () {
 });
 
  $(function() {
-$( "#datepicker" ).datepicker({
-altField: "#datepicker",
-closeText: 'Fermer',
-prevText: 'Précédent',
-nextText: 'Suivant',
-currentText: 'Aujourd\'hui',
-monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
-dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-weekHeader: 'Sem.',
-dateFormat: 'dd-mm-yy'
-});
-});
-
-  $(function() {
-$( "#datepickerNaissance" ).datepicker({
-altField: "#datepickerNaissance",
-closeText: 'Fermer',
-prevText: 'Précédent',
-nextText: 'Suivant',
-currentText: 'Aujourd\'hui',
-monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
-dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-weekHeader: 'Sem.',
-dateFormat: 'dd-mm-yy'
-});
-});
-
+	$( "#datepicker","#datepickerNaissance" ).datepicker({
+	altField: "#datepicker",
+	closeText: 'Fermer',
+	prevText: 'Précédent',
+	nextText: 'Suivant',
+	currentText: 'Aujourd\'hui',
+	monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+	monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+	dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+	dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+	dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+	weekHeader: 'Sem.',
+	dateFormat: 'dd-mm-yy'
+	});
+	});
 
 
 
@@ -75,8 +55,111 @@ $(".login").submit(function(){
 });
 
 
+
+function surligne(champ, erreur)
+{
+   if(erreur)
+      champ.style.backgroundColor = "#fba";
+   else
+      champ.style.backgroundColor = "";
+}
+
+function valideMail(champ)
+{
+   var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+   if(!regex.test(champ.value))
+   {
+      surligne(champ, true);
+      return false;
+   }
+   else
+   {
+      surligne(champ, false);
+      return true;
+   }
+}
+
+function valideNomPrenom(champ)
+{
+   var regex = /^[A-Z]+[ \-']?[[a-z]+[ \-']?]*[a-z]+$/;
+   if(!regex.test(champ.value))
+   {
+      surligne(champ, true);
+      return false;
+   }
+   else
+   {
+      surligne(champ, false);
+      return true;
+
+   }
+}
+
+function date(champ)
+{
+   var regex = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
+   if(!regex.test(champ.value))
+   {
+      surligne(champ, true);
+      return false;
+   }
+   else
+   {
+      surligne(champ, false);
+      return true;
+   }
+}
+
+function phone(champ)
+{
+   var regex = /^[0-9]{3}[\/]?[0-9]{6}$/;
+   if(!regex.test(champ.value))
+   {
+      surligne(champ, true);
+      return false;
+   }
+   else
+   {
+      surligne(champ, false);
+      return true;
+   }
+}
+
+
+function cp(champ)
+{
+   var regex = /^[0-9]{4,4}$/;
+   if(!regex.test(champ.value))
+   {
+      surligne(champ, true);
+      return false;
+   }
+   else
+   {
+      surligne(champ, false);
+      return true;
+   }
+}
+
+function numeroRue(champ)
+{
+   var regex = /^[0-9]{1,}$/;
+   if(!regex.test(champ.value))
+   {
+      surligne(champ, true);
+      return false;
+   }
+   else
+   {
+      surligne(champ, false);
+      return true;
+   }
+}
+
+
+
 function addNewDogs(){
-	alert('test');
+	
 
 	var nomMaster = document.getElementById('nomMaster').value;
 	var prenomMaster = document.getElementById('prenomMaster').value;
@@ -233,14 +316,13 @@ function desactDogs(id,nom){
 				
 
 			},
-				success:setTimeout(function(){
-						window.location.href="?component=admin&action=actif";
+				success:function(data){
+						alert('Le chien chien a bien été supprimer');
+						window.location.assign("?component=admin&action=actif");
 					
 
 
-				},
-
-				1000),
+				}
 				
 		
 			
@@ -260,7 +342,7 @@ function addverif(id){
 
 function desactProprio(id,nom){
 
-	var ok = confirm('Voulez-vous desactiver '+nom+' ?');
+	var ok = confirm('Voulez-vous supprimer '+nom+' ?');
 	if(ok){
 
 		$.ajax({
@@ -331,7 +413,8 @@ function addNewDogsList(){
 		$.ajax({
 			type:"GET",
 			url:"js/php/dogs/addNewDogsList.php",
-			data:{listDogs:listDogs,
+			data:{
+				listDogs:listDogs,
 
            
 
@@ -574,6 +657,8 @@ function dogsProprio(id){
 			});	
 }
 
+
+
 //dipsarition/apparition du tableau récapitulatif des maîtres pareille pour le détails
 function details(id){
 
@@ -726,7 +811,7 @@ function addNewListVerification(){
 
 function pdf(id){
 
-
+//alert("test")
 	$.ajax({
 			type:"GET",
 			url:"js/php/dogs/pdf.php",
@@ -741,7 +826,7 @@ function pdf(id){
 
 		});
 
-	//alert('pdf');
+	
 }
 
 

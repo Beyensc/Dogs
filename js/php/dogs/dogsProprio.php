@@ -29,11 +29,7 @@ if(isset($_GET['id'])){
 	     <tr>Téléphone(vétérinaire) <input class="form-control" id="vetoTel'.$value['id_chien'].'" type="text" value="'.$value['vetotel'].'"></tr>
 	     <tr><h1><u>Remarque(s)</u></h1></tr>
 
-	     <tr><input class="form-control" type="text"id="remarques'.$value['id_chien'].'"value="'.$value['remarques'].'"style="margin:.2em .5em;
-				padding:0.1em .5em;
-				border:2px solid black;
-				background-color: red;
-				color:#FFF;">
+	     <tr><input class="form-control" type="text"id="remarques'.$value['id_chien'].'"value="'.$value['remarques'].'">
 	     </tr>
 
 	     <tr><img src="img/can.png" id="delete" onclick="desactDogs(\''.$value['id_chien'].'\',\''.$value['nom'].'\')">&nbsp;<tr>

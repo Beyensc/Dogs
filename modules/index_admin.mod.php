@@ -7,7 +7,7 @@ if((isset($_SESSION['type'])) && ($_SESSION['type'] == 1)){
     <li><a data-toggle="tab" href="?component=admin&action=ajout">Ajouter</a></li>
     <li><a data-toggle="tab" href="?component=admin&action=inactif">Inactif</a></li>
     <li><a href="?component=admin&action=majListDogs" > MAJ Liste des chiens</a></li>
-    <li><a href="?component=admin&action=majListVerification" > MAJ Liste des vérifications</a></li>
+    
     <li class="disabled"><a href="?component=connexion&action=deconnexion">Déconnexion</a></li>
 </ul>
 <div class="tab-content" id="myTabContent">
@@ -24,28 +24,31 @@ if((isset($_SESSION['type'])) && ($_SESSION['type'] == 1)){
         <p><br>Texte 2</p>
     </div>
 </div>';
-		/*$html='
-		<nav class="navbar navbar-inverse">
-		  <div class="container-fluid">
-		    <div class="navbar-header">
-		      <a class="navbar-brand" href="?component=admin&action=actif">Police</a>
-		    </div>
-		    <ul class="nav navbar-nav">
-		      <li><a href="?component=admin&action=ajout">Ajouter</a></li> 
-		      <li><a href="?component=admin&action=actif">actif</a></li>
-		      <li><a href="?component=admin&action=inactif">Inactif</a></li>
-		      <li><a href="?component=admin&action=majListDogs" > MAJ Liste des chiens</a></li>
-		      <li><a href="?component=admin&action=majListVerification" > MAJ Liste des vérifications</a></li>
-		      <li><a href="?component=connexion&action=deconnexion"><img src="img/broken-link.png" title="Déconnexion"></a></li>
-		    </ul>
-		  </div>
-		</nav> ';*/
+	//<li><a href="?component=admin&action=majListVerification" > MAJ Liste des vérifications</a></li>	
 }
 //la barre de navigation pour les agents
 else if((isset($_SESSION['type'])) && ($_SESSION['type'] == 2))
 {
 
-		$html=' 
+            $html='<ul class="nav nav-tabs nav-border-color nav-success" id="myTab">
+                    <li class="active"><a data-toggle="tab" href="?component=agent&action=actif">Accueil</a></li>
+                    <li class="disabled"><a href="?component=connexion&action=deconnexion">Déconnexion</a></li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div id="menu1" class="tab-pane fade active in">
+                        
+                    </div>
+                    <div id="menu2" class="tab-pane fade">
+                        <p><br>Texte Messages</p>
+                    </div>
+                    <div id="dropdown1" class="tab-pane fade">
+                        <p><br>Texte 1</p>
+                    </div>
+                    <div id="dropdown2" class="tab-pane fade">
+                        <p><br>Texte 2</p>
+                    </div>
+                </div>';
+		/*$html=' 
 		<nav class="navbar navbar-inverse">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
@@ -55,7 +58,7 @@ else if((isset($_SESSION['type'])) && ($_SESSION['type'] == 2))
 		      <li><a href="?component=connexion&action=deconnexion" ><img src="img/broken-link.png" title="Déconnexion"></a></li>
 		    </ul>
 		  </div>
-		</nav>';
+		</nav>';*/
 }
 else
 {

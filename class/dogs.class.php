@@ -48,6 +48,7 @@ public function __construct($dbPdo){
 		return $this->pdo->query($sql)->fetchAll();
 	}
 
+
 	public function getListPro(){
 		$sql=('SELECT * 
 				FROM proprietaire
@@ -128,8 +129,7 @@ public function __construct($dbPdo){
 
 	public function addNewDogs($tab){
 
-		print_r($tab);
-		echo "string";
+		
 
 		$req=$this->pdo->prepare('INSERT INTO proprietaire(nom,prenom,date_naissance,lieu_naissance,rue,numero,CP,ville,pays,mail,telephone,gsm,periode_dispo,autre_dispo,nom_contact,prenom_contact,num_contact,datesave) 
 			VALUES (:nom,:prenom,:date_naissance,:lieu_naissance,:rue,:numero,:CP,:ville,:pays,:mail,:telephone,:gsm,:periode_dispo,:autre_dispo,:nom_contact,:prenom_contact,:num_contact,:datesave)');
@@ -247,7 +247,7 @@ public function __construct($dbPdo){
 
    			
    		}
-   		else echo 'pas good';
+   		else echo 'erreur';
    	}
 
 	

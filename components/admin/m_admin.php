@@ -26,6 +26,7 @@ class MAdmin extends MBase {
 		$proprietaire=new Dogs($this->appli->dbPdo);
 		return $proprietaire->getListpro();
 	}
+	
 
 	public function getListNameDogs(){
 		include_once('./class/dogs.class.php');

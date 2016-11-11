@@ -1,7 +1,6 @@
 <?php
 if(isset($_GET['id'])){
-	echo($_GET['id']);
-echo "string";
+	
 	include ('../connect.php');
 	include('../../../class/dogs.class.php');
 
@@ -9,9 +8,9 @@ echo "string";
 	//print_r($art->dogsProprio($_GET['id']));
 	$list=$art->dogsProprio($_GET['id']);
 	$listPro=$art->getListPro();
-	//echo "<pre>";
-	//print_r($list);
-	//echo "</pre>";
+	/*echo "<pre>";
+	print_r($list);
+	echo "</pre>";*/
 
 	$html="";  
     $html.= "<page>
@@ -23,7 +22,7 @@ echo "string";
            
            
             foreach ($listPro as $key => $value) {
-              
+              foreach ($list as $key => $val) { 
             
             
                 $html.="<h2>Maître</h2>
@@ -48,9 +47,9 @@ echo "string";
                   <td ".$value['id_proprietaire'].">Période contactable : ".$value['periode_dispo']." ".$value['autre_dispo']."</td>
                 </tr>
                 </table>";
-                }
+                
 
-                foreach ($list as $key => $val) {   
+                  
                   
                 $html.="<h2>Chien</h2>
 
@@ -95,12 +94,13 @@ echo "string";
                 </tr>
                        
                 </table>";
-              }
+              }}
+              
             $html.="</page>";
 
             echo $html;
                   
-    require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
+    require_once(dirname(__FILE__).'html2pdf/html2pdf.class.php');
     $html2pdf = new HTML2PDF('P','A4','fr');
     $html2pdf->WriteHTML($html);
     $html2pdf->Output('exemple.pdf');

@@ -2,8 +2,14 @@
 
 class VAdmin extends VBase {
 
+  private $pdo;
+
+
+
     function __construct($appli, $model) {
         parent::__construct($appli, $model);
+
+       
     }
     //La recherche qui passe par une fonction JS
     public function recherche(){
@@ -23,8 +29,9 @@ class VAdmin extends VBase {
 
         $html='';
         $html2='';
-        $html.='<div class="main">';
-        $html2.='<table class="table" id ="listpro"  style="display:block;">
+        $html.='<div class="main" >';
+        $html2.='<table style="display:block;" id="listpro" class="display" width="100%" cellspacing="0">
+        <thead>
                   <tr>
                                             <th>Nom</th>
                                             <th>Prénom</th>
@@ -33,13 +40,17 @@ class VAdmin extends VBase {
                                             <th>Nouveau chien</th>
                                             <th>Supprimer</th>
                                             <th>PDF</th>
-                                          </tr>'; 
+                                          </tr>
+                                          </thead>
+                                           <tbody>
+                                        '; 
 
-          foreach ($proprietaire as $key => $pow) {
+         foreach ($proprietaire as $key => $pow) {
 
 
                           $html2.=' 
-                                          
+                                         
+                                         
                                           <tr>
                                             <td>'.ucfirst($pow['nom']).'</td>
                                             <td>'.ucfirst($pow['prenom']).'</td>
@@ -48,11 +59,13 @@ class VAdmin extends VBase {
                                             <td><img src="img/dog.png" id="ajoutDogs" a title="Ajouter un nouveau chien." onclick="ajoutDogsForm('.$pow['id_proprietaire'].');"></td>
                                             <td><img src="img/can.png" id="delete" onclick="desactProprio(\''.$pow['id_proprietaire'].'\',\''.$pow['nom'].'\')"></td>
                                             <td><a href="?component=admin&action=pdf&id='.$pow['id_proprietaire'].'" target=\"_blank\"><img src="img/pdf.png"></a></td>
-                                            
-                                          </tr>';
+                                            <td><img src="img/pdf.png" id="pdf" onclick="pdf('.$pow['id_proprietaire'].');"></td>
+                                          </tr>
+                                          ';
                                     }
 
-                                    $html2.='</table>';
+                                    $html2.='</tbody></table>';
+
                                             //<td><img src="img/pdf.png" id="pdf" onclick="pdf(\''.$pow['id_proprietaire'].'\')" target=\"_blank\"></td>
            
                    foreach ($proprietaire as $key => $row) {
@@ -65,13 +78,13 @@ class VAdmin extends VBase {
                                   <tr><td><h1><u>Chien</u></h1></td></tr>
                                   <tr><td><a href="?component=admin&action=actif">Retour</a></td></tr>
                                  <tr>
-                                   <td>Nom du chien  <input class="form-control" type="text" placeholder="Nom du chien" name="nomDogs" id="nomDogs'.$row['id_proprietaire'].'"></td>
+                                   <td>Nom du chien  <input class="form-control" type="text" placeholder="Nom du chien" name="nomDogs" id="nomDogs'.$row['id_proprietaire'].'" onblur="valideNomPrenom(this)"></td>
                                  </tr>
                                  <tr>  
                                    <td>Dog id <input class="form-control" type="text" placeholder="xxx-xxx-xxxx" name="numPuceDogs" id="numPuceDogs'.$row['id_proprietaire'].'"></td>
                                  </tr>
                                  <tr>  
-                                   <td>Date de naissance <input class="form-control" type="text" placeholder="J/M/A" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'"></td>
+                                   <td>Date de naissance <input class="form-control" type="date" placeholder="J/M/A" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'" onblur="date(this)"></td>
                                  </tr>
                                  <tr>
                                    <td>Puce <input class="form-control" type="text" placeholder="Puce" name="puceDogs" id="puceDogs'.$row['id_proprietaire'].'"></td>
@@ -104,13 +117,7 @@ class VAdmin extends VBase {
                                         $html.='</select>
                                     </td> 
                                     </tr> 
-                                    <tr>
-                                      <td>Photo du chien</td>
-                                    </tr>
-                                    <tr>
-                                      <td><input type="file" name="photoDog" size="30"></td>
-                                     </tr> 
-                                  </tr>
+                            
 
                                   <tr><td><h1><u>Divers</u></h1></td></tr>
                                   <tr>
@@ -132,10 +139,10 @@ class VAdmin extends VBase {
                                     </td>
                                   </tr>
                                   <tr>
-                                    <td>Vétérinaire<input class="form-control" type="text" placeholder="Vétérinaire" name="veto" id="veto'.$row['id_proprietaire'].'"></td>
+                                    <td>Vétérinaire<input class="form-control" type="text" placeholder="Vétérinaire" name="veto" id="veto'.$row['id_proprietaire'].'" onblur="valideNomPrenom(this)"></td>
                                   </tr>
                                   <tr>  
-                                    <td>Téléphone du vétérinaire<input class="form-control" type="text" placeholder="Téléphone" name="vetoTel" id="vetoTel'.$row['id_proprietaire'].'"></td>
+                                    <td>Téléphone du vétérinaire<input class="form-control" type="text" placeholder="Téléphone" name="vetoTel" id="vetoTel'.$row['id_proprietaire'].'" onblur="phone(this)"></td>
                                   </tr>
                                            
 
@@ -179,7 +186,7 @@ class VAdmin extends VBase {
                                     </tr>
 
                                     <tr>
-                                      <td id="id_proprietaire"'.$row['id_proprietaire'].'">Date de naissance<input class="form-control"  type="text" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'" value="'.$row['date_naissance'].'"></td>
+                                      <td id="id_proprietaire"'.$row['id_proprietaire'].'">Date de naissance<input class="form-control"  type="text" placeholder="Date de naissance" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'" value="'.$row['date_naissance'].'" readonly></td>
                                     </tr>
                                     <tr>  
                                       <td id="id_proprietaire"'.$row['id_proprietaire'].'">Lieu de naissance<input class="form-control"  type="text" placeholder="Lieu de naissance" name="lieuNaissance" id="lieuNaissance'.$row['id_proprietaire'].'" value="'.ucfirst($row['lieu_naissance']).'"></td>
@@ -229,7 +236,7 @@ class VAdmin extends VBase {
                                     </tr>
                                   
                                      <tr><td><img src="img/edit.png" title="Modifier"  id="modif" onclick="modifFild(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\');"></td>
-                                    <td><input class="btn_listdog" type="button" value="voir" id="dogsProprio" onclick="dogsProprioform('.$row['id_proprietaire'].'),dogsProprio('.$row['id_proprietaire'].')"></td></tr>
+                                    <td><button type="button" class="btn btn-default"  value="voir" id="dogsProprio" onclick="dogsProprioform('.$row['id_proprietaire'].'),dogsProprio('.$row['id_proprietaire'].')">Voir la liste du/des chien(s)</button></td></tr>
                                </table>
                             </div>';
 
@@ -307,25 +314,25 @@ class VAdmin extends VBase {
     public function AddNewDogs($race,$verification){
     	$html='';
     	$html.='
-       <table class="table" id="formAjout">
+       <table class="table" id="formAjout" >
        
        
        <tr><h1><u>Maître</u><h1></tr>
-       <tr>Nom<input class="form-control"type="text" placeholder="Nom du maître" name="nomMaster" id="nomMaster"  required autofocus></tr>
-       <tr>Prénom<input class="form-control"  type="text" placeholder="Prénom du maître" name="prenomMaster" id="prenomMaster" required></tr>
+       <tr>Nom<input class="form-control"type="text" placeholder="Nom du maître" name="nomMaster" id="nomMaster"  required autofocus onblur="valideNomPrenom(this)"></tr>
+       <tr>Prénom<input class="form-control"  type="text" placeholder="Prénom du maître" name="prenomMaster" id="prenomMaster" required onblur="valideNomPrenom(this)"></tr>
        
-       <tr>Date de naissance<input class="form-control"  type="text" placeholder="J/M/A" name="dateNaissance" id="datepickerNaissance" required></tr>
+       <tr>Date de naissance<input class="form-control"  type="text" placeholder="J/M/A" name="dateNaissance" id="datepickerNaissance" required onblur="date(this)"></tr>
        <tr>Lieu de naissance<input class="form-control"  type="text" placeholder="Lieu de naissance" name="lieuNaissance" id="lieuNaissance"></tr>
        
        <tr>Rue<input class="form-control" type="text"placeholder="Rue" name="rueMaster" id="rueMaster" required></tr>
-       <tr>N°<input class="form-control" type="text" placeholder="Numéro" name="numMaster" id="numMaster" required></tr>
-       <tr>Code Postal<input class="form-control" type="text" placeholder="Code postal" name="cpMaster" id="cpMaster" required></tr>
+       <tr>N°<input class="form-control" type="text" placeholder="Numéro" name="numMaster" id="numMaster" required onblur="numeroRue(this)"></tr>
+       <tr>Code Postal<input class="form-control" type="text" placeholder="Code postal" name="cpMaster" id="cpMaster" required onblur="cp(this)"></tr>
        <tr>Ville<input class="form-control" type="text" placeholder="Ville" name="villeMaster" id="villeMaster" required></tr>
        <tr>Pays<input class="form-control" type="text" placeholder="Pays" name="paysMaster" id="paysMaster" required></tr>
        
         
-       <tr>Mail<input class="form-control" type="mail" placeholder="Mail" name="mailMaster" id="mailMaster"></tr>
-       <tr>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telMaster" id="telMaster" required></tr>
+       <tr>Mail<input class="form-control" type="mail" placeholder="Mail" name="mailMaster" id="mailMaster" onblur="valideMail(this)"></tr>
+       <tr>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telMaster" id="telMaster" required onblur="phone(this)"></tr>
        <tr>GSM<input class="form-control" type="text" placeholder="GSM" name="gsmMaster" id="gsmMaster"></tr>
        
        <tr>Période contactable<select class="form-control" name="periodeContact" id="periodeContact">
@@ -342,6 +349,15 @@ class VAdmin extends VBase {
       
        <tr>Date d&#145;enregistrement<input class="form-control" type="text" placeholder="Date d&#145;enregistrement" name="date" id="datepicker"></tr></br>
        <tr><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs();"></tr></table>';
+
+      /* $email = $_POST['mailMaster']; // test avec une chaine qui est une adresse email
+ 
+        // Vérifie si la chaine ressemble à un email
+        if (preg_match('#^[\w.-]+@[\w.-]+\.[a-z]{2,6}$#i', $email)) {
+            echo 'Cet email est correct.';
+        } else {
+            echo 'Cet email a un format non adapté.';
+        }*/
 
     	$this->appli->news=$html;
     }
@@ -394,21 +410,20 @@ class VAdmin extends VBase {
     }  
     //La fonction pour la sortie en PDF avec les données du propriétaire et du/des chien(s)
     
-    public function pdf($proprietaire,$race,$dogs) {
-      /*echo "<pre>";
-      print_r($dogs);
-      echo "</pre>";  *///pk? dogsproprio ne fonctionne pas???? j'ai du rajouter les infos manquante dans le model dogs(a modifier)
-   
-        foreach ($proprietaire as $key => $value) {
+    public function pdf($race,$dogs,$dogsProprio,$proprietaire) {
+
+      //echo $_GET['id'];
+
+       foreach ($proprietaire as $key => $value) {
               foreach ($dogs as $key => $val) {  
 
-                $value['id_proprietaire']=$_GET['id'];
+                
 
                 /* echo "<pre>";
                   print_r($value['id_proprietaire']);
                 echo "</pre>";*/
 
-        $html="";  
+       $html="";  
         $html.= "<page>
                
                 <fieldset>
