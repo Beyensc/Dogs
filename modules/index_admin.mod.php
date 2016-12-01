@@ -2,29 +2,82 @@
 //la barre de navigation pour les admin 
 if((isset($_SESSION['type'])) && ($_SESSION['type'] == 1)){
 
-		$html='<ul class="nav nav-tabs nav-border-color nav-success" id="myTab">
-    <li class="active"><a data-toggle="tab" href="?component=admin&action=actif">Accueil</a></li>
-    <li><a data-toggle="tab" href="?component=admin&action=ajout">Ajouter</a></li>
-    <li><a data-toggle="tab" href="?component=admin&action=inactif">Inactif</a></li>
-    <li><a href="?component=admin&action=majListDogs" > MAJ Liste des chiens</a></li>
-    
-    <li class="disabled"><a href="?component=connexion&action=deconnexion">Déconnexion</a></li>
-</ul>
-<div class="tab-content" id="myTabContent">
-    <div id="menu1" class="tab-pane fade active in">
-        
+		$html='
+
+        <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="?component=admin&action=actif">Police</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                
+              
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Clément <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        <li>
+                            <a href="?component=connexion&action=deconnexion"><i class="fa fa-fw fa-power-off"></i>Déconnexion</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="?component=admin&action=actif"><i class="fa fa-fw fa-dashboard"></i> Accueil</a>
+                    </li>
+                    
+
+                    
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#proprietaire"><i class="fa fa-fw fa-arrows-v"></i> Propriétaire <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="proprietaire" class="collapse">
+                            <li>
+                                <a href="?component=admin&action=ajout">Nouveau propriétaire</a>
+                            </li>
+                            <li>
+                                <a href="?component=admin&action=actif">Actif</a>
+                            </li>
+                            <li>
+                                <a href="?component=admin&action=inactif">Inactif</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#maj"><i class="fa fa-fw fa-arrows-v"></i> Mise à jour <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="maj" class="collapse">
+                            <li>
+                                <a href="?component=admin&action=majListDogs">Liste des chiens dangereux</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                   
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <!-- /#page-wrapper -->
+
     </div>
-    <div id="menu2" class="tab-pane fade">
-        <p><br>Texte Messages</p>
-    </div>
-    <div id="dropdown1" class="tab-pane fade">
-        <p><br>Texte 1</p>
-    </div>
-    <div id="dropdown2" class="tab-pane fade">
-        <p><br>Texte 2</p>
-    </div>
-</div>';
-	//<li><a href="?component=admin&action=majListVerification" > MAJ Liste des vérifications</a></li>	
+
+
+      ';
+		
 }
 //la barre de navigation pour les agents
 else if((isset($_SESSION['type'])) && ($_SESSION['type'] == 2))

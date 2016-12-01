@@ -30,7 +30,9 @@ class VAdmin extends VBase {
         $html='';
         $html2='';
         $html.='<div class="main" >';
-        $html2.='<table style="display:block;" id="listpro" class="display" width="100%" cellspacing="0">
+        $html2.='
+        <div class="table-responsive">
+        <table class="table table-bordered table-hover" id="listpro">
         <thead>
                   <tr>
                                             <th>Nom</th>
@@ -39,7 +41,7 @@ class VAdmin extends VBase {
                                             <th>Détails</th>
                                             <th>Nouveau chien</th>
                                             <th>Supprimer</th>
-                                            <th>PDF</th>
+                                            
                                           </tr>
                                           </thead>
                                            <tbody>
@@ -58,13 +60,13 @@ class VAdmin extends VBase {
                                             <td> <img src="img/business.png" id="button"   id="details" onclick="details('.$pow['id_proprietaire'].');"></td>
                                             <td><img src="img/dog.png" id="ajoutDogs" a title="Ajouter un nouveau chien." onclick="ajoutDogsForm('.$pow['id_proprietaire'].');"></td>
                                             <td><img src="img/can.png" id="delete" onclick="desactProprio(\''.$pow['id_proprietaire'].'\',\''.$pow['nom'].'\')"></td>
-                                            <td><a href="?component=admin&action=pdf&id='.$pow['id_proprietaire'].'" target=\"_blank\"><img src="img/pdf.png"></a></td>
-                                            <td><img src="img/pdf.png" id="pdf" onclick="pdf('.$pow['id_proprietaire'].');"></td>
+                                           
+                                           
                                           </tr>
                                           ';
                                     }
 
-                                    $html2.='</tbody></table>';
+                                    $html2.='</tbody></table></div>';
 
                                             //<td><img src="img/pdf.png" id="pdf" onclick="pdf(\''.$pow['id_proprietaire'].'\')" target=\"_blank\"></td>
            
@@ -259,35 +261,18 @@ class VAdmin extends VBase {
     //Fonction qui permet l'affichage des propriétaires inactif c-à-d un proprietaire qui n'a plus de chien est désactiver au lieu d'être supprimer
     public function listDogsProInactif($proprietaireIncatif){
 
-        /*$html='';
-        
-        $html.='<table class="table" id="formListDogs"><ul class="list-group">';
-        foreach ($proprietaireIncatif as $key => $row) {
-
-          $html.=' 
-    
-          
-          <tr><td><li class="list-group-item">'.ucfirst($row['nom']).'&nbsp'.ucfirst($row['prenom']).'</li>
-
-                   <td><input class="btn btn-success" type="button" value="Activer" id="delete" onclick="activProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\');">
-
-        <td><img src="img/can.png" id="delete" onclick="deleteProprio(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\');"></td></td></td></tr>';
-
-
-                  
-        }
-        
-
-        $html.='</ul></table>';*/
+       
         $html='';
 
-        $html.='<table class="table" id ="listpro"  style="display:block;">
+        $html.='<div class="table-responsive">
+        <table class="table table-bordered table-hover" id="listpro">
+        <thead>
                   <tr>
                                             <th>Nom</th>
                                             <th>Prénom</th>
                                             <th>Activer</th>
                                             <th>Supprimer</th>
-                                          </tr>'; 
+                                          </tr></thead><tbody>'; 
 
           foreach ($proprietaireIncatif as $key => $pow) {
 
@@ -305,7 +290,7 @@ class VAdmin extends VBase {
                                           </tr>';
                                     }
 
-                                    $html.='</table>';
+                                    $html.='<tbody></table></div>';
               
 
         $this->appli->list=$html;
@@ -314,50 +299,60 @@ class VAdmin extends VBase {
     public function AddNewDogs($race,$verification){
     	$html='';
     	$html.='
+
+       <div id="wrapper">
+
+        <form role="form">
+
+          <div class="form-group">
+
+      <form role="form">
+
        <table class="table" id="formAjout" >
        
-       
-       <tr><h1><u>Maître</u><h1></tr>
-       <tr>Nom<input class="form-control"type="text" placeholder="Nom du maître" name="nomMaster" id="nomMaster"  required autofocus onblur="valideNomPrenom(this)"></tr>
-       <tr>Prénom<input class="form-control"  type="text" placeholder="Prénom du maître" name="prenomMaster" id="prenomMaster" required onblur="valideNomPrenom(this)"></tr>
-       
-       <tr>Date de naissance<input class="form-control"  type="text" placeholder="J/M/A" name="dateNaissance" id="datepickerNaissance" required onblur="date(this)"></tr>
-       <tr>Lieu de naissance<input class="form-control"  type="text" placeholder="Lieu de naissance" name="lieuNaissance" id="lieuNaissance"></tr>
-       
-       <tr>Rue<input class="form-control" type="text"placeholder="Rue" name="rueMaster" id="rueMaster" required></tr>
-       <tr>N°<input class="form-control" type="text" placeholder="Numéro" name="numMaster" id="numMaster" required onblur="numeroRue(this)"></tr>
-       <tr>Code Postal<input class="form-control" type="text" placeholder="Code postal" name="cpMaster" id="cpMaster" required onblur="cp(this)"></tr>
-       <tr>Ville<input class="form-control" type="text" placeholder="Ville" name="villeMaster" id="villeMaster" required></tr>
-       <tr>Pays<input class="form-control" type="text" placeholder="Pays" name="paysMaster" id="paysMaster" required></tr>
-       
+         <tr><h1><u>Maître</u><h1></tr>
+         <tr>Nom<input class="form-control"type="text" placeholder="Nom du maître" name="nomMaster" id="nomMaster"  required autofocus onblur="valideNomPrenom(this)"></tr>
+         <tr>Prénom<input class="form-control"  type="text" placeholder="Prénom du maître" name="prenomMaster" id="prenomMaster" required onblur="valideNomPrenom(this)"></tr>
+         
+         <tr>Date de naissance<input class="form-control"  type="text" placeholder="J/M/A" name="dateNaissance" id="datepickerNaissance" required onblur="date(this)"></tr>
+         <tr>Lieu de naissance<input class="form-control"  type="text" placeholder="Lieu de naissance" name="lieuNaissance" id="lieuNaissance"></tr>
+         
+         <tr>Rue<input class="form-control" type="text"placeholder="Rue" name="rueMaster" id="rueMaster" required></tr>
+         <tr>N°<input class="form-control" type="text" placeholder="Numéro" name="numMaster" id="numMaster" required onblur="numeroRue(this)"></tr>
+         <tr>Code Postal<input class="form-control" type="text" placeholder="Code postal" name="cpMaster" id="cpMaster" required onblur="cp(this)"></tr>
+         <tr>Ville<input class="form-control" type="text" placeholder="Ville" name="villeMaster" id="villeMaster" required></tr>
+         <tr>Pays<input class="form-control" type="text" placeholder="Pays" name="paysMaster" id="paysMaster" required></tr>
+         
+          
+         <tr>Mail<input class="form-control" type="mail" placeholder="Mail" name="mailMaster" id="mailMaster" onblur="valideMail(this)"></tr>
+         <tr>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telMaster" id="telMaster" required onblur="phone(this)"></tr>
+         <tr>GSM<input class="form-control" type="text" placeholder="GSM" name="gsmMaster" id="gsmMaster"></tr>
+         
+         <tr>Période contactable<select class="form-control" name="periodeContact" id="periodeContact">
+         <option value=""></option>
+         <option value="matin">Matin</option>
+         <option value="midi">Midi</option>
+         <option value="soir">Soir</option></td>
+         <tr>Autre<input class="form-control" type="text" placeholder="Autre" name="autreDispo" id="autreDispo"></tr>
+         <tr><h1><u>Personne de contact</u><h1></tr>
+
+         <tr>Nom<input class="form-control" type="text" placeholder="Nom" name="nomContact" id="nomContact"></tr>
+         <tr>Prénom<input class="form-control" type="text" placeholder="Prénom" name="prenomContact" id="prenomContact"></tr>
+         <tr>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telContact" id="telContact"></tr>
         
-       <tr>Mail<input class="form-control" type="mail" placeholder="Mail" name="mailMaster" id="mailMaster" onblur="valideMail(this)"></tr>
-       <tr>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telMaster" id="telMaster" required onblur="phone(this)"></tr>
-       <tr>GSM<input class="form-control" type="text" placeholder="GSM" name="gsmMaster" id="gsmMaster"></tr>
-       
-       <tr>Période contactable<select class="form-control" name="periodeContact" id="periodeContact">
-       <option value=""></option>
-       <option value="matin">Matin</option>
-       <option value="midi">Midi</option>
-       <option value="soir">Soir</option></td>
-       <tr>Autre<input class="form-control" type="text" placeholder="Autre" name="autreDispo" id="autreDispo"></tr>
-       <tr><h1><u>Personne de contact</u><h1></tr>
+         <tr>Date d&#145;enregistrement<input class="form-control" type="text" placeholder="Date d&#145;enregistrement" name="date" id="datepicker"></tr></br>
+         <tr><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs();"></tr>
 
-       <tr>Nom<input class="form-control" type="text" placeholder="Nom" name="nomContact" id="nomContact"></tr>
-       <tr>Prénom<input class="form-control" type="text" placeholder="Prénom" name="prenomContact" id="prenomContact"></tr>
-       <tr>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telContact" id="telContact"></tr>
-      
-       <tr>Date d&#145;enregistrement<input class="form-control" type="text" placeholder="Date d&#145;enregistrement" name="date" id="datepicker"></tr></br>
-       <tr><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs();"></tr></table>';
+       </table>
 
-      /* $email = $_POST['mailMaster']; // test avec une chaine qui est une adresse email
- 
-        // Vérifie si la chaine ressemble à un email
-        if (preg_match('#^[\w.-]+@[\w.-]+\.[a-z]{2,6}$#i', $email)) {
-            echo 'Cet email est correct.';
-        } else {
-            echo 'Cet email a un format non adapté.';
-        }*/
+     </div>
+        </div>
+
+   </form>
+
+ </div>
+';
+
 
     	$this->appli->news=$html;
     }
@@ -365,7 +360,19 @@ class VAdmin extends VBase {
     public function addNewDogsList($newDogsList,$race){
 
       $html='';
-      $html.='<table class="table" id="formListDogs"><ul class="list-group">';
+      $html.=' <div id="wrapper">
+
+        <form role="form">
+
+          <div class="form-group">
+
+      <table class="table" id="formListDogs"><ul class="list-group">
+        </div>
+
+   </form>
+
+ </div>
+';
 
       $i=1;
       foreach ($race as $key => $row) {

@@ -1,5 +1,7 @@
 
 
+////////////////////////////////////////////DatePicker////////////////////////////////////////////////////////
+
 
 $(document).ready(function () {
     
@@ -37,125 +39,7 @@ $(document).ready(function () {
 	});
 
 
-
-$( ".input" ).focusin(function() {
-  $( this ).find( "span" ).animate({"opacity":"0"}, 200);
-});
-
-$( ".input" ).focusout(function() {
-  $( this ).find( "span" ).animate({"opacity":"1"}, 300);
-});
-
-$(".login").submit(function(){
-  $(this).find(".submit i").removeAttr('class').addClass("fa fa-check").css({"color":"#fff"});
-  $(".submit").css({"background":"#2ecc71", "border-color":"#2ecc71"});
-  $(".feedback").show().animate({"opacity":"1", "bottom":"-80px"}, 400);
-  $("input").css({"border-color":"#2ecc71"});
-  return false;
-});
-
-
-
-function surligne(champ, erreur)
-{
-   if(erreur)
-      champ.style.backgroundColor = "#fba";
-   else
-      champ.style.backgroundColor = "";
-}
-
-function valideMail(champ)
-{
-   var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
-   if(!regex.test(champ.value))
-   {
-      surligne(champ, true);
-      return false;
-   }
-   else
-   {
-      surligne(champ, false);
-      return true;
-   }
-}
-
-function valideNomPrenom(champ)
-{
-   var regex = /^[A-Z]+[ \-']?[[a-z]+[ \-']?]*[a-z]+$/;
-   if(!regex.test(champ.value))
-   {
-      surligne(champ, true);
-      return false;
-   }
-   else
-   {
-      surligne(champ, false);
-      return true;
-
-   }
-}
-
-function date(champ)
-{
-   var regex = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
-   if(!regex.test(champ.value))
-   {
-      surligne(champ, true);
-      return false;
-   }
-   else
-   {
-      surligne(champ, false);
-      return true;
-   }
-}
-
-function phone(champ)
-{
-   var regex = /^[0-9]{3}[\/]?[0-9]{6}$/;
-   if(!regex.test(champ.value))
-   {
-      surligne(champ, true);
-      return false;
-   }
-   else
-   {
-      surligne(champ, false);
-      return true;
-   }
-}
-
-
-function cp(champ)
-{
-   var regex = /^[0-9]{4,4}$/;
-   if(!regex.test(champ.value))
-   {
-      surligne(champ, true);
-      return false;
-   }
-   else
-   {
-      surligne(champ, false);
-      return true;
-   }
-}
-
-function numeroRue(champ)
-{
-   var regex = /^[0-9]{1,}$/;
-   if(!regex.test(champ.value))
-   {
-      surligne(champ, true);
-      return false;
-   }
-   else
-   {
-      surligne(champ, false);
-      return true;
-   }
-}
-
+///////////////////////////////////Récupération des données///////////////////////////////////////////////
 
 
 function addNewDogs(){
@@ -828,6 +712,131 @@ function pdf(id){
 
 	
 }
+
+
+////////////////////////////Connexion///////////////////////////////////////////////////////
+
+$( ".input" ).focusin(function() {
+  $( this ).find( "span" ).animate({"opacity":"0"}, 200);
+});
+
+$( ".input" ).focusout(function() {
+  $( this ).find( "span" ).animate({"opacity":"1"}, 300);
+});
+
+$(".login").submit(function(){
+  $(this).find(".submit i").removeAttr('class').addClass("fa fa-check").css({"color":"#fff"});
+  $(".submit").css({"background":"#2ecc71", "border-color":"#2ecc71"});
+  $(".feedback").show().animate({"opacity":"1", "bottom":"-80px"}, 400);
+  $("input").css({"border-color":"#2ecc71"});
+  return false;
+});
+
+////////////////////////////////////RegExp///////////////////////////////////////////////////
+
+function surligne(champ, erreur)
+{
+   if(erreur)
+      champ.style.backgroundColor = "#fba";
+   else
+      champ.style.backgroundColor = "";
+}
+
+function valideMail(champ)
+{
+   var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+   if(!regex.test(champ.value))
+   {
+      surligne(champ, true);
+      return false;
+   }
+   else
+   {
+      surligne(champ, false);
+      return true;
+   }
+}
+
+function valideNomPrenom(champ)
+{
+   var regex = /^[A-Z]+[ \-']?[[a-z]+[ \-']?]*[a-z]+$/;
+   if(!regex.test(champ.value))
+   {
+      surligne(champ, true);
+      return false;
+   }
+   else
+   {
+      surligne(champ, false);
+      return true;
+
+   }
+}
+
+function date(champ)
+{
+   var regex = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
+   if(!regex.test(champ.value))
+   {
+      surligne(champ, true);
+      return false;
+   }
+   else
+   {
+      surligne(champ, false);
+      return true;
+   }
+}
+
+function phone(champ)
+{
+   var regex = /^[0-9]{3}[\/]?[0-9]{6}$/;
+   if(!regex.test(champ.value))
+   {
+      surligne(champ, true);
+      return false;
+   }
+   else
+   {
+      surligne(champ, false);
+      return true;
+   }
+}
+
+
+function cp(champ)
+{
+   var regex = /^[0-9]{4,4}$/;
+   if(!regex.test(champ.value))
+   {
+      surligne(champ, true);
+      return false;
+   }
+   else
+   {
+      surligne(champ, false);
+      return true;
+   }
+}
+
+function numeroRue(champ)
+{
+   var regex = /^[0-9]{1,}$/;
+   if(!regex.test(champ.value))
+   {
+      surligne(champ, true);
+      return false;
+   }
+   else
+   {
+      surligne(champ, false);
+      return true;
+   }
+}
+
+
+
+
 
 
 
