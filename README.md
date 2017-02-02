@@ -1,1 +1,1 @@
-# **Immatriculation provisoire au registre des chiens dangereux
+# Immatriculation provisoire au registre des chiens dangereux
