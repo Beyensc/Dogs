@@ -12,10 +12,7 @@ public function __construct($dbPdo){
 		return $this->pdo->query($sql)->fetchAll();
 	}
 
-	public function getListVerification(){
-		$sql=('SELECT * FROM verification');
-		return $this->pdo->query($sql)->fetchAll();
-	}
+
 
 	public function dogs(){
 		//$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.id_race,b.race,a.id_proprietaire,c.id_proprietaire 
@@ -81,10 +78,7 @@ public function __construct($dbPdo){
         	$req=$this->pdo->exec('UPDATE race SET actif="N" WHERE id_race="'.$id.'"');
     }
 
-    public function deleteVerification($id){
-
-    	$req=$this->pdo->exec('DELETE FROM verification WHERE id_verification ="'.$id.'"');
-    }
+  
 
 	public function activProprio($id){
 
@@ -118,14 +112,7 @@ public function __construct($dbPdo){
 		$req->execute();
 	}
 
-	public function modifListVerification($tab){
-
-		$req=$this->pdo->prepare('UPDATE verification SET verification=:verification WHERE id_verification=:id');
-
-		$req->bindParam(':verification',$tab['verif'],PDO::PARAM_STR);
-		$req->bindParam(':id',$tab['id'],PDO::PARAM_INT);
-		$req->execute();
-	}
+	
 
 	public function addNewDogs($tab){
 
@@ -217,12 +204,7 @@ public function __construct($dbPdo){
 		$req->execute();
 	}
 
-	public function addNewListVerification($tab){
-		$req=$this->pdo->prepare('INSERT INTO verification (verification) VALUES (:verification)');
 
-		$req->bindParam(':verification',$tab['listVerification'],PDO::PARAM_STR);
-		$req->execute();
-	}
     
    	public function connexion(){
    		$login=$_POST['login'];

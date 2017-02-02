@@ -11,20 +11,27 @@ class VAdmin extends VBase {
 
        
     }
+    
     //La recherche qui passe par une fonction JS
     public function recherche(){
 
       $html='';
-      $html.=' <div id="formRecherche">
+      $html.='  <div id="wrapper">
+       <div class="row centered-form">
+
+      <div id="formRecherche">
        
        <input type="text" class="form-control" placeholder="Recherche"  id="recherche"></br>
        
+       </div>
+       </div>
        </div>';
 
       $this->appli->content=$html;
     }
+
     //Fonction qui permet de lister les propriétaires et leurs chiens 
-    public function listDogsPro($proprietaire,$race,$dogs,$verification){
+    public function listDogsPro($proprietaire,$race,$dogs){
 
 
         $html='';
@@ -74,104 +81,94 @@ class VAdmin extends VBase {
 
 
                           $html.=' 
-
-                          <div id="formdogs">
-                            <table class="table" id="ajoutDogsForm'.$row['id_proprietaire'].'" style="display:none;">
-                                  <tr><td><h1><u>Chien</u></h1></td></tr>
-                                  <tr><td><a href="?component=admin&action=actif">Retour</a></td></tr>
-                                 <tr>
-                                   <td>Nom du chien  <input class="form-control" type="text" placeholder="Nom du chien" name="nomDogs" id="nomDogs'.$row['id_proprietaire'].'" onblur="valideNomPrenom(this)"></td>
-                                 </tr>
-                                 <tr>  
-                                   <td>Dog id <input class="form-control" type="text" placeholder="xxx-xxx-xxxx" name="numPuceDogs" id="numPuceDogs'.$row['id_proprietaire'].'"></td>
-                                 </tr>
-                                 <tr>  
-                                   <td>Date de naissance <input class="form-control" type="date" placeholder="J/M/A" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'" onblur="date(this)"></td>
-                                 </tr>
-                                 <tr>
-                                   <td>Puce <input class="form-control" type="text" placeholder="Puce" name="puceDogs" id="puceDogs'.$row['id_proprietaire'].'"></td>
-                                 </tr>
-                                 <tr>  
-                                   <td>Tatouage <input class="form-control" type="text" placeholder="Tatouage" name="tatooDogs" id="tatooDogs'.$row['id_proprietaire'].'"></td>
-                                 </tr>
-                                 <tr>  
-                                   <td>Sexe 
-                                     <select class="form-control" name="sexe_dogs" id="sexe_dogs'.$row['id_proprietaire'].'">
-                                       <option value=""></option>
-                                       <option value="mâle">Mâle</option>
-                                       <option value="femelle">Femelle</option>
-                                     </select>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                   <td>Race du chien (dangereux): </td>
-                                   
-                                <tr>
-                                  <td>
-                                     <select class="form-control" name="raceDogs" id="raceDogs'.$row['id_proprietaire'].'">
-                                     <option value=""selected></option>';
-
-                                                 foreach ($race as $key => $rowa) {
-
-                                                       $html.=' <option  value='.$rowa['id_race'].' >'.$rowa['race'].'</option>';
-                          
-                                                 }
-                                        $html.='</select>
-                                    </td> 
-                                    </tr> 
-                            
-
-                                  <tr><td><h1><u>Divers</u></h1></td></tr>
-                                  <tr>
-                                    <td>Lieu de détention du chien(si autre que celui de l adresse du propriétaire)<input class="form-control" type="text" placeholder="Lieu de détention" name="detention" id="detention'.$row['id_proprietaire'].'"></td>
-                                  </tr>    
-                                  <tr>
-                                    <td>Club de dressage<input class="form-control" type="text" placeholder="Nom du club" name="club" id="club'.$row['id_proprietaire'].'"></td>
-                                  </tr>
-                                  <tr>  
-                                    <td>Adresse du club<input class="form-control" type="text" placeholder="Adresse du club" name="clubAdresse" id="clubAdresse'.$row['id_proprietaire'].'"></td>
-                                  </tr>
-                                  <tr>  
-                                    <td>Dressage mordant 
-                                      <select class="form-control" name="mordant" id="mordant'.$row['id_proprietaire'].'">
-                                        <option value=""></option>
-                                        <option value="oui">oui</option>
-                                        <option value="non">non</option>
-                                      </select>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>Vétérinaire<input class="form-control" type="text" placeholder="Vétérinaire" name="veto" id="veto'.$row['id_proprietaire'].'" onblur="valideNomPrenom(this)"></td>
-                                  </tr>
-                                  <tr>  
-                                    <td>Téléphone du vétérinaire<input class="form-control" type="text" placeholder="Téléphone" name="vetoTel" id="vetoTel'.$row['id_proprietaire'].'" onblur="phone(this)"></td>
-                                  </tr>
-                                           
-
-                                  <tr><td><h1><u>Remarque(s)</u></h1></td></tr>
+                          <div id="wrapper">
+                            <div id="formdogs">
+                              <table class="table" id="ajoutDogsForm'.$row['id_proprietaire'].'" style="display:none;">
+                                    <tr><td><h1><u>Chien</u></h1></td></tr>
+                                    <tr><td><a href="?component=admin&action=actif">Retour</a></td></tr>
+                                   <tr>
+                                     <td>Nom du chien  <input class="form-control" type="text" placeholder="Nom du chien" name="nomDogs" id="nomDogs'.$row['id_proprietaire'].'" onblur="valideNomPrenom(this)"></td>
+                                   </tr>
+                                   <tr>  
+                                     <td>Dog id <input class="form-control" type="text" placeholder="xxx-xxx-xxxx" name="numPuceDogs" id="numPuceDogs'.$row['id_proprietaire'].'"></td>
+                                   </tr>
+                                   <tr>  
+                                     <td>Date de naissance <input class="form-control" type="date" placeholder="J/M/A" name="dateNaissance" id="dateNaissance'.$row['id_proprietaire'].'" onblur="date(this)"></td>
+                                   </tr>
+                                   <tr>
+                                     <td>Puce <input class="form-control" type="text" placeholder="Puce" name="puceDogs" id="puceDogs'.$row['id_proprietaire'].'"></td>
+                                   </tr>
+                                   <tr>  
+                                     <td>Tatouage <input class="form-control" type="text" placeholder="Tatouage" name="tatooDogs" id="tatooDogs'.$row['id_proprietaire'].'"></td>
+                                   </tr>
+                                   <tr>  
+                                     <td>Sexe 
+                                       <select class="form-control" name="sexe_dogs" id="sexe_dogs'.$row['id_proprietaire'].'">
+                                         <option value=""></option>
+                                         <option value="mâle">Mâle</option>
+                                         <option value="femelle">Femelle</option>
+                                       </select>
+                                      </td>
+                                   </tr>
+                                   <tr>
+                                     <td>Race du chien (dangereux): </td>
+                                     
                                   <tr>
                                     <td>
-                                      <textarea class="form-control" id="remarques'.$row['id_proprietaire'].'">
-                                      </textarea>
-                                    </td>
-                                  </tr>';
+                                       <select class="form-control" name="raceDogs" id="raceDogs'.$row['id_proprietaire'].'">
+                                       <option value=""selected></option>';
 
-                                           /* foreach ($verification as $key => $vow) {
+                                                   foreach ($race as $key => $rowa) {
 
-                                                   $html.=' <tr><td><input class="form-control"type="text"id="verif'.$vow['id_verification'].'" value="'.ucfirst($vow['verification']).'"></td>
-                                                  <td> <select class="form-control" id="verif'.$row['id_proprietaire'].'">
-                                                  <option value=""></option>
-                                                   <option value="ok">OK</option>
-                                                   <option value="defaut">Defaut</option>
-                                                   <select></td></tr>';
-                      
-                                             }*/
-                                    
-                                              //test onmousedown : NOK
-                                  $html.='<tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutDogs" onclick="ajoutDogs(\''.$row['id_proprietaire'].'\');"></td></tr>
+                                                         $html.=' <option  value='.$rowa['id_race'].' >'.$rowa['race'].'</option>';
+                            
+                                                   }
+                                          $html.='</select>
+                                      </td> 
+                                      </tr>
+                              
 
-                                  </table></div>
+                                    <tr><td><h1><u>Divers</u></h1></td></tr>
+                                    <tr>
+                                      <td>Lieu de détention du chien(si autre que celui de l adresse du propriétaire)<input class="form-control" type="text" placeholder="Lieu de détention" name="detention" id="detention'.$row['id_proprietaire'].'"></td>
+                                    </tr>    
+                                    <tr>
+                                      <td>Club de dressage<input class="form-control" type="text" placeholder="Nom du club" name="club" id="club'.$row['id_proprietaire'].'"></td>
+                                    </tr>
+                                    <tr>  
+                                      <td>Adresse du club<input class="form-control" type="text" placeholder="Adresse du club" name="clubAdresse" id="clubAdresse'.$row['id_proprietaire'].'"></td>
+                                    </tr>
+                                    <tr>  
+                                      <td>Dressage mordant 
+                                        <select class="form-control" name="mordant" id="mordant'.$row['id_proprietaire'].'">
+                                          <option value=""></option>
+                                          <option value="oui">oui</option>
+                                          <option value="non">non</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>Vétérinaire<input class="form-control" type="text" placeholder="Vétérinaire" name="veto" id="veto'.$row['id_proprietaire'].'" onblur="valideNomPrenom(this)"></td>
+                                    </tr>
+                                    <tr>  
+                                      <td>Téléphone du vétérinaire<input class="form-control" type="text" placeholder="Téléphone" name="vetoTel" id="vetoTel'.$row['id_proprietaire'].'" onblur="phone(this)"></td>
+                                    </tr>
+                                             
 
+                                    <tr><td><h1><u>Remarque(s)</u></h1></td></tr>
+                                    <tr>
+                                      <td>
+                                        <textarea class="form-control" id="remarques'.$row['id_proprietaire'].'">
+                                        </textarea>
+                                      </td>
+                                    </tr>';
+
+                                             
+                                    $html.='<tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutDogs" onclick="ajoutDogs(\''.$row['id_proprietaire'].'\');"></td></tr>
+
+                                    </table></div>
+                                </div>
+                             <div id="wrapper">   
                                 <div id="maitre">
                                 <table class="table"  id="details'.$row['id_proprietaire'].'" style="display:none;" >
                                 <tr><td><a href="?component=admin&action=actif">Retour</a></td></tr>
@@ -239,10 +236,12 @@ class VAdmin extends VBase {
                                   
                                      <tr><td><img src="img/edit.png" title="Modifier"  id="modif" onclick="modifFild(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\');"></td>
                                     <td><button type="button" class="btn btn-default"  value="voir" id="dogsProprio" onclick="dogsProprioform('.$row['id_proprietaire'].'),dogsProprio('.$row['id_proprietaire'].')">Voir la liste du/des chien(s)</button></td></tr>
+                                    <tr><td><a href="?component=admin&action=actif">Retour</a></td></tr>
                                </table>
                             </div>';
 
                                  $html.='<div id="listDogs'.$row['id_proprietaire'].'"></div>
+                                  </div>
                                   </div>';
                                  
 
@@ -258,6 +257,7 @@ class VAdmin extends VBase {
                           $this->appli->list=$html;
                           $this->appli->tab=$html2;
     }
+
     //Fonction qui permet l'affichage des propriétaires inactif c-à-d un proprietaire qui n'a plus de chien est désactiver au lieu d'être supprimer
     public function listDogsProInactif($proprietaireIncatif){
 
@@ -295,12 +295,14 @@ class VAdmin extends VBase {
 
         $this->appli->list=$html;
     }
+
     //Fonction pour l'ajout d'un nouveau propriétaire 
-    public function AddNewDogs($race,$verification){
+    public function AddNewDogs($race){
     	$html='';
     	$html.='
 
        <div id="wrapper">
+       <div class="row centered-form">
 
         <form role="form">
 
@@ -340,7 +342,7 @@ class VAdmin extends VBase {
          <tr>Prénom<input class="form-control" type="text" placeholder="Prénom" name="prenomContact" id="prenomContact"></tr>
          <tr>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telContact" id="telContact"></tr>
         
-         <tr>Date d&#145;enregistrement<input class="form-control" type="text" placeholder="Date d&#145;enregistrement" name="date" id="datepicker"></tr></br>
+        
          <tr><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs();"></tr>
 
        </table>
@@ -348,19 +350,21 @@ class VAdmin extends VBase {
      </div>
         </div>
 
-   </form>
-
- </div>
-';
+           </form>
+        </div>
+         </div>
+        ';
 
 
     	$this->appli->news=$html;
     }
+
     //La liste des chiens dangereux et permet aussi de mettre à jour la liste 
     public function addNewDogsList($newDogsList,$race){
 
       $html='';
       $html.=' <div id="wrapper">
+      <div class="row centered-form">
 
         <form role="form">
 
@@ -369,52 +373,28 @@ class VAdmin extends VBase {
       <table class="table" id="formListDogs"><ul class="list-group">
         </div>
 
-   </form>
+         </form>
+          </div>
+       </div>
+      ';
 
- </div>
-';
+            $i=1;
+            foreach ($race as $key => $row) {
 
-      $i=1;
-      foreach ($race as $key => $row) {
+              $html.='<tr><td><li class="list-group-item"'.$row['id_race'].'>' .$i.' '.$row['race'].'</li>
 
-        $html.='<tr><td><li class="list-group-item"'.$row['id_race'].'>' .$i.' '.$row['race'].'</li>
+              <td><img src="img/can.png" id="deleteRace" onclick="deleteRace(\''.$row['id_race'].'\',\''.$row['race'].'\');"></td></td></tr>';
+              $i++;
+            }
+            $html.='</ul></table>';
 
-        <td><img src="img/can.png" id="deleteRace" onclick="deleteRace(\''.$row['id_race'].'\',\''.$row['race'].'\');"></td></td></tr>';
-        $i++;
-      }
-      $html.='</ul></table>';
+            $html.='<table class="table" id="formList">
+            <tr><td>Mise a jour de la liste <input class="form-control" type="text" name="listDogs" id="listDogs" require ></td></tr>
+                    <tr><td><input class="btn btn-warning" type="button" name="bListDogs" id="bListdogs" value="ajouter" onclick="addNewDogsList();"></td></tr></table>';
 
-      $html.='<table class="table" id="formList">
-      <tr><td>Mise a jour de la liste <input class="form-control" type="text" name="listDogs" id="listDogs" require ></td></tr>
-              <tr><td><input class="btn btn-warning" type="button" name="bListDogs" id="bListdogs" value="ajouter" onclick="addNewDogsList();"></td></tr></table>';
-
-       $this->appli->list=$html;       
+             $this->appli->list=$html;       
     } 
-    //La liste des différentes vérifications effectuées par les agents lors d'un passage et aussi ma possibilité de mettre à jour la liste
-    public function addNewListVerification($verification,$newListVerification,$modifListVerification){
-
-
-      $html='';
-      $html.='<table class="table" id="formListDogs"><ul class="list-group">';
-
-      
-      foreach ($verification as $key => $vow) {
-        
-      
-      $html.='<tr><td><li '.$vow['id_verification'].'> <input class="form-control"type="text" id="verif'.ucfirst($vow['id_verification']).'" value="'.$vow['verification'].'"></li>
-
-        <td><img src="img/can.png"id="deleteRace" onclick="deleteVerification(\''.$vow['id_verification'].'\',\''.$vow['verification'].'\');"></td><td><img src="img/edit.png" title="Modifier" onclick="modifListVerification('.$vow['id_verification'].');"></td></td></tr>';
-
-          }
-      $html.='</table>';
-
-      $html.='<table class="table" id="formList">
-      <tr><td>Mise a jour de la liste des vérifications <input class="form-control" type="text" name="listVerification" id="listVerification" require ></td></tr>
-              <tr><td><input class="btn btn-warning" type="button" name="bListVerification" id="bListVerification" value="ajouter" onclick="addNewListVerification();"></td>
-              </tr></table>';
-
-       $this->appli->list=$html;       
-    }  
+   
     //La fonction pour la sortie en PDF avec les données du propriétaire et du/des chien(s)
     
     public function pdf($race,$dogs,$dogsProprio,$proprietaire) {
@@ -514,11 +494,68 @@ class VAdmin extends VBase {
                  }
               }
         
-    require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
-    $html2pdf = new HTML2PDF('P','A4','fr');
-    $html2pdf->WriteHTML($html);
-    $html2pdf->Output('exemple.pdf');
-    }
+        require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
+        $html2pdf = new HTML2PDF('P','A4','fr');
+        $html2pdf->WriteHTML($html);
+        $html2pdf->Output('exemple.pdf');
+
+     }
+
+    public function nouvelUtilisateur(){
+
+            $html = '';
+            $html.='<div id="wrapper">         
+
+           <div class="container">
+                      <div class="row centered-form">
+                      <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Enregistrement</h3>
+                          </div>
+                          <div class="panel-body">
+                            <form role="form">
+                              <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                    <input type="text" name="prenom" id="prenom" class="form-control input-sm floatlabel" placeholder="Prénom">
+                                  </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                    <input type="text" name="nom" id="nom" class="form-control input-sm" placeholder="Nom">
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <input type="text" name="matricule" id="matricule" class="form-control input-sm" placeholder="Matricule">
+                              </div>
+
+                              <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                    <input type="password" name="mdp" id="mdp" class="form-control input-sm" placeholder="Mot de passe">
+                                  </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                    <input type="password" name="mdp_confirmation" id="mdp_confirmation" class="form-control input-sm" placeholder="Confirmation du mdp">
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <input type="submit" value="Enregistrement" class="btn btn-info btn-block" onclick="nouvelUtilisateur();">
+                            
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div></div>';
+
+            $this->appli->list=$html; 
+      }
 
 
 

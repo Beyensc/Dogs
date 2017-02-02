@@ -29,6 +29,9 @@ if((isset($_SESSION['type'])) && ($_SESSION['type'] == 1)){
                         <li>
                             <a href="?component=connexion&action=deconnexion"><i class="fa fa-fw fa-power-off"></i>Déconnexion</a>
                         </li>
+                        <li>
+                            <a href="?component=admin&action=nouvelUtilisateur"><i class="fa fa-fw fa-power-off"></i>Nouvel utilisateur</a>
+                        </li>
                     </ul>
                 </li>
             </ul>

@@ -118,7 +118,6 @@ function addNewDogs(){
 	}
 }
 
-
 function ajoutDogs(id){
 
 
@@ -212,16 +211,6 @@ function desactDogs(id,nom){
 			
 
 		});
-}
-
-function addverif(id){
-
-	var verif = document.getElementById('verification'+id+'').checked;
-	if(verif){
-		alert('TRUE');
-	}else{
-		alert('FALSE');
-	}
 }
 
 function desactProprio(id,nom){
@@ -452,30 +441,6 @@ function modifDogs(id){
 			}
 }
 
-function modifListVerification(id){
-
-			var verif = document.getElementById('verif'+id+'').value;
-			
-
-			$.ajax({
-						type:"GET",
-						url:"js/php/dogs/modifListVerification.php",
-						data:{
-							id:id,
-							verif:verif,
-						
-							
-						},
-						success:setTimeout(function(){
-							window.location.href="?component=admin&action=majListVerification";
-
-
-					},
-					1000),
-					//success:function(retour){alert(id);},
-				});
-}
-
 function deleteProprio(id,nom){
 
 	var ok = confirm('Voulez-vous Supprimer  '+nom+' ?');
@@ -540,8 +505,6 @@ function dogsProprio(id){
 				//success:function(retour){alert(retour);},
 			});	
 }
-
-
 
 //dipsarition/apparition du tableau récapitulatif des maîtres pareille pour le détails
 function details(id){
@@ -627,91 +590,16 @@ function deleteRace(id,nom){
 		}
 }
 
-function deleteVerification(id,nom){
-	
-	var ok = confirm('Voulez-vous Supprimer  '+nom+' ?');
+function nouvelUtilisateur(){
 
-		if(ok){
-
-		$.ajax({
-			type:"GET",
-			url:"js/php/dogs/deleteVerification.php",
-			data:{
-				id:id,
-				nom:nom,
-				
-
-			},
-			//success:function(retour){alert(retour);
-
-			// },
-			success:setTimeout(function(){
-				window.location.href="?component=admin&action=majListVerification";
-				
-				
-			},
-			1000),
-
-		});
-
-		}
-		else{
-			window.location.href="?component=admin&action=majListVerification";
-		}
-
-}
-function addNewListVerification(){
-	var listVerification=document.getElementById('listVerification').value;
-
-	if(listVerification){
-
-		$.ajax({
-			type:"GET",
-			url:"js/php/dogs/addNewListVerification.php",
-			data:{
-				listVerification:listVerification,
-
-           
-
-           },
-           success:setTimeout(function(){
-				window.location.href="?component=admin&action=majListVerification";
-				
-				
-			},
-			1000),
-
-
-
-		});
-
-
-
-
-	}else{
-		window.location.href="?component=admin&action=majListVerification";
-	}
+	alert("test")
 }
 
-function pdf(id){
+////////////////////////////formulaire d'enregistrement/////////////////////////////////////
 
-//alert("test")
-	$.ajax({
-			type:"GET",
-			url:"js/php/dogs/pdf.php",
-			data:{
-				id:id,
-				
-				
-
-			},
-			success:function(retour){alert(retour);},
-			
-
-		});
-
-	
-}
+$(function() {
+  $('input').floatlabel({labelEndTop:0});
+});
 
 
 ////////////////////////////Connexion///////////////////////////////////////////////////////

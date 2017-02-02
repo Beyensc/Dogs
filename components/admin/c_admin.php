@@ -10,10 +10,10 @@ class CAdmin extends CBase {
 //La liste des différents contrôleur du projet qui appelle les models et les vues 
 public function ajout(){
 	$race=$this->model->getListDogs();
-	$verification=$this->model->getListVerification();
+	
 	$proprietaire=$this->model->getlistPro();
 	$this->view->recherche();
-    $this->view->AddNewDogs($race,$verification);
+    $this->view->AddNewDogs($race);
 }
 
 public function actif(){
@@ -24,8 +24,7 @@ public function actif(){
 	$dogs=$this->model->dogs();
 	$modifProprio=$this->model->modifProprio();
 	$race=$this->model->getListDogs();
-	$verification=$this->model->getListVerification();
-	$this->view->listDogsPro($proprietaire,$race,$dogs,$verification);
+	$this->view->listDogsPro($proprietaire,$race,$dogs);
 }
 
 public function inactif(){
@@ -43,13 +42,7 @@ public function majListDogs(){
 	$this->view->addNewDogsList($newDogsList,$race);
 }
 
-public function majListVerification(){
 
-	$verification=$this->model->getListVerification();
-	$newListVerification=$this->model->addNewListVerification();
-	$modifListVerification=$this->model->modifListVerification();
-	$this->view->addNewListVerification($verification,$newListVerification,$modifListVerification);
-}
 
 public function pdf(){
 
@@ -60,6 +53,11 @@ public function pdf(){
 	$proprietaire=$this->model->getlistPro();
 	//$dogsName=$this->model->getListNameDogs();
 	$this->view->pdf($race,$dogs,$dogsProprio,$proprietaire);
+}
+
+public function nouvelUtilisateur(){
+
+	$this->view->nouvelUtilisateur();
 }
 
 

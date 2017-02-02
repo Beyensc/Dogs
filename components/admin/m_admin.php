@@ -15,11 +15,6 @@ class MAdmin extends MBase {
 		return $race->getListDogs();
 	}
 
-	public function getListVerification(){
-		include_once('./class/dogs.class.php');
-		$verification=new Dogs($this->appli->dbPdo);
-		return $verification->getListVerification();
-	}
 
 	public function getListPro(){
 		include_once('./class/dogs.class.php');
@@ -66,18 +61,9 @@ class MAdmin extends MBase {
 		$newDogsList=new Dogs($this->appli->dbPdo);
 	}
 
-	public function addNewListVerification(){
-		include_once('./class/dogs.class.php');
-		$newListVerification=new Dogs($this->appli->dbPdo);
-	}
-
 	public function modifProprio(){
 		include_once('./class/dogs.class.php');
 		$modifProprio=new Dogs($this->appli->dbPdo);
-	}
-	public function modifListVerification(){
-		include_once('./class/dogs.class.php');
-		$modifListVerification=new Dogs($this->appli->dbPdo);
 	}
 	
 	public function deleteProprio(){
