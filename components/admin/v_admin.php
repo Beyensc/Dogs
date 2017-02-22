@@ -234,7 +234,7 @@ class VAdmin extends VBase {
                                      <td id="id_proprietaire"'.$row['id_proprietaire'].'"> Téléphone<input class="form-control" type="text" placeholder=" Téléphone" name="telContact" id="telContact'.$row['id_proprietaire'].'" value="'.$row['num_contact'].'"></td>
                                     </tr>
                                   
-                                     <tr><td><img src="img/edit.png" title="Modifier"  id="modif" onclick="modifFild(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\');"></td>
+                                     <tr><td><img src="img/edit.png" title="Modifier"  id="modif" onclick="modifField(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\');"></td>
                                     <td><button type="button" class="btn btn-default"  value="voir" id="dogsProprio" onclick="dogsProprioform('.$row['id_proprietaire'].'),dogsProprio('.$row['id_proprietaire'].')">Voir la liste du/des chien(s)</button></td></tr>
                                     <tr><td><a href="?component=admin&action=actif">Retour</a></td></tr>
                                </table>
@@ -504,55 +504,39 @@ class VAdmin extends VBase {
     public function nouvelUtilisateur(){
 
             $html = '';
-            $html.='<div id="wrapper">         
+          
+            $html.='
 
-           <div class="container">
-                      <div class="row centered-form">
-                      <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">Enregistrement</h3>
-                          </div>
-                          <div class="panel-body">
-                            <form role="form">
-                              <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                  <div class="form-group">
-                                    <input type="text" name="prenom" id="prenom" class="form-control input-sm floatlabel" placeholder="Prénom">
-                                  </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                  <div class="form-group">
-                                    <input type="text" name="nom" id="nom" class="form-control input-sm" placeholder="Nom">
-                                  </div>
-                                </div>
-                              </div>
+              <div id="wrapper">
+                <div class="row centered-form">
 
-                              <div class="form-group">
-                                <input type="text" name="matricule" id="matricule" class="form-control input-sm" placeholder="Matricule">
-                              </div>
+                  <form role="form">
 
-                              <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                  <div class="form-group">
-                                    <input type="password" name="mdp" id="mdp" class="form-control input-sm" placeholder="Mot de passe">
-                                  </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                  <div class="form-group">
-                                    <input type="password" name="mdp_confirmation" id="mdp_confirmation" class="form-control input-sm" placeholder="Confirmation du mdp">
-                                  </div>
-                                </div>
-                              </div>
-                              
-                              <input type="submit" value="Enregistrement" class="btn btn-info btn-block" onclick="nouvelUtilisateur();">
-                            
-                            </form>
-                          </div>
-                        </div>
-                      </div>
+                    <div class="form-group">
+
+                     <table class="table" id="formAjout" >
+                     
+                      <tr><h1><u>Enregistrement</u><h1></tr>
+                      <tr>Nom<input class="form-control"type="text" placeholder="Nom" name="nom" id="nom"  required autofocus onblur="valideNomPrenom(this)"></tr>
+                      <tr>Prénom<input class="form-control"type="text" placeholder="Prénom" name="prenom" id="prenom"  required  onblur="valideNomPrenom(this)"></tr>
+                      <tr>Matricule<input class="form-control"  type="text" placeholder="Matricule" name="matricule" id="matricule"></tr>
+                       <tr>Login<input class="form-control"  type="text" placeholder="Login" name="login" id="login" ></tr>
+                      <tr>Mot de passe<input class="form-control"  type="password" placeholder="Mot de passe" name="mdp" id="mdp"></tr>
+                      <tr>Confirmation du mot de passe<input class="form-control"  type="password" placeholder="Confirmation du mot de passe" name="mdp_confirmation" id="mdp_confirmation"></tr>
+
+                      <tr>Type<select class="form-control" name="type" id="type">
+                         <option value=""></option>
+                         <option value="1">Maître chien</option>
+                         <option value="2">Agent</option></td>
+                      <tr><input class="btn btn-warning" type="button" value="Enregistrer" id="bNewUser" onclick="nouvelUtilisateur();"></tr>
+
+                     </table>
+
                     </div>
-                  </div></div>';
+
+                  </form>
+                </div>
+              </div>';
 
             $this->appli->list=$html; 
       }

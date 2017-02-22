@@ -1,4 +1,5 @@
 <?php
+mb_internal_encoding('UTF-8');
 
 $path = $this->pathWebApp
         . PATH_SEPARATOR . $this->pathWebApp . 'class'

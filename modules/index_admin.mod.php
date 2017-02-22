@@ -7,6 +7,7 @@ if((isset($_SESSION['type'])) && ($_SESSION['type'] == 1)){
         <div id="wrapper">
 
         <!-- Navigation -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -23,7 +24,7 @@ if((isset($_SESSION['type'])) && ($_SESSION['type'] == 1)){
                 
               
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Clément <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> '.$_SESSION['prenom'].' <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         
                         <li>

@@ -1,6 +1,6 @@
 
 
-////////////////////////////////////////////DatePicker////////////////////////////////////////////////////////
+////////////////////////////////////////////Recherche////////////////////////////////////////////////////////
 
 
 $(document).ready(function () {
@@ -20,6 +20,8 @@ $(document).ready(function () {
         }
     });
 });
+
+////////////////////////////////////////////DatePicker////////////////////////////////////////////////////////
 
  $(function() {
 	$( "#datepicker","#datepickerNaissance" ).datepicker({
@@ -62,7 +64,6 @@ function addNewDogs(){
 	var nomContact = document.getElementById('nomContact').value;
 	var prenomContact = document.getElementById('prenomContact').value;
 	var telContact = document.getElementById('telContact').value;
-	var date = document.getElementById('datepicker').value;
 	
 
 	
@@ -91,7 +92,7 @@ function addNewDogs(){
 				nomContact:nomContact,
 			    prenomContact:prenomContact,
 			    telContact:telContact,
-			    date:date,
+			   
 			
 				
 			},
@@ -311,7 +312,7 @@ function addNewDogsList(){
 	}
 }
 
-function modifFild(id,nom){
+function modifField(id,nom){
 	var ok = confirm('Voulez-vous modifier M. '+nom+' ?');
 
 
@@ -340,7 +341,7 @@ function modifFild(id,nom){
 
 		$.ajax({
 			type:"GET",
-			url:"js/php/dogs/modifFildDogs.php",
+			url:"js/php/dogs/modifFieldDogs.php",
 			data:{
 				id:id,
 				nomMaster:nomMaster,
@@ -592,14 +593,57 @@ function deleteRace(id,nom){
 
 function nouvelUtilisateur(){
 
-	alert("test")
+	var prenom=document.getElementById('prenom').value;
+	var nom=document.getElementById('nom').value;
+	var matricule=document.getElementById('matricule').value;
+	var login=document.getElementById('login').value;
+	var mdp=document.getElementById('mdp').value;
+	var mdp_confirmation=document.getElementById('mdp_confirmation').value;
+	var type=document.getElementById('type').value;
+
+	var mdp_md5 = md5(mdp);
+	var mdp_confirmation_md5 = md5(mdp_confirmation);
+
+	if((mdp_md5 == mdp_confirmation_md5))
+	{
+
+		
+		//console.log(mdp_md5);
+		$.ajax({
+			type:"GET",
+			url:"js/php/dogs/nouvelUtilisateur.php",
+			data:{
+				nom:nom,
+				prenom:prenom,
+				matricule:matricule,
+				login:login,
+				mdp_md5:mdp_md5,
+				type:type,
+				
+				
+
+			},
+		
+			success:function(data){
+                 alert('L\'ajout a bien été effectuée');
+                //console.log(data);
+                // window.location.href="?component=admin&action=actif";
+             },
+             error : function(resultat, statut, erreur) { 
+   				console.log(erreur);
+   				alert('erreur');
+  }
+              });
+
+		}
+		else{
+			alert('pas bon');
+			window.location.href="?component=admin&action=nouvelUtilisateur";
+		}
+	
 }
 
-////////////////////////////formulaire d'enregistrement/////////////////////////////////////
 
-$(function() {
-  $('input').floatlabel({labelEndTop:0});
-});
 
 
 ////////////////////////////Connexion///////////////////////////////////////////////////////
@@ -647,7 +691,7 @@ function valideMail(champ)
 
 function valideNomPrenom(champ)
 {
-   var regex = /^[A-Z]+[ \-']?[[a-z]+[ \-']?]*[a-z]+$/;
+   var regex = /^[a-z]+[ \-']?[[a-z]+[ \-']?]*[a-z]+$/;
    if(!regex.test(champ.value))
    {
       surligne(champ, true);
@@ -721,8 +765,6 @@ function numeroRue(champ)
       return true;
    }
 }
-
-
 
 
 

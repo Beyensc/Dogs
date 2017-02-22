@@ -110,6 +110,27 @@ public function __construct($dbPdo){
 		
 	
 		$req->execute();
+
+
+		/*
+		 $req=$this->pdo->prepare('UPDATE personne_de_contacte SET nom=:nom,prenom=:prenom,rue=:rue,numero=:numero,cp=:cp,ville=:ville,pays=:pays,telephone=:telephone,gsm=:gsm
+		 WHERE id_pdc =:id_pdc');
+
+		$req->bindParam(':id_pdc',$tab['id_pdc'],PDO::PARAM_INT);
+		$req->bindParam(':nom',$tab['nom'],PDO::PARAM_STR);
+		$req->bindParam(':prenom',$tab['prenom'],PDO::PARAM_STR);
+		$req->bindParam(':rue',$tab['rue'],PDO::PARAM_STR);
+		$req->bindParam(':numero',$tab['num'],PDO::PARAM_STR);
+		$req->bindParam(':cp',$tab['cp'],PDO::PARAM_STR);
+		$req->bindParam(':ville',$tab['ville'],PDO::PARAM_STR);
+		$req->bindParam(':pays',$tab['pays'],PDO::PARAM_STR);
+		$req->bindParam(':telephone',$tab['tel'],PDO::PARAM_STR);
+		$req->bindParam(':gsm',$tab['gsm'],PDO::PARAM_STR);
+		$req->bindParam(':id_proprietaire',$tab['id'],PDO::PARAM_INT);
+	
+
+
+		*/
 	}
 
 	
@@ -118,8 +139,8 @@ public function __construct($dbPdo){
 
 		
 
-		$req=$this->pdo->prepare('INSERT INTO proprietaire(nom,prenom,date_naissance,lieu_naissance,rue,numero,CP,ville,pays,mail,telephone,gsm,periode_dispo,autre_dispo,nom_contact,prenom_contact,num_contact,datesave) 
-			VALUES (:nom,:prenom,:date_naissance,:lieu_naissance,:rue,:numero,:CP,:ville,:pays,:mail,:telephone,:gsm,:periode_dispo,:autre_dispo,:nom_contact,:prenom_contact,:num_contact,:datesave)');
+		$req=$this->pdo->prepare('INSERT INTO proprietaire(nom,prenom,date_naissance,lieu_naissance,rue,numero,CP,ville,pays,mail,telephone,gsm,periode_dispo,autre_dispo,nom_contact,prenom_contact,num_contact) 
+			VALUES (:nom,:prenom,:date_naissance,:lieu_naissance,:rue,:numero,:CP,:ville,:pays,:mail,:telephone,:gsm,:periode_dispo,:autre_dispo,:nom_contact,:prenom_contact,:num_contact)');
 
 		$req->bindParam(':nom',$tab['nomMaster'],PDO::PARAM_STR);
 		$req->bindParam(':prenom',$tab['prenomMaster'],PDO::PARAM_STR);
@@ -135,15 +156,62 @@ public function __construct($dbPdo){
 		$req->bindParam(':gsm',$tab['gsmMaster'],PDO::PARAM_STR);
 		$req->bindParam(':periode_dispo',$tab['periodeContact'],PDO::PARAM_STR);
 		$req->bindParam(':autre_dispo',$tab['autreDispo'],PDO::PARAM_STR);
-		$req->bindParam(':nom_contact',$tab['nomContact'],PDO::PARAM_STR);
-		$req->bindParam(':prenom_contact',$tab['prenomContact'],PDO::PARAM_STR);
-		$req->bindParam(':num_contact',$tab['telContact'],PDO::PARAM_STR);
-		$req->bindParam(':datesave',$tab['date'],PDO::PARAM_STR);
+		$req->bindParam(':nom_contact',$tab['nomContact'],PDO::PARAM_STR);         //delete
+		$req->bindParam(':prenom_contact',$tab['prenomContact'],PDO::PARAM_STR);   //delete 
+		$req->bindParam(':num_contact',$tab['telContact'],PDO::PARAM_STR);         //delete
+		                //delete
 		
 
 
 		
 		$req->execute();
+
+
+		/*
+        
+        $req=$this->pdo->prepare('INSERT INTO personne_de_contacte(nom,prenom,rue,numero,cp,ville,pays,telephone,gsm) 
+			VALUES (:nom,:prenom,:rue,:numero,:cp,:ville,:pays,:telephone,:gsm)');
+
+		$req->bindParam(':nom',$tab['nom'],PDO::PARAM_STR);
+		$req->bindParam(':prenom',$tab['prenom'],PDO::PARAM_STR);
+		$req->bindParam(':rue',$tab['rue'],PDO::PARAM_STR);
+		$req->bindParam(':numero',$tab['num'],PDO::PARAM_STR);
+		$req->bindParam(':cp',$tab['cp'],PDO::PARAM_STR);
+		$req->bindParam(':ville',$tab['ville'],PDO::PARAM_STR);
+		$req->bindParam(':pays',$tab['pays'],PDO::PARAM_STR);
+		$req->bindParam(':telephone',$tab['tel'],PDO::PARAM_STR);
+		$req->bindParam(':gsm',$tab['gsm'],PDO::PARAM_STR);
+		$req->bindParam(':id_proprietaire',$tab['id'],PDO::PARAM_INT);
+	
+		
+
+
+		
+		$req->execute();
+
+
+
+
+		*/
+	}
+
+	public function nouvelUtilisateur($tab)
+	{
+		
+
+		$req=$this->pdo->prepare('INSERT INTO agent(nom,prenom,matricule,login,mdp,id_type) 
+			VALUES (:nom,:prenom,:matricule,:login,:mdp,:id_type)');
+
+		$req->bindParam(':nom',$tab['nom'],PDO::PARAM_STR);
+		$req->bindParam(':prenom',$tab['prenom'],PDO::PARAM_STR);
+		$req->bindParam(':matricule',$tab['matricule'],PDO::PARAM_STR);
+		$req->bindParam(':login',$tab['login'],PDO::PARAM_STR);
+		$req->bindParam(':mdp',$tab['mdp_md5'],PDO::PARAM_STR);
+		$req->bindParam(':id_type',$tab['type'],PDO::PARAM_STR);
+
+		$req->execute();
+		print_r($tab);
+
 	}
 
 	public function ajoutDogs($tab){
@@ -159,11 +227,11 @@ public function __construct($dbPdo){
 		$req->bindParam(':puce_dogs',$tab['puceDogs'],PDO::PARAM_STR);
 		$req->bindParam(':tatoo_dogs',$tab['tatooDogs'],PDO::PARAM_STR);
 		$req->bindParam(':detention',$tab['detention'],PDO::PARAM_STR);
-		$req->bindParam(':club',$tab['club'],PDO::PARAM_STR);
-		$req->bindParam(':club_adresse',$tab['clubAdresse'],PDO::PARAM_STR);
+		$req->bindParam(':club',$tab['club'],PDO::PARAM_STR);                   //delete
+		$req->bindParam(':club_adresse',$tab['clubAdresse'],PDO::PARAM_STR);    //delete
 		$req->bindParam(':mordant',$tab['mordant'],PDO::PARAM_STR);
-		$req->bindParam(':veto',$tab['veto'],PDO::PARAM_STR);
-		$req->bindParam(':vetotel',$tab['vetoTel'],PDO::PARAM_STR);
+		$req->bindParam(':veto',$tab['veto'],PDO::PARAM_STR);                   //delete
+		$req->bindParam(':vetotel',$tab['vetoTel'],PDO::PARAM_STR);             //delete
 		$req->bindParam(':id_race',$tab['raceDogs'],PDO::PARAM_INT);
 		$req->bindParam(':id_proprietaire',$tab['id'],PDO::PARAM_INT);
 		$req->bindParam(':remarques',$tab['remarques'],PDO::PARAM_STR);
@@ -171,6 +239,36 @@ public function __construct($dbPdo){
 
 		//print_r($tab);	
 		$req->execute();	
+
+		/*   
+         $req=$this->pdo->prepare('INSERT INTO club 
+			 (nom_club,rue,numero,cp,ville,pays)VALUES(:nom_club,:rue,:numero,:cp,:ville,:pays)');
+
+		$req->bindParam(':id',$tab['id'],PDO::PARAM_INT);
+		$req->bindParam(':nom_club',$tab['nom_club'],PDO::PARAM_STR);
+		$req->bindParam(':rue',$tab['rue'],PDO::PARAM_STR);
+		$req->bindParam(':numero',$tab['numero'],PDO::PARAM_INT);
+		$req->bindParam(':cp',$tab['cp'],PDO::PARAM_INT);
+		$req->bindParam(':ville',$tab['ville'],PDO::PARAM_STR);
+		$req->bindParam(':pays',$tab['pays'],PDO::PARAM_STR);
+
+		$req->execute();
+
+		$req=$this->pdo->prepare('INSERT INTO veterinaire 
+			(nom,telephone,gsm,adresse)VALUES (:nom,:telephone,:gsm,:adresse)');
+
+		$req->bindParam(':id',$tab['id'],PDO::PARAM_INT);
+		$req->bindParam(':nom',$tab['nom'],PDO::PARAM_STR);
+		$req->bindParam(':telephone',$tab['telephone'],PDO::PARAM_STR);
+		$req->bindParam(':gsm',$tab['gsm'],PDO::PARAM_STR);
+		$req->bindParam(':adresse',$tab['adresse'],PDO::PARAM_STR);
+
+		$req->execute();
+
+
+
+
+		*/
 	}
 
 	public function modifDogs($tab){
@@ -187,14 +285,45 @@ public function __construct($dbPdo){
 		$req->bindParam(':puce_dogs',$tab['puceDogs'],PDO::PARAM_STR);
 		$req->bindParam(':tatoo_dogs',$tab['tatooDogs'],PDO::PARAM_STR);
 		$req->bindParam(':detention',$tab['detention'],PDO::PARAM_STR);
-		$req->bindParam(':club',$tab['club'],PDO::PARAM_STR);
-		$req->bindParam(':club_adresse',$tab['clubAdresse'],PDO::PARAM_STR);
+		$req->bindParam(':club',$tab['club'],PDO::PARAM_STR);                   //delete
+		$req->bindParam(':club_adresse',$tab['clubAdresse'],PDO::PARAM_STR);    //delete
 		$req->bindParam(':mordant',$tab['mordant'],PDO::PARAM_STR);
-		$req->bindParam(':veto',$tab['veto'],PDO::PARAM_STR);
-		$req->bindParam(':vetotel',$tab['vetoTel'],PDO::PARAM_STR);
+		$req->bindParam(':veto',$tab['veto'],PDO::PARAM_STR);                   //delete
+		$req->bindParam(':vetotel',$tab['vetoTel'],PDO::PARAM_STR);             //delete
 		$req->bindParam(':remarques',$tab['remarques'],PDO::PARAM_STR);
 
 		$req->execute();
+
+
+
+		/*$req=$this->pdo->prepare('UPDATE club 
+			SET nom_club=:nom_club,rue=:rue,numero=:numero,cp=:cp,ville=:ville,pays=:pays WHERE id_club=:id_club');
+
+		$req->bindParam(':id',$tab['id'],PDO::PARAM_INT);
+		$req->bindParam(':nom_club',$tab['nom_club'],PDO::PARAM_STR);
+		$req->bindParam(':rue',$tab['rue'],PDO::PARAM_STR);
+		$req->bindParam(':numero',$tab['numero'],PDO::PARAM_INT);
+		$req->bindParam(':cp',$tab['cp'],PDO::PARAM_INT);
+		$req->bindParam(':ville',$tab['ville'],PDO::PARAM_STR);
+		$req->bindParam(':pays',$tab['pays'],PDO::PARAM_STR);
+
+		$req->execute();
+
+		$req=$this->pdo->prepare('UPDATE veterinaire 
+			SET nom=:nom,telephone=:telephone,gsm=:gsm,adresse=:adresse WHERE id_veterinaire=:id_veterinaire');
+
+		$req->bindParam(':id',$tab['id'],PDO::PARAM_INT);
+		$req->bindParam(':nom',$tab['nom'],PDO::PARAM_STR);
+		$req->bindParam(':telephone',$tab['telephone'],PDO::PARAM_STR);
+		$req->bindParam(':gsm',$tab['gsm'],PDO::PARAM_STR);
+		$req->bindParam(':adresse',$tab['adresse'],PDO::PARAM_STR);
+
+		$req->execute();
+
+
+		*/
+
+
 	}
 
 	public function addNewDogsList($tab){
@@ -203,15 +332,13 @@ public function __construct($dbPdo){
 		$req->bindParam(':race',$tab['listDogs'],PDO::PARAM_STR);
 		$req->execute();
 	}
-
-
-    
+ 
    	public function connexion(){
    		$login=$_POST['login'];
    		$mdp=$_POST['mdp'];
 
 
-   		$req=$this->pdo->prepare('SELECT login,mdp,id_type FROM agent WHERE login=:login AND mdp=:mdp');
+   		$req=$this->pdo->prepare('SELECT prenom,login,mdp,id_type FROM agent WHERE  login=:login AND mdp=:mdp ');
    		$req->bindParam(':login',$_POST['login'],PDO::PARAM_STR);
    		$req->bindParam(':mdp',$_POST['mdp'],PDO::PARAM_STR);
    		$req->execute();
@@ -223,7 +350,9 @@ public function __construct($dbPdo){
    			
 
    				$_SESSION['type'] = $row['id_type'];
+   				$_SESSION['prenom'] = $row['prenom'];
    				return $row['id_type'];
+   						
 
    			}
 
