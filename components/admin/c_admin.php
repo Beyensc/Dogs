@@ -60,6 +60,11 @@ public function nouvelUtilisateur(){
 	$this->view->nouvelUtilisateur();
 }
 
+public function listeCompleteChien(){
+
+	$this->view->listeCompleteChien();
+}
+
 
 
 

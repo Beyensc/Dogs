@@ -60,6 +60,21 @@ if((isset($_SESSION['type'])) && ($_SESSION['type'] == 1)){
                         </ul>
                     </li>
 
+                       <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#chien"><i class="fa fa-fw fa-arrows-v"></i> Chien <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="chien" class="collapse">
+                            <li>
+                                <a href="?component=admin&action=listeCompleteChien">Liste complete des chiens</a>
+                            </li>
+                            <li>
+                                <a href="?component=admin&action=actif">non-dangereux</a>
+                            </li>
+                            <li>
+                                <a href="?component=admin&action=inactif">dangereux</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#maj"><i class="fa fa-fw fa-arrows-v"></i> Mise à jour <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="maj" class="collapse">

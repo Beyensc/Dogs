@@ -329,9 +329,9 @@ function modifField(id,nom){
 	var lieuNaissance = document.getElementById('lieuNaissance'+id+'').value;
 	var periodeContact= document.getElementById('periodeContact'+id+'').value;
 	var autreDispo = document.getElementById('autreDispo'+id+'').value;
-	var nomContact = document.getElementById('nomContact'+id+'').value;
-	var prenomContact = document.getElementById('prenomContact'+id+'').value;
-	var telContact = document.getElementById('telContact'+id+'').value;
+	//var nomContact = document.getElementById('nomContact'+id+'').value;
+	//var prenomContact = document.getElementById('prenomContact'+id+'').value;
+	//var telContact = document.getElementById('telContact'+id+'').value;
 	
 
 	
@@ -354,13 +354,12 @@ function modifField(id,nom){
 				mailMaster:mailMaster,
 				telMaster:telMaster,
 				gsmMaster:gsmMaster,
-				
 				lieuNaissance:lieuNaissance,
 				periodeContact:periodeContact,
 				autreDispo:autreDispo,
-				nomContact:nomContact,
-			    prenomContact:prenomContact,
-			    telContact:telContact,
+				//nomContact:nomContact,
+			   // prenomContact:prenomContact,
+			   // telContact:telContact,
 			    
 				
 			},

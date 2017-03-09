@@ -11,12 +11,20 @@ public function __construct($dbPdo){
 		$sql=('SELECT id_race,race FROM race WHERE actif="O"');
 		return $this->pdo->query($sql)->fetchAll();
 	}
-
+/*public function dogs(){
+		//$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.id_race,b.race,a.id_proprietaire,c.id_proprietaire 
+		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.date_naissance,a.puce_dogs,a.tatoo_dogs,a.sexe,a.detention,a.club,a.club_adresse,a.mordant,a.veto,a.vetotel,a.remarques,a.id_race,b.race,a.id_proprietaire,b.race,a.id_proprietaire,c.id_proprietaire
+			FROM chien a
+			LEFT JOIN race b ON b.id_race = a.id_race
+			LEFT JOIN proprietaire c ON c.id_proprietaire = a.id_proprietaire');
+		
+			return $this->pdo->query($sql)->fetchAll();
+	}*/
 
 
 	public function dogs(){
 		//$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.id_race,b.race,a.id_proprietaire,c.id_proprietaire 
-		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.date_naissance,a.puce_dogs,a.tatoo_dogs,a.sexe,a.detention,a.club,a.club_adresse,a.mordant,a.veto,a.vetotel,a.remarques,a.id_race,b.race,a.id_proprietaire,b.race,a.id_proprietaire,c.id_proprietaire
+		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.date_naissance,a.puce_dogs,a.tatoo_dogs,a.sexe,a.detention,a.mordant,a.remarque,a.id_race,b.race,a.id_proprietaire,b.race,a.id_proprietaire,c.id_proprietaire
 			FROM chien a
 			LEFT JOIN race b ON b.id_race = a.id_race
 			LEFT JOIN proprietaire c ON c.id_proprietaire = a.id_proprietaire');
@@ -78,8 +86,6 @@ public function __construct($dbPdo){
         	$req=$this->pdo->exec('UPDATE race SET actif="N" WHERE id_race="'.$id.'"');
     }
 
-  
-
 	public function activProprio($id){
 
 		$req=$this->pdo->exec('UPDATE proprietaire SET actif="O" WHERE id_proprietaire="'.$id.'"');
@@ -87,7 +93,7 @@ public function __construct($dbPdo){
 
 	public function modifProprio($tab){
 		print_r($tab);
-		$req=$this->pdo->prepare('UPDATE proprietaire SET nom=:nom,prenom=:prenom,lieu_naissance=:lieu_naissance,rue=:rue,numero=:numero,CP=:CP,ville=:ville,pays=:pays,mail=:mail,telephone=:telephone,gsm=:gsm,periode_dispo=:periode_dispo,autre_dispo=:autre_dispo,nom_contact=:nom_contact,prenom_contact=:prenom_contact,num_contact=:num_contact
+		$req=$this->pdo->prepare('UPDATE proprietaire SET nom=:nom,prenom=:prenom,lieu_naissance=:lieu_naissance,rue=:rue,numero=:numero,cp=:cp,ville=:ville,pays=:pays,mail=:mail,telephone=:telephone,gsm=:gsm,periode_dispo=:periode_dispo,autre_dispo=:autre_dispo
 			WHERE id_proprietaire=:id');
 
 		$req->bindParam(':id',$tab['id'],PDO::PARAM_INT);
@@ -96,7 +102,7 @@ public function __construct($dbPdo){
 		$req->bindParam(':lieu_naissance',$tab['lieuNaissance'],PDO::PARAM_STR);
 		$req->bindParam(':rue',$tab['rueMaster'],PDO::PARAM_STR);
 		$req->bindParam(':numero',$tab['numMaster'],PDO::PARAM_STR);
-		$req->bindParam(':CP',$tab['cpMaster'],PDO::PARAM_STR);
+		$req->bindParam(':cp',$tab['cpMaster'],PDO::PARAM_STR);
 		$req->bindParam(':ville',$tab['villeMaster'],PDO::PARAM_STR);
 		$req->bindParam(':pays',$tab['paysMaster'],PDO::PARAM_STR);
 		$req->bindParam(':mail',$tab['mailMaster'],PDO::PARAM_STR);
@@ -104,9 +110,7 @@ public function __construct($dbPdo){
 		$req->bindParam(':gsm',$tab['gsmMaster'],PDO::PARAM_STR);
 		$req->bindParam(':periode_dispo',$tab['periodeContact'],PDO::PARAM_STR);
 		$req->bindParam(':autre_dispo',$tab['autreDispo'],PDO::PARAM_STR);
-		$req->bindParam(':nom_contact',$tab['nomContact'],PDO::PARAM_STR);
-		$req->bindParam(':prenom_contact',$tab['prenomContact'],PDO::PARAM_STR);
-		$req->bindParam(':num_contact',$tab['telContact'],PDO::PARAM_STR);
+		
 		
 	
 		$req->execute();
@@ -137,10 +141,10 @@ public function __construct($dbPdo){
 
 	public function addNewDogs($tab){
 
-		
+		print_r($tab);
 
-		$req=$this->pdo->prepare('INSERT INTO proprietaire(nom,prenom,date_naissance,lieu_naissance,rue,numero,CP,ville,pays,mail,telephone,gsm,periode_dispo,autre_dispo,nom_contact,prenom_contact,num_contact) 
-			VALUES (:nom,:prenom,:date_naissance,:lieu_naissance,:rue,:numero,:CP,:ville,:pays,:mail,:telephone,:gsm,:periode_dispo,:autre_dispo,:nom_contact,:prenom_contact,:num_contact)');
+		$req=$this->pdo->prepare('INSERT INTO proprietaire(nom,prenom,date_naissance,lieu_naissance,rue,numero,cp,ville,pays,mail,telephone,gsm,periode_dispo,autre_dispo) 
+			VALUES (:nom,:prenom,:date_naissance,:lieu_naissance,:rue,:numero,:cp,:ville,:pays,:mail,:telephone,:gsm,:periode_dispo,:autre_dispo)');
 
 		$req->bindParam(':nom',$tab['nomMaster'],PDO::PARAM_STR);
 		$req->bindParam(':prenom',$tab['prenomMaster'],PDO::PARAM_STR);
@@ -148,7 +152,7 @@ public function __construct($dbPdo){
 		$req->bindParam(':lieu_naissance',$tab['lieuNaissance'],PDO::PARAM_STR);
 		$req->bindParam(':rue',$tab['rueMaster'],PDO::PARAM_STR);
 		$req->bindParam(':numero',$tab['numMaster'],PDO::PARAM_STR);
-		$req->bindParam(':CP',$tab['cpMaster'],PDO::PARAM_STR);
+		$req->bindParam(':cp',$tab['cpMaster'],PDO::PARAM_STR);
 		$req->bindParam(':ville',$tab['villeMaster'],PDO::PARAM_STR);
 		$req->bindParam(':pays',$tab['paysMaster'],PDO::PARAM_STR);
 		$req->bindParam(':mail',$tab['mailMaster'],PDO::PARAM_STR);
@@ -156,10 +160,7 @@ public function __construct($dbPdo){
 		$req->bindParam(':gsm',$tab['gsmMaster'],PDO::PARAM_STR);
 		$req->bindParam(':periode_dispo',$tab['periodeContact'],PDO::PARAM_STR);
 		$req->bindParam(':autre_dispo',$tab['autreDispo'],PDO::PARAM_STR);
-		$req->bindParam(':nom_contact',$tab['nomContact'],PDO::PARAM_STR);         //delete
-		$req->bindParam(':prenom_contact',$tab['prenomContact'],PDO::PARAM_STR);   //delete 
-		$req->bindParam(':num_contact',$tab['telContact'],PDO::PARAM_STR);         //delete
-		                //delete
+		
 		
 
 
@@ -167,9 +168,9 @@ public function __construct($dbPdo){
 		$req->execute();
 
 
-		/*
+		
         
-        $req=$this->pdo->prepare('INSERT INTO personne_de_contacte(nom,prenom,rue,numero,cp,ville,pays,telephone,gsm) 
+       /* $req=$this->pdo->prepare('INSERT INTO personne_de_contacte(nom,prenom,rue,numero,cp,ville,pays,telephone,gsm) 
 			VALUES (:nom,:prenom,:rue,:numero,:cp,:ville,:pays,:telephone,:gsm)');
 
 		$req->bindParam(':nom',$tab['nom'],PDO::PARAM_STR);
@@ -187,32 +188,32 @@ public function __construct($dbPdo){
 
 
 		
-		$req->execute();
+		$req->execute();*/
 
 
 
 
-		*/
+		
 	}
 
 	public function nouvelUtilisateur($tab)
-	{
-		
+		{
+			
 
-		$req=$this->pdo->prepare('INSERT INTO agent(nom,prenom,matricule,login,mdp,id_type) 
-			VALUES (:nom,:prenom,:matricule,:login,:mdp,:id_type)');
+			$req=$this->pdo->prepare('INSERT INTO agent(nom,prenom,matricule,login,mdp,id_type) 
+				VALUES (:nom,:prenom,:matricule,:login,:mdp,:id_type)');
 
-		$req->bindParam(':nom',$tab['nom'],PDO::PARAM_STR);
-		$req->bindParam(':prenom',$tab['prenom'],PDO::PARAM_STR);
-		$req->bindParam(':matricule',$tab['matricule'],PDO::PARAM_STR);
-		$req->bindParam(':login',$tab['login'],PDO::PARAM_STR);
-		$req->bindParam(':mdp',$tab['mdp_md5'],PDO::PARAM_STR);
-		$req->bindParam(':id_type',$tab['type'],PDO::PARAM_STR);
+			$req->bindParam(':nom',$tab['nom'],PDO::PARAM_STR);
+			$req->bindParam(':prenom',$tab['prenom'],PDO::PARAM_STR);
+			$req->bindParam(':matricule',$tab['matricule'],PDO::PARAM_STR);
+			$req->bindParam(':login',$tab['login'],PDO::PARAM_STR);
+			$req->bindParam(':mdp',$tab['mdp_md5'],PDO::PARAM_STR);
+			$req->bindParam(':id_type',$tab['type'],PDO::PARAM_STR);
 
-		$req->execute();
-		print_r($tab);
-
-	}
+			$req->execute();
+			//print_r($tab);
+			
+		}
 
 	public function ajoutDogs($tab){
 		
@@ -335,7 +336,7 @@ public function __construct($dbPdo){
  
    	public function connexion(){
    		$login=$_POST['login'];
-   		$mdp=$_POST['mdp'];
+   		$mdp= md5($_POST['mdp']);
 
 
    		$req=$this->pdo->prepare('SELECT prenom,login,mdp,id_type FROM agent WHERE  login=:login AND mdp=:mdp ');
