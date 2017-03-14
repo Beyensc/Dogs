@@ -61,9 +61,8 @@ function addNewDogs(){
 	var lieuNaissance = document.getElementById('lieuNaissance').value;
 	var periodeContact= document.getElementById('periodeContact').value;
 	var autreDispo = document.getElementById('autreDispo').value;
-	var nomContact = document.getElementById('nomContact').value;
-	var prenomContact = document.getElementById('prenomContact').value;
-	var telContact = document.getElementById('telContact').value;
+	var club = document.getElementById('club'+id+'').value;
+
 	
 
 	
@@ -89,9 +88,7 @@ function addNewDogs(){
 				lieuNaissance:lieuNaissance,
 				periodeContact:periodeContact,
 				autreDispo:autreDispo,
-				nomContact:nomContact,
-			    prenomContact:prenomContact,
-			    telContact:telContact,
+				
 			   
 			
 				
@@ -119,10 +116,70 @@ function addNewDogs(){
 	}
 }
 
+function pdc(id){
+
+	
+
+	var nomContact = document.getElementById('nomContact'+id+'').value;
+	var prenomContact = document.getElementById('prenomContact'+id+'').value;
+	var telContact = document.getElementById('telContact'+id+'').value;
+	var gsmContact = document.getElementById('gsmContact'+id+'').value;
+	var numeroContact = document.getElementById('numeroContact'+id+'').value;
+	var rueContact = document.getElementById('rueContact'+id+'').value;
+	var cpContact = document.getElementById('cpContact'+id+'').value;
+	var villeContact = document.getElementById('villeContact'+id+'').value;
+	var paysContact = document.getElementById('paysContact'+id+'').value;
+	
+
+	
+
+
+	if((nomContact != '')){
+
+		$.ajax({
+			type:"GET",
+			url:"js/php/dogs/pdc.php",
+			data:{
+				id:id,
+				nomContact:nomContact,
+			    prenomContact:prenomContact,
+			    telContact:telContact,
+			    gsmContact:gsmContact,
+			    numeroContact:numeroContact,
+			    rueContact:rueContact,
+			    cpContact:cpContact,
+			    villeContact:villeContact,
+			    paysContact:paysContact,
+
+			   
+			
+				
+			},
+			
+			success:function(data){
+                 alert('L\'ajout de la personne de contacte a bien été effectuée');
+                //console.log(data);
+                 window.location.assign("?component=admin&action=actif");
+              }
+
+
+			
+
+
+		//},
+		//1000),
+		//success:function(retour){alert(retour);},
+	});
+		}else{
+
+			alert('Les champs requis ne sont pas remplis !')
+	}
+}
+
 function ajoutDogs(id){
 
 
-
+alert("test");
 		var nomDogs = document.getElementById('nomDogs'+id+'').value;
 		var numPuceDogs = document.getElementById('numPuceDogs'+id+'').value;
 		var raceDogs = document.getElementById('raceDogs'+id+'').value;
@@ -131,15 +188,16 @@ function ajoutDogs(id){
 		var tatooDogs = document.getElementById('tatooDogs'+id+'').value;
 		var sexe_dogs = document.getElementById('sexe_dogs'+id+'').value;
 		var detention = document.getElementById('detention'+id+'').value;
-		var club = document.getElementById('club'+id+'').value;
-		var clubAdresse = document.getElementById('clubAdresse'+id+'').value;
+		
+		
 		var mordant = document.getElementById('mordant'+id+'').value;
-		var veto = document.getElementById('veto'+id+'').value;
-		var vetoTel = document.getElementById('vetoTel'+id+'').value;
+		var dangereux =document.getElementById('dangereux'+id+'').value;
+		var veterinaire = document.getElementById('veterinaire'+id+'').value;
+		
 		var remarques= document.getElementById('remarques'+id+'').value;
 		
 		
-
+alert(veterinaire);
 
 				
 
@@ -158,12 +216,11 @@ function ajoutDogs(id){
 						tatooDogs:tatooDogs,
 						sexe_dogs:sexe_dogs,
 						detention:detention,
-						club:club,
-						clubAdresse:clubAdresse,
 						mordant:mordant,
-						veto:veto,
-						vetoTel:vetoTel,
+						dangereux:dangereux,
 						remarques:remarques,
+						
+						veterinaire:veterinaire,
 
 					},
 
@@ -171,20 +228,46 @@ function ajoutDogs(id){
 						//window.location.href="?component=admin&action=actif";
 					
 
-						success:function(data){
-                 			alert('L\'ajout du chien a bien été effectuée');
+						//success:function(data){
+                 			//alert('L\'ajout du chien a bien été effectuée');
                 		//console.log(data);
-                 			window.location.assign("?component=admin&action=actif");
-              }
+                 			//window.location.assign("?component=admin&action=actif");
+              //}
 				//},
 
 				//1000),
-				//success:function(retour){alert(retour);},
+				success:function(retour){alert(retour);},
 			});
 				}else{
 
 					alert('Les champs requis ne sont pas remplis !')
 			}
+}
+
+function deletePdc(id,nom){
+
+	$.ajax({
+			type:"GET",
+			url:"js/php/dogs/deletePdc.php",
+			data:{
+				id:id,
+				nom:nom,
+				
+
+			},
+				success:function(data){
+						alert('La personne de contacte a bien été supprimer');
+						window.location.assign("?component=admin&action=actif");
+					
+
+
+				}
+				
+		
+			
+
+		});
+
 }
 
 function desactDogs(id,nom){
@@ -329,9 +412,15 @@ function modifField(id,nom){
 	var lieuNaissance = document.getElementById('lieuNaissance'+id+'').value;
 	var periodeContact= document.getElementById('periodeContact'+id+'').value;
 	var autreDispo = document.getElementById('autreDispo'+id+'').value;
-	//var nomContact = document.getElementById('nomContact'+id+'').value;
-	//var prenomContact = document.getElementById('prenomContact'+id+'').value;
-	//var telContact = document.getElementById('telContact'+id+'').value;
+	var nomContact = document.getElementById('nomContact'+id+'').value;
+	var prenomContact = document.getElementById('prenomContact'+id+'').value;
+	var telContact = document.getElementById('telContact'+id+'').value;
+	var gsmContact = document.getElementById('gsmContact'+id+'').value;
+	var numeroContact = document.getElementById('numeroContact'+id+'').value;
+	var rueContact = document.getElementById('rueContact'+id+'').value;
+	var cpContact = document.getElementById('cpContact'+id+'').value;
+	var villeContact = document.getElementById('villeContact'+id+'').value;
+	var paysContact = document.getElementById('paysContact'+id+'').value;
 	
 
 	
@@ -357,9 +446,15 @@ function modifField(id,nom){
 				lieuNaissance:lieuNaissance,
 				periodeContact:periodeContact,
 				autreDispo:autreDispo,
-				//nomContact:nomContact,
-			   // prenomContact:prenomContact,
-			   // telContact:telContact,
+				nomContact:nomContact,
+			    prenomContact:prenomContact,
+			    telContact:telContact,
+			    gsmContact:gsmContact,
+			    numeroContact:numeroContact,
+			    rueContact:rueContact,
+			    cpContact:cpContact,
+			    villeContact:villeContact,
+			    paysContact:paysContact,
 			    
 				
 			},
@@ -376,6 +471,61 @@ function modifField(id,nom){
 			
 				window.location.href="?component=admin&action=actif";
 	}
+}
+
+function modifPdc(id){
+
+	var nomContact = document.getElementById('nomContact'+id+'').value;
+	var prenomContact = document.getElementById('prenomContact'+id+'').value;
+	var telContact = document.getElementById('telContact'+id+'').value;
+	var gsmContact = document.getElementById('gsmContact'+id+'').value;
+	var numeroContact = document.getElementById('numeroContact'+id+'').value;
+	var rueContact = document.getElementById('rueContact'+id+'').value;
+	var cpContact = document.getElementById('cpContact'+id+'').value;
+	var villeContact = document.getElementById('villeContact'+id+'').value;
+	var paysContact = document.getElementById('paysContact'+id+'').value;
+	
+
+	
+
+
+	if((nomContact != '')){
+
+		$.ajax({
+			type:"GET",
+			url:"js/php/dogs/modifPdc.php",
+			data:{
+				id:id,
+				nomContact:nomContact,
+			    prenomContact:prenomContact,
+			    telContact:telContact,
+			    gsmContact:gsmContact,
+			    numeroContact:numeroContact,
+			    rueContact:rueContact,
+			    cpContact:cpContact,
+			    villeContact:villeContact,
+			    paysContact:paysContact,
+
+			   
+			
+				
+			},
+			
+	
+					//success:setTimeout(function(){
+					//	window.location.href="?component=admin&action=actif";
+					
+
+
+				//},
+
+				//1000),
+				success:function(retour){alert(retour);},
+			});
+				}else{
+
+					alert('Les champs requis ne sont pas remplis !')
+			}
 }
 
 function modifDogs(id){
@@ -493,6 +643,42 @@ function dogsProprioform(id){
     }	
 }
 
+function listPdcProprioform(id){
+
+
+
+
+	if(document.getElementById('listPdc'+id).style.display=="block")
+
+    {
+       
+        document.getElementById('listPdc'+id).style.display="none";
+
+    }
+    else
+    {
+        
+       document.getElementById('listPdc'+id).style.display="block";
+
+    
+    return true;
+    }	
+}
+
+function listPdc(id){
+
+	 $.ajax({
+				type:"GET",
+				url:"js/php/dogs/listPdc.php",
+				data:{
+					id:id,
+				},
+				success:function(retour){document.getElementById('listDogs'+id).innerHTML=retour;},
+				//success:function(retour){alert(retour);},
+			});	
+}
+
+
 function dogsProprio(id){
 
 	 $.ajax({
@@ -548,6 +734,26 @@ function ajoutDogsForm(id){
     {
         
        document.getElementById('ajoutDogsForm'+id).style.display="block";
+       document.getElementById('listpro').style.display="none";
+   
+
+
+    }
+    return true;
+
+}
+function pdcForm(id){
+
+	if(document.getElementById('pdcForm'+id).style.display=="block")
+    {
+       
+        document.getElementById('pdcForm'+id).style.display="none";
+
+    }
+    else
+    {
+        
+       document.getElementById('pdcForm'+id).style.display="block";
        document.getElementById('listpro').style.display="none";
    
 

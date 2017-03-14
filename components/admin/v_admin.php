@@ -31,7 +31,7 @@ class VAdmin extends VBase {
     }
 
     //Fonction qui permet de lister les propriétaires et leurs chiens 
-    public function listDogsPro($proprietaire,$race,$dogs){
+    public function listDogsPro($proprietaire,$race,$dogs,$listPdc,$veterinaire,$club){
 
 
         $html='';
@@ -46,6 +46,7 @@ class VAdmin extends VBase {
                                             <th>Prénom</th>
                                             <th>Adresse</th>
                                             <th>Détails</th>
+                                            <th>Personne de contacte</th>
                                             <th>Nouveau chien</th>
                                             <th>Supprimer</th>
                                             
@@ -65,6 +66,7 @@ class VAdmin extends VBase {
                                             <td>'.ucfirst($pow['prenom']).'</td>
                                             <td>'.ucfirst($pow['numero']).'&nbsp rue &nbsp'.ucfirst($pow['rue']).'&nbsp'.ucfirst($pow['cp']).'&nbsp'.ucfirst($pow['ville']).'</td>
                                             <td> <img src="img/business.png" id="button"   id="details" onclick="details('.$pow['id_proprietaire'].');"></td>
+                                             <td><img src="img/plus.png" id="ajoutPdc" a title="Ajouter une personne de contacte" onclick="pdcForm('.$pow['id_proprietaire'].');"></td>
                                             <td><img src="img/dog.png" id="ajoutDogs" a title="Ajouter un nouveau chien." onclick="ajoutDogsForm('.$pow['id_proprietaire'].');"></td>
                                             <td><img src="img/can.png" id="delete" onclick="desactProprio(\''.$pow['id_proprietaire'].'\',\''.$pow['nom'].'\')"></td>
                                            
@@ -81,6 +83,35 @@ class VAdmin extends VBase {
 
 
                           $html.=' 
+
+                          <div id="wrapper">
+                                      <div id="pdcForm">
+                                      <table class="table" id="pdcForm'.$row['id_proprietaire'].'" style="display:none;">
+                                    <tr><td><h1><u>personne de contacte</u></h1></td></tr>
+                                    <tr><td><a href="?component=admin&action=actif">Retour</a></td></tr>
+                                   
+                                   <tr>
+                                     <td>Nom  <input class="form-control" type="text" placeholder="Nom du chien" name="nomContact" id="nomContact'.$row['id_proprietaire'].'" onblur="valideNomPrenom(this)"></td></tr>
+                                     <tr>
+                                     <td>Prénom<input class="form-control" type="text" placeholder="Prénom" name="prenomContact" id="prenomContact'.$row['id_proprietaire'].'"></td></tr>
+                                     <tr>
+                                     <td>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telContact" id="telContact'.$row['id_proprietaire'].'"></td></tr>
+                                     <tr>
+                                     <td>Gsm<input class="form-control" type="text" placeholder="Gsm" name="gsmContact" id="gsmContact'.$row['id_proprietaire'].'"></td></tr>
+                                     <tr>
+                                     <td>Rue<input class="form-control" type="text" placeholder="Rue" name="rueContact" id="rueContact'.$row['id_proprietaire'].'"></td></tr>
+                                      <tr>
+                                      <td>Numéro<input class="form-control" type="text" placeholder="Numéro" name="numeroContact" id="numeroContact'.$row['id_proprietaire'].'"></td></tr>
+                                      <tr>
+                                       <td>Code Postal<input class="form-control" type="text" placeholder="Code Postal" name="cpContact" id="cpContact'.$row['id_proprietaire'].'"></td></tr>
+                                        <tr>
+                                        <td>Ville<input class="form-control" type="text" placeholder="Ville" name="villeContact" id="villeContact'.$row['id_proprietaire'].'"></td></tr>
+                                         <tr>
+                                         <td>Pays<input class="form-control" type="text" placeholder="Pays" name="paysContact" id="paysContact'.$row['id_proprietaire'].'"></td></tr>
+                                   </tr>
+                                   <tr><td><input class="btn btn-primary" type="button" value="Ajouter" id="ajoutpdc" onclick="pdc(\''.$row['id_proprietaire'].'\');"></td></tr>
+
+
                           <div id="wrapper">
                             <div id="formdogs">
                               <table class="table" id="ajoutDogsForm'.$row['id_proprietaire'].'" style="display:none;">
@@ -105,8 +136,8 @@ class VAdmin extends VBase {
                                      <td>Sexe 
                                        <select class="form-control" name="sexe_dogs" id="sexe_dogs'.$row['id_proprietaire'].'">
                                          <option value=""></option>
-                                         <option value="mâle">Mâle</option>
-                                         <option value="femelle">Femelle</option>
+                                         <option value="M">Mâle</option>
+                                         <option value="F">Femelle</option>
                                        </select>
                                       </td>
                                    </tr>
@@ -131,29 +162,41 @@ class VAdmin extends VBase {
                                     <tr><td><h1><u>Divers</u></h1></td></tr>
                                     <tr>
                                       <td>Lieu de détention du chien(si autre que celui de l adresse du propriétaire)<input class="form-control" type="text" placeholder="Lieu de détention" name="detention" id="detention'.$row['id_proprietaire'].'"></td>
-                                    </tr>    
-                                    <tr>
-                                      <td>Club de dressage<input class="form-control" type="text" placeholder="Nom du club" name="club" id="club'.$row['id_proprietaire'].'"></td>
-                                    </tr>
-                                    <tr>  
-                                      <td>Adresse du club<input class="form-control" type="text" placeholder="Adresse du club" name="clubAdresse" id="clubAdresse'.$row['id_proprietaire'].'"></td>
-                                    </tr>
+                                    </tr> 
+                                    
                                     <tr>  
                                       <td>Dressage mordant 
                                         <select class="form-control" name="mordant" id="mordant'.$row['id_proprietaire'].'">
                                           <option value=""></option>
-                                          <option value="oui">oui</option>
-                                          <option value="non">non</option>
+                                          <option value="O">oui</option>
+                                          <option value="N">non</option>
                                         </select>
                                       </td>
                                     </tr>
+                                      <tr>  
+                                      <td>Dangereux
+                                        <select class="form-control" name="dangereux" id="dangereux'.$row['id_proprietaire'].'">
+                                          <option value=""></option>
+                                          <option value="O">oui</option>
+                                          <option value="N">non</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                    <td>Vétérinaire: </td>
                                     <tr>
-                                      <td>Vétérinaire<input class="form-control" type="text" placeholder="Vétérinaire" name="veto" id="veto'.$row['id_proprietaire'].'" onblur="valideNomPrenom(this)"></td>
-                                    </tr>
-                                    <tr>  
-                                      <td>Téléphone du vétérinaire<input class="form-control" type="text" placeholder="Téléphone" name="vetoTel" id="vetoTel'.$row['id_proprietaire'].'" onblur="phone(this)"></td>
-                                    </tr>
-                                             
+                                    <td>
+
+                                    <select class="form-control" name="veterinaire" id="veterinaire'.$row['id_proprietaire'].'">
+                                       <option value=""selected></option>';
+
+                                                   foreach ($veterinaire as $key => $veto) {
+
+                                                         $html.=' <option  value='.$veto['id_veterinaire'].' >'.$veto['nom'].'</option>';
+                            
+                                                   }
+                                          $html.='</select>
+                                     </td>
+                                     </tr>        
 
                                     <tr><td><h1><u>Remarque(s)</u></h1></td></tr>
                                     <tr>
@@ -221,17 +264,40 @@ class VAdmin extends VBase {
                                     <tr>  
                                      <td id="id_proprietaire"'.$row['id_proprietaire'].'"> Autre période contactable<input class="form-control" type="text" placeholder=" Autre période contactable" name="autreDispo" id="autreDispo'.$row['id_proprietaire'].'" value="'.$row['autre_dispo'].'"></td>
                                     </tr>
-                                     <tr><td><h1><u>Personne de contact</u></h1></td></tr>
-                                                                      
-                                     <tr><td><img src="img/edit.png" title="Modifier"  id="modif" onclick="modifField(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\');"></td>
-                                    <td><button type="button" class="btn btn-default"  value="voir" id="dogsProprio" onclick="dogsProprioform('.$row['id_proprietaire'].'),dogsProprio('.$row['id_proprietaire'].')">Voir la liste du/des chien(s)</button></td></tr>
+
+                                    
+
+
+                                      <tr><td><img src="img/edit.png" title="Modifier"  id="modif" onclick="modifField(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\');"></td>
+                                       <td><button type="button" class="btn btn-default"  value="voir" id="dogsProprio" onclick="dogsProprioform('.$row['id_proprietaire'].'),dogsProprio('.$row['id_proprietaire'].')">Voir la liste du/des chien(s)</button></td>
+                                     <td><button type="button" class="btn btn-default"  value="voirPdc" id="listPdc" onclick="listPdcProprioform('.$row['id_proprietaire'].'),listPdc('.$row['id_proprietaire'].')">Voir la liste personne de conatcte</button></td></tr>
+
                                     <tr><td><a href="?component=admin&action=actif">Retour</a></td></tr>
+
+                                    <tr> 
+                                     
+                                    
+
+                                    </table>
+                                    </div>
+                                </div>
+                                </div>
+
+
+
+                                                                      
+                                     
                                </table>
                             </div>';
 
                                  $html.='<div id="listDogs'.$row['id_proprietaire'].'"></div>
+                                          <div id="listPdc'.$row['id_proprietaire'].'"></div>
+                                        
                                   </div>
+
                                   </div>';
+
+                                  
                                  
 
                              
@@ -286,7 +352,7 @@ class VAdmin extends VBase {
     }
 
     //Fonction pour l'ajout d'un nouveau propriétaire 
-    public function AddNewDogs($race){
+    public function AddNewDogs($club){
     	$html='';
     	$html.='
 
@@ -330,9 +396,30 @@ class VAdmin extends VBase {
          <tr>Nom<input class="form-control" type="text" placeholder="Nom" name="nomContact" id="nomContact"></tr>
          <tr>Prénom<input class="form-control" type="text" placeholder="Prénom" name="prenomContact" id="prenomContact"></tr>
          <tr>Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telContact" id="telContact"></tr>
-        
-        
-         <tr><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs();"></tr>
+         <tr>Gsm<input class="form-control" type="text" placeholder="Gsm" name="gsmContact" id="gsmContact"></tr>
+         <tr>Rue<input class="form-control" type="text" placeholder="Rue" name="rueContact" id="rueContact"></tr>
+          <tr>Numéro<input class="form-control" type="text" placeholder="Numéro" name="numeroContact" id="numeroContact"></tr>
+           <tr>Code Postal<input class="form-control" type="text" placeholder="Code Postal" name="cpContact" id="cpContact"></tr>
+            <tr>Ville<input class="form-control" type="text" placeholder="Ville" name="villeContact" id="villeContact"></tr>
+             <tr>Pays<input class="form-control" type="text" placeholder="Pays" name="paysContact" id="paysContact"></tr>
+
+             <tr>Club : 
+                                   
+                                    
+
+                                    <select class="form-control" name="club" id="club">
+                                       <option value=""selected></option>';
+
+                                                   foreach ($club as $key => $row) {
+
+                                                         $html.=' <option  value='.$row['id_club'].' >'.$row['nom_club'].'</option>';
+                            
+                                                   }
+                                          $html.='</select>
+                                     
+                                     </tr>  
+
+         <tr><input class="btn btn-warning" type="button" value="Enregistrer" id="bAddDogs" onclick="addNewDogs();pdc();"></tr>
 
        </table>
 

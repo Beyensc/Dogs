@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 06 Septembre 2016 à 09:50
+-- Généré le :  Mar 14 Mars 2017 à 19:39
 -- Version du serveur :  5.7.13-0ubuntu0.16.04.2
--- Version de PHP :  7.0.8-0ubuntu0.16.04.2
+-- Version de PHP :  7.0.15-0ubuntu0.16.04.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,12 +27,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `agent` (
-  `id_user` int(11) NOT NULL,
-  `nom` varchar(100) DEFAULT NULL,
-  `prenom` varchar(100) DEFAULT NULL,
-  `matricule` varchar(100) DEFAULT NULL,
-  `login` varchar(100) DEFAULT NULL,
-  `mdp` varchar(25) DEFAULT NULL,
+  `id_agent` int(11) NOT NULL,
+  `nom` varchar(40) NOT NULL,
+  `prenom` varchar(40) NOT NULL,
+  `matricule` int(11) NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `mdp` varchar(100) NOT NULL,
   `id_type` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -40,9 +40,10 @@ CREATE TABLE `agent` (
 -- Contenu de la table `agent`
 --
 
-INSERT INTO `agent` (`id_user`, `nom`, `prenom`, `matricule`, `login`, `mdp`, `id_type`) VALUES
-(4, NULL, NULL, NULL, 'admin', 'admin', 1),
-(5, NULL, NULL, NULL, 'agent', 'agent', 2);
+INSERT INTO `agent` (`id_agent`, `nom`, `prenom`, `matricule`, `login`, `mdp`, `id_type`) VALUES
+(2, 'Beyens', 'Clément', 123456, 'beyensc', 'clembey1991', 1),
+(3, 'beyens', 'pascal', 12345689, 'admin', '21232f297a57a5a743894a0e4a801fc3', 2),
+(4, 'beyens', 'clement', 123456789, 'Beyensc', 'cdff807c8f4e0b078045b454b3575af4', 1);
 
 -- --------------------------------------------------------
 
@@ -52,41 +53,93 @@ INSERT INTO `agent` (`id_user`, `nom`, `prenom`, `matricule`, `login`, `mdp`, `i
 
 CREATE TABLE `chien` (
   `id_chien` int(11) NOT NULL,
-  `nom` varchar(25) DEFAULT NULL,
-  `num_puce` varchar(200) DEFAULT NULL,
-  `sexe` varchar(200) DEFAULT NULL,
-  `date_naissance` varchar(200) DEFAULT NULL,
-  `puce_dogs` varchar(200) DEFAULT NULL,
-  `tatoo_dogs` varchar(200) DEFAULT NULL,
-  `detention` varchar(250) DEFAULT NULL,
-  `club` varchar(200) DEFAULT NULL,
-  `club_adresse` varchar(250) DEFAULT NULL,
-  `mordant` varchar(3) DEFAULT NULL,
-  `veto` varchar(200) DEFAULT NULL,
-  `vetotel` varchar(200) DEFAULT NULL,
-  `remarques` varchar(1000) DEFAULT NULL,
-  `actif` varchar(1) DEFAULT 'O',
+  `nom` varchar(40) DEFAULT NULL,
+  `date_naissance` varchar(25) DEFAULT NULL,
+  `num_puce` varchar(10) DEFAULT NULL,
+  `sexe` char(1) DEFAULT NULL,
+  `puce_dogs` varchar(25) DEFAULT NULL,
+  `tatoo_dogs` varchar(25) DEFAULT NULL,
+  `detention` varchar(50) DEFAULT NULL,
+  `mordant` varchar(1) DEFAULT NULL,
+  `actif` char(1) DEFAULT 'O',
+  `remarque` text,
+  `dangereux` char(1) DEFAULT NULL,
   `id_race` int(11) DEFAULT NULL,
-  `id_proprietaire` int(11) DEFAULT NULL
+  `id_veterinaire` int(11) DEFAULT NULL,
+  `id_proprietaire` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `chien`
 --
 
-INSERT INTO `chien` (`id_chien`, `nom`, `num_puce`, `sexe`, `date_naissance`, `puce_dogs`, `tatoo_dogs`, `detention`, `club`, `club_adresse`, `mordant`, `veto`, `vetotel`, `remarques`, `actif`, `id_race`, `id_proprietaire`) VALUES
-(154, 'Test pdf', '1651', 'mÃ¢le', '51165', '156', '566', 'jardin', 'canigou', 'rue de congo 145', 'non', 'Radoux', '056/745189', '                                      ', 'O', 4, 80),
-(155, 'test', '231654897', 'mÃ¢le', '5565', '35', '655', '/', '/', '/', 'non', '/', '', '                                      ', 'O', 2, 80);
+INSERT INTO `chien` (`id_chien`, `nom`, `date_naissance`, `num_puce`, `sexe`, `puce_dogs`, `tatoo_dogs`, `detention`, `mordant`, `actif`, `remarque`, `dangereux`, `id_race`, `id_veterinaire`, `id_proprietaire`) VALUES
+(1, 'est', '30/07/1991', '/', '/', '/', '/', '/', '/', 'O', '/', '/', 8, NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `effectuer`
+-- Structure de la table `club`
 --
 
-CREATE TABLE `effectuer` (
-  `id_user` int(11) NOT NULL,
-  `id_verification` int(11) NOT NULL
+CREATE TABLE `club` (
+  `id_club` int(11) NOT NULL,
+  `nom_club` varchar(100) NOT NULL,
+  `rue` varchar(100) NOT NULL,
+  `numero` varchar(25) DEFAULT NULL,
+  `cp` int(11) DEFAULT NULL,
+  `ville` varchar(100) DEFAULT NULL,
+  `pays` varchar(100) DEFAULT NULL,
+  `telephone` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `club`
+--
+
+INSERT INTO `club` (`id_club`, `nom_club`, `rue`, `numero`, `cp`, `ville`, `pays`, `telephone`) VALUES
+(1, 'Union canine Mouscronnoise ', ' Rue du Labyrinthe', '225', 7700, 'Mouscron', 'BE', NULL),
+(2, 'Le pisteur', 'Rue du plavitout ', NULL, 7700, 'Mouscron', 'BE', '0479 76 16 98'),
+(3, 'K9', 'Rua Albert premier', '56', 7700, 'Mouscron', 'BE', '056881549');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `personne_de_contacte`
+--
+
+CREATE TABLE `personne_de_contacte` (
+  `id_pdc` int(11) NOT NULL,
+  `nom` varchar(40) DEFAULT NULL,
+  `prenom` varchar(40) DEFAULT NULL,
+  `telephone` varchar(40) DEFAULT NULL,
+  `gsm` varchar(40) DEFAULT NULL,
+  `rue` varchar(100) DEFAULT NULL,
+  `numero` varchar(25) DEFAULT NULL,
+  `cp` int(11) DEFAULT NULL,
+  `ville` varchar(100) DEFAULT NULL,
+  `pays` varchar(25) DEFAULT NULL,
+  `id_proprietaire` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `personne_de_contacte`
+--
+
+INSERT INTO `personne_de_contacte` (`id_pdc`, `nom`, `prenom`, `telephone`, `gsm`, `rue`, `numero`, `cp`, `ville`, `pays`, `id_proprietaire`) VALUES
+(3, 'beyens', 'clement', '056998877', '0474885566', 'dragon', '56', 7700, 'mouqcron', 'bel', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `posseder`
+--
+
+CREATE TABLE `posseder` (
+  `date_debut` date DEFAULT NULL,
+  `date_fin` date DEFAULT NULL,
+  `id_proprietaire` int(11) NOT NULL,
+  `id_chien` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -97,35 +150,32 @@ CREATE TABLE `effectuer` (
 
 CREATE TABLE `proprietaire` (
   `id_proprietaire` int(11) NOT NULL,
-  `nom` varchar(25) DEFAULT NULL,
-  `prenom` varchar(100) DEFAULT NULL,
-  `date_naissance` varchar(200) NOT NULL,
-  `lieu_naissance` varchar(200) NOT NULL,
-  `rue` varchar(100) DEFAULT NULL,
-  `numero` varchar(100) DEFAULT NULL,
-  `CP` varchar(25) DEFAULT NULL,
-  `ville` varchar(100) DEFAULT NULL,
-  `pays` varchar(100) DEFAULT NULL,
+  `nom` varchar(40) NOT NULL,
+  `prenom` varchar(40) NOT NULL,
+  `date_naissance` varchar(20) NOT NULL,
+  `lieu_naissance` varchar(100) DEFAULT NULL,
+  `telephone` varchar(40) DEFAULT NULL,
+  `gsm` varchar(40) DEFAULT NULL,
+  `actif` char(1) NOT NULL DEFAULT 'O',
   `mail` varchar(100) DEFAULT NULL,
-  `telephone` varchar(100) DEFAULT NULL,
-  `gsm` varchar(100) DEFAULT NULL,
-  `periode_dispo` varchar(200) NOT NULL,
-  `autre_dispo` varchar(200) DEFAULT NULL,
-  `nom_contact` varchar(200) DEFAULT NULL,
-  `prenom_contact` varchar(200) DEFAULT NULL,
-  `num_contact` varchar(200) DEFAULT NULL,
-  `datesave` varchar(200) NOT NULL,
-  `actif` varchar(1) DEFAULT 'O'
+  `rue` varchar(100) DEFAULT NULL,
+  `numero` varchar(10) DEFAULT NULL,
+  `cp` int(11) DEFAULT NULL,
+  `ville` varchar(100) DEFAULT NULL,
+  `pays` varchar(25) DEFAULT NULL,
+  `periode_dispo` varchar(100) DEFAULT NULL,
+  `autre_dispo` varchar(25) DEFAULT NULL,
+  `id_agent` int(11) DEFAULT NULL,
+  `id_club` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `proprietaire`
 --
 
-INSERT INTO `proprietaire` (`id_proprietaire`, `nom`, `prenom`, `date_naissance`, `lieu_naissance`, `rue`, `numero`, `CP`, `ville`, `pays`, `mail`, `telephone`, `gsm`, `periode_dispo`, `autre_dispo`, `nom_contact`, `prenom_contact`, `num_contact`, `datesave`, `actif`) VALUES
-(80, 'Beyens', 'ClÃ©ment', '30/07/1991', 'Mouscron', 'Dragon', '113', '7700', 'Mouscron', 'Belgique', 'beyens.c@gmail.com', '056/841364', '0474/667069', 'matin', '', '', '', '', '', 'O'),
-(81, 'beyens', 'pascal', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'O'),
-(85, 'Lagae', 'cathy', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'O');
+INSERT INTO `proprietaire` (`id_proprietaire`, `nom`, `prenom`, `date_naissance`, `lieu_naissance`, `telephone`, `gsm`, `actif`, `mail`, `rue`, `numero`, `cp`, `ville`, `pays`, `periode_dispo`, `autre_dispo`, `id_agent`, `id_club`) VALUES
+(1, 'Beyens', 'Clément', '2017-03-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL),
+(2, 'Beyens', 'Emilien', '2017-03-22', 'Mouscron', '', '', 'O', '/', 'du dragon', '113', 7700, 'Mouscron', 'BE', '', '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -135,29 +185,28 @@ INSERT INTO `proprietaire` (`id_proprietaire`, `nom`, `prenom`, `date_naissance`
 
 CREATE TABLE `race` (
   `id_race` int(11) NOT NULL,
-  `race` varchar(200) DEFAULT NULL,
-  `id_chien` int(11) DEFAULT NULL,
-  `actif` varchar(1) NOT NULL DEFAULT 'O'
+  `race` varchar(50) DEFAULT NULL,
+  `actif` char(1) DEFAULT 'O'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `race`
 --
 
-INSERT INTO `race` (`id_race`, `race`, `id_chien`, `actif`) VALUES
-(1, 'Akita inu', NULL, 'O'),
-(2, 'American staffordhire terrier', NULL, 'O'),
-(3, 'Band dog', NULL, 'O'),
-(4, 'Bull terrier', NULL, 'O'),
-(5, 'Dogo Argentino', NULL, 'O'),
-(6, 'Dogue de Bordeaux', NULL, 'O'),
-(7, 'English terrier', NULL, 'O'),
-(8, 'Fila Braziliero', NULL, 'O'),
-(9, 'Mastiff (toutes origines)', NULL, 'O'),
-(10, 'Pit bull terrier', NULL, 'O'),
-(11, 'Rodhesian Ridgeback', NULL, 'O'),
-(12, 'Rottweiler', NULL, 'O'),
-(13, 'Tosa Inu', NULL, 'O');
+INSERT INTO `race` (`id_race`, `race`, `actif`) VALUES
+(1, 'Akita inu', 'O'),
+(2, 'American staffordhire terrier', 'O'),
+(3, 'Band dog', 'O'),
+(4, 'Bull terrier', 'O'),
+(5, 'Dogo Argentino', 'O'),
+(6, 'Dog de Bordeaux', 'O'),
+(7, 'English terrier (staffordshire bull-terrier)', 'O'),
+(8, 'Fila Braziliero', 'O'),
+(9, 'Mastiff (toutes origines)', 'O'),
+(10, 'Pit bull terrier', 'O'),
+(11, 'Rodhesian Ridgeback', 'O'),
+(12, 'Rottweiler', 'O'),
+(13, 'Tosa Inu', 'O');
 
 -- --------------------------------------------------------
 
@@ -167,49 +216,46 @@ INSERT INTO `race` (`id_race`, `race`, `id_chien`, `actif`) VALUES
 
 CREATE TABLE `type` (
   `id_type` int(11) NOT NULL,
-  `type` varchar(100) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL
+  `type` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `type`
 --
 
-INSERT INTO `type` (`id_type`, `type`, `id_user`) VALUES
-(1, 'Ma&#238;tre chien', NULL),
-(2, 'agent', NULL);
+INSERT INTO `type` (`id_type`, `type`) VALUES
+(1, 'admin'),
+(2, 'agent');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `verification`
+-- Structure de la table `veterinaire`
 --
 
-CREATE TABLE `verification` (
-  `id_verification` int(11) NOT NULL,
-  `verification` varchar(100) DEFAULT NULL
+CREATE TABLE `veterinaire` (
+  `id_veterinaire` int(11) NOT NULL,
+  `nom` varchar(40) DEFAULT NULL,
+  `telephone` varchar(25) DEFAULT NULL,
+  `gsm` varchar(25) DEFAULT NULL,
+  `rue` varchar(100) DEFAULT NULL,
+  `numero` varchar(25) DEFAULT NULL,
+  `cp` int(11) DEFAULT NULL,
+  `ville` varchar(50) DEFAULT NULL,
+  `pays` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `verification`
+-- Contenu de la table `veterinaire`
 --
 
-INSERT INTO `verification` (`id_verification`, `verification`) VALUES
-(1, 'clÃ´ture'),
-(2, 'Carnet de vaccin Ã  jour');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `verifier`
---
-
-CREATE TABLE `verifier` (
-  `id_proprietaire` int(11) NOT NULL,
-  `id_verification` int(11) NOT NULL,
-  `etat` varchar(200) NOT NULL,
-  `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `veterinaire` (`id_veterinaire`, `nom`, `telephone`, `gsm`, `rue`, `numero`, `cp`, `ville`, `pays`) VALUES
+(1, 'Centre Vétérinaire Vetofora', '056 33 39 85', NULL, ' Boulevard des Alliés', '228', 7700, 'Mouscron', 'BE'),
+(2, 'Mahieu Mélanie', '056 34 53 23', NULL, 'Rue de la Station', '27', 7700, 'Mouscron', 'BE'),
+(3, 'Daniel Radoux', '056 34 72 63', NULL, 'Rue du Nouveau Monde', '110', 7700, 'Mouscron', 'BE'),
+(4, 'Brabant Xavier', '056 84 09 72', NULL, 'Rue de Roubaix ', '384', 7700, 'Mouscron', 'BE'),
+(5, 'Arnould-Stevens', '056 34 85 65', NULL, 'Rue de la Station', '126', 7700, 'Mouscron', 'BE'),
+(6, 'Breyne  Christian', '056 34 48 54', NULL, 'Carrière Ma Campagne', '3', 7712, 'Mouscron', 'BE');
 
 --
 -- Index pour les tables exportées
@@ -219,7 +265,7 @@ CREATE TABLE `verifier` (
 -- Index pour la table `agent`
 --
 ALTER TABLE `agent`
-  ADD PRIMARY KEY (`id_user`),
+  ADD PRIMARY KEY (`id_agent`),
   ADD KEY `FK_agent_id_type` (`id_type`);
 
 --
@@ -228,47 +274,54 @@ ALTER TABLE `agent`
 ALTER TABLE `chien`
   ADD PRIMARY KEY (`id_chien`),
   ADD KEY `FK_chien_id_race` (`id_race`),
-  ADD KEY `FK_chien_id_proprietaire` (`id_proprietaire`);
+  ADD KEY `FK_chien_id_veterinaire` (`id_veterinaire`),
+  ADD KEY `id_proprietaire` (`id_proprietaire`);
 
 --
--- Index pour la table `effectuer`
+-- Index pour la table `club`
 --
-ALTER TABLE `effectuer`
-  ADD PRIMARY KEY (`id_user`,`id_verification`),
-  ADD KEY `FK_effectuer_id_verification` (`id_verification`);
+ALTER TABLE `club`
+  ADD PRIMARY KEY (`id_club`);
+
+--
+-- Index pour la table `personne_de_contacte`
+--
+ALTER TABLE `personne_de_contacte`
+  ADD PRIMARY KEY (`id_pdc`),
+  ADD KEY `FK_personne_de_contacte_id_proprietaire` (`id_proprietaire`);
+
+--
+-- Index pour la table `posseder`
+--
+ALTER TABLE `posseder`
+  ADD PRIMARY KEY (`id_proprietaire`,`id_chien`),
+  ADD KEY `FK_posseder_id_chien` (`id_chien`);
 
 --
 -- Index pour la table `proprietaire`
 --
 ALTER TABLE `proprietaire`
-  ADD PRIMARY KEY (`id_proprietaire`);
+  ADD PRIMARY KEY (`id_proprietaire`),
+  ADD KEY `FK_proprietaire_id_agent` (`id_agent`),
+  ADD KEY `FK_proprietaire_id_club` (`id_club`);
 
 --
 -- Index pour la table `race`
 --
 ALTER TABLE `race`
-  ADD PRIMARY KEY (`id_race`),
-  ADD KEY `FK_race_id_chien` (`id_chien`);
+  ADD PRIMARY KEY (`id_race`);
 
 --
 -- Index pour la table `type`
 --
 ALTER TABLE `type`
-  ADD PRIMARY KEY (`id_type`),
-  ADD KEY `FK_type_id_user` (`id_user`);
+  ADD PRIMARY KEY (`id_type`);
 
 --
--- Index pour la table `verification`
+-- Index pour la table `veterinaire`
 --
-ALTER TABLE `verification`
-  ADD PRIMARY KEY (`id_verification`);
-
---
--- Index pour la table `verifier`
---
-ALTER TABLE `verifier`
-  ADD PRIMARY KEY (`id_proprietaire`,`id_verification`),
-  ADD KEY `FK_verifier_id_verification` (`id_verification`);
+ALTER TABLE `veterinaire`
+  ADD PRIMARY KEY (`id_veterinaire`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -278,17 +331,27 @@ ALTER TABLE `verifier`
 -- AUTO_INCREMENT pour la table `agent`
 --
 ALTER TABLE `agent`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_agent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `chien`
 --
 ALTER TABLE `chien`
-  MODIFY `id_chien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
+  MODIFY `id_chien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `club`
+--
+ALTER TABLE `club`
+  MODIFY `id_club` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `personne_de_contacte`
+--
+ALTER TABLE `personne_de_contacte`
+  MODIFY `id_pdc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `proprietaire`
 --
 ALTER TABLE `proprietaire`
-  MODIFY `id_proprietaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id_proprietaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `race`
 --
@@ -300,10 +363,10 @@ ALTER TABLE `race`
 ALTER TABLE `type`
   MODIFY `id_type` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT pour la table `verification`
+-- AUTO_INCREMENT pour la table `veterinaire`
 --
-ALTER TABLE `verification`
-  MODIFY `id_verification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `veterinaire`
+  MODIFY `id_veterinaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Contraintes pour les tables exportées
 --
@@ -319,33 +382,28 @@ ALTER TABLE `agent`
 --
 ALTER TABLE `chien`
   ADD CONSTRAINT `FK_chien_id_proprietaire` FOREIGN KEY (`id_proprietaire`) REFERENCES `proprietaire` (`id_proprietaire`),
-  ADD CONSTRAINT `FK_chien_id_race` FOREIGN KEY (`id_race`) REFERENCES `race` (`id_race`);
+  ADD CONSTRAINT `FK_chien_id_race` FOREIGN KEY (`id_race`) REFERENCES `race` (`id_race`),
+  ADD CONSTRAINT `FK_chien_id_veterinaire` FOREIGN KEY (`id_veterinaire`) REFERENCES `veterinaire` (`id_veterinaire`);
 
 --
--- Contraintes pour la table `effectuer`
+-- Contraintes pour la table `personne_de_contacte`
 --
-ALTER TABLE `effectuer`
-  ADD CONSTRAINT `FK_effectuer_id_user` FOREIGN KEY (`id_user`) REFERENCES `agent` (`id_user`),
-  ADD CONSTRAINT `FK_effectuer_id_verification` FOREIGN KEY (`id_verification`) REFERENCES `verification` (`id_verification`);
+ALTER TABLE `personne_de_contacte`
+  ADD CONSTRAINT `FK_personne_de_contacte_id_proprietaire` FOREIGN KEY (`id_proprietaire`) REFERENCES `proprietaire` (`id_proprietaire`);
 
 --
--- Contraintes pour la table `race`
+-- Contraintes pour la table `posseder`
 --
-ALTER TABLE `race`
-  ADD CONSTRAINT `FK_race_id_chien` FOREIGN KEY (`id_chien`) REFERENCES `chien` (`id_chien`);
+ALTER TABLE `posseder`
+  ADD CONSTRAINT `FK_posseder_id_chien` FOREIGN KEY (`id_chien`) REFERENCES `chien` (`id_chien`),
+  ADD CONSTRAINT `FK_posseder_id_proprietaire` FOREIGN KEY (`id_proprietaire`) REFERENCES `proprietaire` (`id_proprietaire`);
 
 --
--- Contraintes pour la table `type`
+-- Contraintes pour la table `proprietaire`
 --
-ALTER TABLE `type`
-  ADD CONSTRAINT `FK_type_id_user` FOREIGN KEY (`id_user`) REFERENCES `agent` (`id_user`);
-
---
--- Contraintes pour la table `verifier`
---
-ALTER TABLE `verifier`
-  ADD CONSTRAINT `FK_verifier_id_proprietaire` FOREIGN KEY (`id_proprietaire`) REFERENCES `proprietaire` (`id_proprietaire`),
-  ADD CONSTRAINT `FK_verifier_id_verification` FOREIGN KEY (`id_verification`) REFERENCES `verification` (`id_verification`);
+ALTER TABLE `proprietaire`
+  ADD CONSTRAINT `FK_proprietaire_id_agent` FOREIGN KEY (`id_agent`) REFERENCES `agent` (`id_agent`),
+  ADD CONSTRAINT `FK_proprietaire_id_club` FOREIGN KEY (`id_club`) REFERENCES `club` (`id_club`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

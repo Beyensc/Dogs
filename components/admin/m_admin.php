@@ -15,6 +15,19 @@ class MAdmin extends MBase {
 		return $race->getListDogs();
 	}
 
+	public function veterinaire(){
+		include_once('./class/dogs.class.php');
+		$veterinaire=new Dogs($this->appli->dbPdo);
+		return $veterinaire->veterinaire();
+	}
+
+	public function club(){
+		include_once('./class/dogs.class.php');
+		$club=new Dogs($this->appli->dbPdo);
+		return $club->club();
+	}
+
+
 
 	public function getListPro(){
 		include_once('./class/dogs.class.php');
@@ -45,6 +58,19 @@ class MAdmin extends MBase {
 		include_once('./class/dogs.class.php');
 		$newDogs=new Dogs($this->appli->dbPdo);
 	}
+
+	public function pdc(){
+		include_once('./class/dogs.class.php');
+		$pdc=new Dogs($this->appli->dbPdo);
+	}
+
+	public function listPdc(){
+		include_once('./class/dogs.class.php');
+		$listPdc=new Dogs($this->appli->dbPdo);
+		//return $listPdc->listPdc();
+	}
+
+
 
 	public function ajoutDogs(){
 		include_once('./class/dogs.class.php');

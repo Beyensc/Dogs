@@ -10,10 +10,10 @@ class CAdmin extends CBase {
 //La liste des différents contrôleur du projet qui appelle les models et les vues 
 public function ajout(){
 	$race=$this->model->getListDogs();
-	
+	$club=$this->model->club();
 	$proprietaire=$this->model->getlistPro();
 	$this->view->recherche();
-    $this->view->AddNewDogs($race);
+    $this->view->AddNewDogs($race,$club);
 }
 
 public function actif(){
@@ -21,10 +21,13 @@ public function actif(){
 	$this->view->recherche();
 	$proprietaire=$this->model->getlistPro();
 	$dogsName=$this->model->getListNameDogs();
+	$listPdc=$this->model->listPdc();
 	$dogs=$this->model->dogs();
 	$modifProprio=$this->model->modifProprio();
 	$race=$this->model->getListDogs();
-	$this->view->listDogsPro($proprietaire,$race,$dogs);
+	$veterinaire=$this->model->veterinaire();
+	$club=$this->model->club();
+	$this->view->listDogsPro($proprietaire,$race,$dogs,$listPdc,$veterinaire,$club);
 }
 
 public function inactif(){
