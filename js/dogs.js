@@ -219,29 +219,28 @@ alert(veterinaire);
 						mordant:mordant,
 						dangereux:dangereux,
 						remarques:remarques,
-						
 						veterinaire:veterinaire,
 
 					},
 
-					//success:setTimeout(function(){
-						//window.location.href="?component=admin&action=actif";
-					
+			success:function(data){
+                 alert('L\'ajout du chien a bien été effectuée');
+                //console.log(data);
+                 window.location.assign("?component=admin&action=actif");
+              }
 
-						//success:function(data){
-                 			//alert('L\'ajout du chien a bien été effectuée');
-                		//console.log(data);
-                 			//window.location.assign("?component=admin&action=actif");
-              //}
-				//},
 
-				//1000),
-				success:function(retour){alert(retour);},
-			});
-				}else{
+			
 
-					alert('Les champs requis ne sont pas remplis !')
-			}
+
+		//},
+		//1000),
+		//success:function(retour){alert(retour);},
+	});
+		}else{
+
+			alert('Les champs requis ne sont pas remplis !')
+	}
 }
 
 function deletePdc(id,nom){

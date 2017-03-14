@@ -270,7 +270,7 @@ class VAdmin extends VBase {
 
                                       <tr><td><img src="img/edit.png" title="Modifier"  id="modif" onclick="modifField(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\');"></td>
                                        <td><button type="button" class="btn btn-default"  value="voir" id="dogsProprio" onclick="dogsProprioform('.$row['id_proprietaire'].'),dogsProprio('.$row['id_proprietaire'].')">Voir la liste du/des chien(s)</button></td>
-                                     <td><button type="button" class="btn btn-default"  value="voirPdc" id="listPdc" onclick="listPdcProprioform('.$row['id_proprietaire'].'),listPdc('.$row['id_proprietaire'].')">Voir la liste personne de conatcte</button></td></tr>
+                                     <td><button type="button" class="btn btn-default"  value="voirPdc" id="listPdc" onclick="listPdcProprioform('.$row['id_proprietaire'].'),listPdc('.$row['id_proprietaire'].')">Voir la liste personne de contacte</button></td></tr>
 
                                     <tr><td><a href="?component=admin&action=actif">Retour</a></td></tr>
 

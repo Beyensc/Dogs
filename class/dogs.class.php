@@ -37,7 +37,7 @@ public function __construct($dbPdo){
 
 	public function dogs(){
 		//$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.id_race,b.race,a.id_proprietaire,c.id_proprietaire 
-		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.date_naissance,a.puce_dogs,a.tatoo_dogs,a.sexe,a.detention,a.mordant,a.remarque,a.id_race,b.race,a.id_proprietaire,b.race,a.id_proprietaire,c.id_proprietaire
+		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.date_naissance,a.puce_dogs,a.tatoo_dogs,a.sexe,a.detention,a.mordant,a.remarque,a.dangereux,a.id_race,b.race,a.id_veterinaire,a.id_proprietaire,b.race,a.id_proprietaire,c.id_proprietaire
 			FROM chien a
 			LEFT JOIN race b ON b.id_race = a.id_race
 			LEFT JOIN proprietaire c ON c.id_proprietaire = a.id_proprietaire');
@@ -47,7 +47,7 @@ public function __construct($dbPdo){
 
 	public function dogsProprio($id){
 
-		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.date_naissance,a.puce_dogs,a.tatoo_dogs,a.sexe,a.detention,a.club,a.club_adresse,a.mordant,a.veto,a.vetotel,a.remarques,a.id_race,b.race,a.id_proprietaire
+		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.date_naissance,a.puce_dogs,a.tatoo_dogs,a.sexe,a.detention,a.mordant,a.dangereux,a.id_veterinaire,a.remarque,a.id_race,b.race,a.id_proprietaire
 			FROM chien a
 			LEFT JOIN race b ON b.id_race = a.id_race
 			WHERE a.id_proprietaire='.$id.'');                     //prob ici!!!!!
@@ -245,18 +245,19 @@ public function __construct($dbPdo){
 			VALUES (:nom,:date_naissance,:num_puce,:sexe,:puce_dogs,:tatoo_dogs,:detention,:mordant:remarque,:dangereux,:id_race,:id_veterinaire,:id_proprietaire)');
 		
 		$req->bindParam(':nom',$tab['nomDogs'],PDO::PARAM_STR);
+		$req->bindParam(':date_naissance',$tab['dateNaissance'],PDO::PARAM_STR);
 		$req->bindParam(':num_puce',$tab['numPuceDogs'],PDO::PARAM_STR);
 		$req->bindParam(':sexe',$tab['sexe_dogs'],PDO::PARAM_STR);
-		$req->bindParam(':date_naissance',$tab['dateNaissance'],PDO::PARAM_STR);
 		$req->bindParam(':puce_dogs',$tab['puceDogs'],PDO::PARAM_STR);
 		$req->bindParam(':tatoo_dogs',$tab['tatooDogs'],PDO::PARAM_STR);
 		$req->bindParam(':detention',$tab['detention'],PDO::PARAM_STR);
-		$req->bindParam(':dangereux',$tab['dangereux'],PDO::PARAM_STR);
 		$req->bindParam(':mordant',$tab['mordant'],PDO::PARAM_STR);
-		$req->bindParam(':id_veterinaire',$tab['veterinaire'],PDO::PARAM_INT);
-		$req->bindParam(':id_race',$tab['raceDogs'],PDO::PARAM_INT);
-		$req->bindParam(':id_proprietaire',$tab['id'],PDO::PARAM_INT);
 		$req->bindParam(':remarque',$tab['remarques'],PDO::PARAM_STR);
+		$req->bindParam(':dangereux',$tab['dangereux'],PDO::PARAM_STR);
+		$req->bindParam(':id_race',$tab['raceDogs'],PDO::PARAM_INT);
+		$req->bindParam(':id_veterinaire',$tab['veterinaire'],PDO::PARAM_INT);
+		$req->bindParam(':id_proprietaire',$tab['id'],PDO::PARAM_INT);
+		
 
 
 		//print_r($tab);	

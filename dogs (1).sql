@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 14 Mars 2017 à 19:39
+-- Généré le :  Mar 14 Mars 2017 à 20:23
 -- Version du serveur :  5.7.13-0ubuntu0.16.04.2
 -- Version de PHP :  7.0.15-0ubuntu0.16.04.4
 
@@ -74,7 +74,9 @@ CREATE TABLE `chien` (
 --
 
 INSERT INTO `chien` (`id_chien`, `nom`, `date_naissance`, `num_puce`, `sexe`, `puce_dogs`, `tatoo_dogs`, `detention`, `mordant`, `actif`, `remarque`, `dangereux`, `id_race`, `id_veterinaire`, `id_proprietaire`) VALUES
-(1, 'est', '30/07/1991', '/', '/', '/', '/', '/', '/', 'O', '/', '/', 8, NULL, 1);
+(1, 'est', '30/07/1991', '/', '/', '/', '/', '/', '/', 'O', '/', '/', 8, NULL, 1),
+(2, 'doug', '25/12/2016', '123654', 'M', '123584', '12569', 'jardin', 'N', 'O', 'ras', 'N', 10, 3, 1),
+(3, 'brutus', '05/07/2014', '1256487', 'F', '123564789', '123456', 'cave', 'O', 'O', NULL, 'N', 8, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -336,7 +338,7 @@ ALTER TABLE `agent`
 -- AUTO_INCREMENT pour la table `chien`
 --
 ALTER TABLE `chien`
-  MODIFY `id_chien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_chien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `club`
 --
