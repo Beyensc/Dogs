@@ -266,12 +266,46 @@ class VAdmin extends VBase {
                                     </tr>
                                     <tr>  
                                      <td id="id_proprietaire"'.$row['id_proprietaire'].'"> Nom du club<input class="form-control" type="text" placeholder=" Nom du club" name="nomClub" id="nomClub'.$row['id_proprietaire'].'" value="'.$row['nom_club'].'"></td>
-                                    </tr>
+                                    </tr>';
+
+                                  /* foreach ($listPdc as $key => $value) {
+
+
+
+                                         $html.='
+                                          
+                                                  <tr><td><h1><u>Personne de contacte</u></h1></td></tr>
+                                                    <tr>
+                                                  <td id="id_proprietaire"'.$row['id_proprietaire'].'">Nom  <input class="form-control" type="text" placeholder="Nom du chien" name="nomContact" id="nomContact'.$row['id_proprietaire'].'" value="'.ucfirst($value['nom']).'"></td></tr>
+                                                  <tr>
+                                                  <td id="id_proprietaire"'.$row['id_proprietaire'].'">Prénom<input class="form-control" type="text" placeholder="Prénom" name="prenomContact" id="prenomContact'.$row['id_proprietaire'].'"value="'.ucfirst($value['prenom']).'"></td></tr>';
+                                                 $html.=' <tr>
+                                                  <td id="id_proprietaire"'.$row['id_proprietaire'].'">Téléphone<input class="form-control" type="text" placeholder="Téléphone" name="telContact" id="telContact'.$row['id_proprietaire'].'" value="'.$value['telephone'].'"></td></tr>
+                                                  <tr>
+                                                   <td id="id_proprietaire"'.$row['id_proprietaire'].'">Gsm<input class="form-control" type="text" placeholder="Gsm" name="gsmContact" id="gsmContact'.$row['id_proprietaire'].'" value="'.$value['gsm'].'"></td></tr>
+                                                   <tr>
+                                                  <td id="id_proprietaire"'.$row['id_proprietaire'].'">Rue<input class="form-control" type="text" placeholder="Rue" name="rueContact" id="rueContact'.$row['id_proprietaire'].'" value="'.$value['rue'].'"></td></tr>
+                                                  <tr>
+                                                  <td id="id_proprietaire"'.$row['id_proprietaire'].'">Numéro<input class="form-control" type="text" placeholder="Numéro" name="numeroContact" id="numeroContact'.$row['id_proprietaire'].'" value="'.$value['numero'].'"></td></tr>
+                                                  <tr>
+                                                  <td id="id_proprietaire"'.$row['id_proprietaire'].'">Code Postal<input class="form-control" type="text" placeholder="Code Postal" name="cpContact" id="cpContact'.$row['id_proprietaire'].'" value="'.$value['cp'].'"></td></tr>
+                                                  <tr>
+                                                  <td id="id_proprietaire"'.$row['id_proprietaire'].'">Ville<input class="form-control" type="text" placeholder="Ville" name="villeContact" id="villeContact'.$row['id_proprietaire'].'" value="'.$value['ville'].'"></td></tr>
+                                                  <tr>
+                                                  <td id="id_proprietaire"'.$row['id_proprietaire'].'">Pays<input class="form-control" type="text" placeholder="Pays" name="paysContact" id="paysContact'.$value['id_pdc'].'" value="'.$value['pays'].'"></td></tr>
+                                                  <tr><td><img src="img/edit.png" title="Modifier" id="modif" onclick="modifPdc(\''.$value['id_pdc'].'\',\''.$value['nom'].'\')"></td>
+                                                  <td><img src="img/can.png" id="delete" onclick="deletePdc(\''.$value['id_pdc'].'\',\''.$value['nom'].'\')">&nbsp;</td></tr>
+
+                                                   
+                                                  
+                                              ';
+
+   } */
 
                                     
 
 
-                                      <tr><td><img src="img/edit.png" title="Modifier"  id="modif" onclick="modifField(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\');"></td>
+                                      $html.='<tr><td><img src="img/edit.png" title="Modifier"  id="modif" onclick="modifField(\''.$row['id_proprietaire'].'\',\''.$row['nom'].'\');"></td>
                                        <td><button type="button" class="btn btn-default"  value="voir" id="dogsProprio" onclick="dogsProprioform('.$row['id_proprietaire'].'),dogsProprio('.$row['id_proprietaire'].')">Voir la liste du/des chien(s)</button></td>
                                      <td><button type="button" class="btn btn-default"  value="voirPdc" id="listPdc" onclick="listPdcProprioform('.$row['id_proprietaire'].'),listPdc('.$row['id_proprietaire'].')">Voir la liste personne de contacte</button></td></tr>
 

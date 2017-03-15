@@ -96,13 +96,15 @@ class VAgent extends VBase {
         }*/
 
 
-        public function listDogsPro($proprietaire,$race,$dogs,$verification){
+        public function listDogsPro($proprietaire,$race,$dogs){
 
 
-        $html='';
+       $html='';
         $html2='';
         $html.='<div class="main" >';
-        $html2.='<table style="display:block;" id="listpro" class="display" width="100%" cellspacing="0">
+        $html2.='
+        <div class="table-responsive">
+        <table class="table table-bordered table-hover" id="listpro">
         <thead>
                   <tr>
                                             <th>Nom</th>
@@ -126,7 +128,7 @@ class VAgent extends VBase {
                                           <tr>
                                             <td>'.ucfirst($pow['nom']).'</td>
                                             <td>'.ucfirst($pow['prenom']).'</td>
-                                            <td>'.ucfirst($pow['numero']).'&nbsp rue &nbsp'.ucfirst($pow['rue']).'&nbsp'.ucfirst($pow['CP']).'&nbsp'.ucfirst($pow['ville']).'</td>
+                                            <td>'.ucfirst($pow['numero']).'&nbsp rue &nbsp'.ucfirst($pow['rue']).'&nbsp'.ucfirst($pow['cp']).'&nbsp'.ucfirst($pow['ville']).'</td>
                                             <td> <img src="img/business.png" id="button"   id="details" onclick="details('.$pow['id_proprietaire'].');"></td>
                                            
                                            
@@ -143,14 +145,13 @@ class VAgent extends VBase {
 
 
 
-                               $html.=' <div id="maitre">
+                               $html.='  <div id="wrapper">
+                               <div id="maitre">
                                 <table class="table"  id="details'.$row['id_proprietaire'].'" style="display:none;" >
                                 <tr><td><a href="?component=agent&action=actif">Retour</a></td></tr>
 
                                     <tr><td><h1><u>Maître</u></h1></td></tr>
-                                    <tr>
-                                      <td id="id_proprietaire"'.$row['id_proprietaire'].'">Enregistrer le '.$row['datesave'].'</td>
-                                    </tr>
+                                    
                                     <tr>
                                       <td id="id_proprietaire"'.$row['id_proprietaire'].'">Nom<input class="form-control"  type="text" placeholder="Nom du maître" name="nomMaster" id="nomMaster'.$row['id_proprietaire'].'" value="'.ucfirst($row['nom']).'">
                                       </tr>
@@ -174,7 +175,7 @@ class VAgent extends VBase {
                                      <td id="id_proprietaire"'.$row['id_proprietaire'].'">N°<input class="form-control" type="text" placeholder="Numéro" name="numMaster" id="numMaster'.$row['id_proprietaire'].'" value="'.$row['numero'].'"></td>
                                     </tr>
                                     <tr> 
-                                     <td id="id_proprietaire"'.$row['id_proprietaire'].'">Code postal<input class="form-control" type="text" placeholder="Code postal" name="cpMaster" id="cpMaster'.$row['id_proprietaire'].'" value="'.$row['CP'].'"></td>
+                                     <td id="id_proprietaire"'.$row['id_proprietaire'].'">Code postal<input class="form-control" type="text" placeholder="Code postal" name="cpMaster" id="cpMaster'.$row['id_proprietaire'].'" value="'.$row['cp'].'"></td>
                                     </tr>
                                     <tr>
                                       <td>Ville<input class="form-control" type="text" placeholder="Ville" name="villeMaster" id="villeMaster'.$row['id_proprietaire'].'" value="'.ucfirst($row['ville']).'"></td>
@@ -197,24 +198,17 @@ class VAgent extends VBase {
                                     <tr>  
                                      <td id="id_proprietaire"'.$row['id_proprietaire'].'"> Autre période contactable<input class="form-control" type="text" placeholder=" Autre période contactable" name="autreDispo" id="autreDispo'.$row['id_proprietaire'].'" value="'.$row['autre_dispo'].'"></td>
                                     </tr>
-                                     <tr><td><h1><u>Personne de contact</u></h1></td></tr>
-                                     <tr> 
-                                      <td id="id_proprietaire"'.$row['id_proprietaire'].'"> Nom<input class="form-control" type="text" placeholder=" Nom" name="nomContact" id="nomContact'.$row['id_proprietaire'].'" value="'.ucfirst($row['nom_contact']).'"></td>
-                                    </tr>
-                                    <tr>  
-                                     <td id="id_proprietaire"'.$row['id_proprietaire'].'"> Prénom<input class="form-control" type="text" placeholder=" Prénom" name="prenomContact" id="prenomContact'.$row['id_proprietaire'].'" value="'.ucfirst($row['prenom_contact']).'"></td>
-                                    </tr>
-                                    <tr> 
-                                     <td id="id_proprietaire"'.$row['id_proprietaire'].'"> Téléphone<input class="form-control" type="text" placeholder=" Téléphone" name="telContact" id="telContact'.$row['id_proprietaire'].'" value="'.$row['num_contact'].'"></td>
-                                    </tr>
+                                    
                                   
                                      <tr>
-                                    <td><button type="button" class="btn btn-default"  value="voir" id="dogsProprio" onclick="dogsProprioform('.$row['id_proprietaire'].'),dogsProprio('.$row['id_proprietaire'].')">Voir la liste du/des chien(s)</button></td></tr>
+                                     <td><button type="button" class="btn btn-default"  value="voir" id="dogsProprio" onclick="dogsProprioform('.$row['id_proprietaire'].'),dogsProprio('.$row['id_proprietaire'].')">Voir la liste du/des chien(s)</button></td>
+                                     <td><button type="button" class="btn btn-default"  value="voirPdc" id="listPdc" onclick="listPdcProprioform('.$row['id_proprietaire'].'),listPdc('.$row['id_proprietaire'].')">Voir la liste personne de contacte</button></td></tr>
                                </table>
                             </div>';
 
                                  $html.='<div id="listDogs'.$row['id_proprietaire'].'"></div>
-                                  </div>';
+                                 <div id="listPdc'.$row['id_proprietaire'].'"></div>
+                                  </div></div>';
                                  
 
                              

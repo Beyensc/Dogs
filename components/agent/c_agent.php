@@ -12,8 +12,8 @@ class CAgent extends CBase {
 	$dogsName=$this->model->getListNameDogs();
 	$dogs=$this->model->dogs();
 	$race=$this->model->getListDogs();
-	$verification=$this->model->getListVerification();
-	$this->view->listDogsPro($proprietaire,$race,$dogs,$verification);
+	//$verification=$this->model->getListVerification();
+	$this->view->listDogsPro($proprietaire,$race,$dogs);
 }
 
 

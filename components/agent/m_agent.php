@@ -32,11 +32,11 @@ class MAgent extends MBase {
 		return $dogs->Dogs();
 	}
 
-	public function getListVerification(){
+	/*public function getListVerification(){
 		include_once('./class/dogs.class.php');
 		$verification=new Dogs($this->appli->dbPdo);
 		return $verification->getListVerification();
-	}
+	}*/
 
 }
 ?>

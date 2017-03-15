@@ -102,7 +102,7 @@ else if((isset($_SESSION['type'])) && ($_SESSION['type'] == 2))
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="?component=admin&action=actif">Police</a>
+                <a class="navbar-brand" href="?component=agent&action=actif">Police</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -123,37 +123,14 @@ else if((isset($_SESSION['type'])) && ($_SESSION['type'] == 2))
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="?component=admin&action=actif"><i class="fa fa-fw fa-dashboard"></i> Accueil</a>
+                        <a href="?component=agent&action=actif"><i class="fa fa-fw fa-dashboard"></i> Accueil</a>
                     </li>
                     
 
                     
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#proprietaire"><i class="fa fa-fw fa-arrows-v"></i> Propriétaire <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="proprietaire" class="collapse">
-                            <li>
-                                <a href="?component=admin&action=ajout">Nouveau propriétaire</a>
-                            </li>
-                            <li>
-                                <a href="?component=admin&action=actif">Actif</a>
-                            </li>
-                            <li>
-                                <a href="?component=admin&action=inactif">Inactif</a>
-                            </li>
-                        </ul>
-                    </li>
-
+                    
                     
 
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#maj"><i class="fa fa-fw fa-arrows-v"></i> Mise à jour <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="maj" class="collapse">
-                            <li>
-                                <a href="?component=admin&action=majListDogs">Liste des chiens dangereux</a>
-                            </li>
-                            
-                        </ul>
-                    </li>
                    
                 </ul>
             </div>

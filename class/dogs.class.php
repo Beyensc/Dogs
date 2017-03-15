@@ -41,7 +41,7 @@ public function __construct($dbPdo){
 			FROM chien a
 			LEFT JOIN race b ON b.id_race = a.id_race
 			LEFT JOIN proprietaire c ON c.id_proprietaire = a.id_proprietaire
-			LEFT JOIN veterinaire  d ON a.id_veterinaire = d.id_veterinaire');
+			LEFT JOIN veterinaire  d ON d.id_veterinaire = d.id_veterinaire');
 
 		
 			return $this->pdo->query($sql)->fetchAll();
@@ -338,7 +338,8 @@ public function __construct($dbPdo){
  
    	public function connexion(){
    		$login=$_POST['login'];
-   		$mdp= md5($_POST['mdp']);
+   		$mdp= $_POST['mdp'];
+
 
 
    		$req=$this->pdo->prepare('SELECT prenom,login,mdp,id_type FROM agent WHERE  login=:login AND mdp=:mdp ');
