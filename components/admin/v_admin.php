@@ -136,8 +136,8 @@ class VAdmin extends VBase {
                                      <td>Sexe 
                                        <select class="form-control" name="sexe_dogs" id="sexe_dogs'.$row['id_proprietaire'].'">
                                          <option value=""></option>
-                                         <option value="M">Mâle</option>
-                                         <option value="F">Femelle</option>
+                                         <option value="male">Mâle</option>
+                                         <option value="femelle">Femelle</option>
                                        </select>
                                       </td>
                                    </tr>
@@ -168,8 +168,8 @@ class VAdmin extends VBase {
                                       <td>Dressage mordant 
                                         <select class="form-control" name="mordant" id="mordant'.$row['id_proprietaire'].'">
                                           <option value=""></option>
-                                          <option value="O">oui</option>
-                                          <option value="N">non</option>
+                                          <option value="oui">oui</option>
+                                          <option value="non">non</option>
                                         </select>
                                       </td>
                                     </tr>
@@ -177,8 +177,8 @@ class VAdmin extends VBase {
                                       <td>Dangereux
                                         <select class="form-control" name="dangereux" id="dangereux'.$row['id_proprietaire'].'">
                                           <option value=""></option>
-                                          <option value="O">oui</option>
-                                          <option value="N">non</option>
+                                          <option value="oui">oui</option>
+                                          <option value="nom">non</option>
                                         </select>
                                       </td>
                                     </tr>
@@ -191,7 +191,7 @@ class VAdmin extends VBase {
 
                                                    foreach ($veterinaire as $key => $veto) {
 
-                                                         $html.=' <option  value='.$veto['id_veterinaire'].' >'.$veto['nom'].'</option>';
+                                                         $html.=' <option  value='.$veto['id_veterinaire'].' >'.$veto['nom_veto'].'</option>';
                             
                                                    }
                                           $html.='</select>
@@ -264,6 +264,9 @@ class VAdmin extends VBase {
                                     <tr>  
                                      <td id="id_proprietaire"'.$row['id_proprietaire'].'"> Autre période contactable<input class="form-control" type="text" placeholder=" Autre période contactable" name="autreDispo" id="autreDispo'.$row['id_proprietaire'].'" value="'.$row['autre_dispo'].'"></td>
                                     </tr>
+                                    <tr>  
+                                     <td id="id_proprietaire"'.$row['id_proprietaire'].'"> Nom du club<input class="form-control" type="text" placeholder=" Nom du club" name="nomClub" id="nomClub'.$row['id_proprietaire'].'" value="'.$row['nom_club'].'"></td>
+                                    </tr>
 
                                     
 
@@ -291,9 +294,10 @@ class VAdmin extends VBase {
                             </div>';
 
                                  $html.='<div id="listDogs'.$row['id_proprietaire'].'"></div>
-                                          <div id="listPdc'.$row['id_proprietaire'].'"></div>
+                                          
                                         
                                   </div>
+                                  <div id="listPdc'.$row['id_proprietaire'].'"></div>
 
                                   </div>';
 

@@ -13,7 +13,7 @@ public function ajout(){
 	$club=$this->model->club();
 	$proprietaire=$this->model->getlistPro();
 	$this->view->recherche();
-    $this->view->AddNewDogs($race,$club);
+    $this->view->AddNewDogs($club);
 }
 
 public function actif(){
@@ -63,10 +63,7 @@ public function nouvelUtilisateur(){
 	$this->view->nouvelUtilisateur();
 }
 
-public function listeCompleteChien(){
 
-	$this->view->listeCompleteChien();
-}
 
 
 

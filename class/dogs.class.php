@@ -37,10 +37,12 @@ public function __construct($dbPdo){
 
 	public function dogs(){
 		//$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.id_race,b.race,a.id_proprietaire,c.id_proprietaire 
-		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.date_naissance,a.puce_dogs,a.tatoo_dogs,a.sexe,a.detention,a.mordant,a.remarque,a.dangereux,a.id_race,b.race,a.id_veterinaire,a.id_proprietaire,b.race,a.id_proprietaire,c.id_proprietaire
+		$sql=('SELECT a.id_chien,a.nom,a.num_puce,a.date_naissance,a.puce_dogs,a.tatoo_dogs,a.sexe,a.detention,a.mordant,a.remarque,a.dangereux,a.id_race,b.race,a.id_veterinaire,d.nom_veto,a.id_proprietaire,b.race,a.id_proprietaire,c.id_proprietaire
 			FROM chien a
 			LEFT JOIN race b ON b.id_race = a.id_race
-			LEFT JOIN proprietaire c ON c.id_proprietaire = a.id_proprietaire');
+			LEFT JOIN proprietaire c ON c.id_proprietaire = a.id_proprietaire
+			LEFT JOIN veterinaire  d ON a.id_veterinaire = d.id_veterinaire');
+
 		
 			return $this->pdo->query($sql)->fetchAll();
 	}
@@ -73,8 +75,9 @@ public function __construct($dbPdo){
 
 
 	public function getListPro(){
-		$sql=('SELECT * 
-				FROM proprietaire
+		$sql=('SELECT a.id_proprietaire,a.nom,a.prenom,a.date_naissance,a.lieu_naissance,a.rue,a.numero,a.cp,a.ville,a.pays,a.mail,a.telephone,a.gsm,a.periode_dispo,a.autre_dispo,a.id_club,b.nom_club
+				FROM proprietaire a
+				LEFT JOIN club b ON b.id_club = a.id_club
 				WHERE actif="O" ORDER BY  nom DESC');
 		return $this->pdo->query($sql)->fetchAll();
 	}
@@ -95,6 +98,7 @@ public function __construct($dbPdo){
 		print_r($id);
 		$req=$this->pdo->exec('DELETE FROM chien WHERE id_proprietaire="'.$id.'"');
 		$req=$this->pdo->exec('DELETE FROM proprietaire WHERE id_proprietaire="'.$id.'"');
+		$req=$this->pdo->exec('DELETE FROM personne_de_contacte WHERE id_pdc="'.$id.'"');
 		
 	}
 
@@ -157,11 +161,13 @@ public function __construct($dbPdo){
 
 	
 
-	public function addNewDogs($tab){
+	public function addNewDogs($tab)
 
+	{
 
-		$req=$this->pdo->prepare('INSERT INTO proprietaire(nom,prenom,date_naissance,lieu_naissance,rue,numero,cp,ville,pays,mail,telephone,gsm,periode_dispo,autre_dispo) 
-			VALUES (:nom,:prenom,:date_naissance,:lieu_naissance,:rue,:numero,:cp,:ville,:pays,:mail,:telephone,:gsm,:periode_dispo,:autre_dispo)');
+			print_r($tab);
+		$req=$this->pdo->prepare('INSERT INTO proprietaire(nom,prenom,date_naissance,lieu_naissance,rue,numero,cp,ville,pays,mail,telephone,gsm,periode_dispo,autre_dispo,id_club) 
+			VALUES (:nom,:prenom,:date_naissance,:lieu_naissance,:rue,:numero,:cp,:ville,:pays,:mail,:telephone,:gsm,:periode_dispo,:autre_dispo,:id_club)');
 
 		
 
@@ -179,7 +185,7 @@ public function __construct($dbPdo){
 		$req->bindParam(':gsm',$tab['gsmMaster'],PDO::PARAM_STR);
 		$req->bindParam(':periode_dispo',$tab['periodeContact'],PDO::PARAM_STR);
 		$req->bindParam(':autre_dispo',$tab['autreDispo'],PDO::PARAM_STR);
-		//$req->bindParam(':id_club',$tab['club'],PDO::PARAM_INT);  
+		$req->bindParam(':id_club',$tab['club'],PDO::PARAM_INT);  
 
 		$req->execute();
 
@@ -296,23 +302,23 @@ public function __construct($dbPdo){
 		print_r($tab);
 
 		$req=$this->pdo->prepare('UPDATE chien 
-			SET nom=:nom,num_puce=:num_puce,sexe=:sexe,date_naissance=:date_naissance,puce_dogs=:puce_dogs,tatoo_dogs=:tatoo_dogs,detention=:detention,club=:club,club_adresse=:club_adresse,mordant=:mordant,veto=:veto,vetotel=:vetotel,remarques=:remarques WHERE id_chien=:id');
+			SET nom=:nom,date_naissance=:date_naissance,num_puce=:num_puce,sexe=:sexe,puce_dogs=:puce_dogs,tatoo_dogs=:tatoo_dogs,detention=:detention,mordant=:mordant,remarque=:remarque,dangereux=:dangereux WHERE id_chien=:id');
 
 		$req->bindParam(':id',$tab['id'],PDO::PARAM_INT);
 		$req->bindParam(':nom',$tab['nomDogs'],PDO::PARAM_STR);
+		$req->bindParam(':date_naissance',$tab['dateNaissance'],PDO::PARAM_STR);
 		$req->bindParam(':num_puce',$tab['numPuceDogs'],PDO::PARAM_STR);
 		$req->bindParam(':sexe',$tab['sexe_dogs'],PDO::PARAM_STR);
-		$req->bindParam(':date_naissance',$tab['dateNaissance'],PDO::PARAM_STR);
 		$req->bindParam(':puce_dogs',$tab['puceDogs'],PDO::PARAM_STR);
 		$req->bindParam(':tatoo_dogs',$tab['tatooDogs'],PDO::PARAM_STR);
 		$req->bindParam(':detention',$tab['detention'],PDO::PARAM_STR);
-		$req->bindParam(':club',$tab['club'],PDO::PARAM_STR);                   //delete
-		$req->bindParam(':club_adresse',$tab['clubAdresse'],PDO::PARAM_STR);    //delete
 		$req->bindParam(':mordant',$tab['mordant'],PDO::PARAM_STR);
-		$req->bindParam(':veto',$tab['veto'],PDO::PARAM_STR);                   //delete
-		$req->bindParam(':vetotel',$tab['vetoTel'],PDO::PARAM_STR);             //delete
-		$req->bindParam(':remarques',$tab['remarques'],PDO::PARAM_STR);
-		//$req->bindParam(':id_club',$tab['club'],PDO::PARAM_INT);  
+		$req->bindParam(':remarque',$tab['remarques'],PDO::PARAM_STR);
+		$req->bindParam(':dangereux',$tab['dangereux'],PDO::PARAM_STR);
+		$req->bindParam(':id_race',$tab['raceDogs'],PDO::PARAM_INT);
+		$req->bindParam(':id_veterinaire',$tab['veterinaire'],PDO::PARAM_INT);
+		$req->bindParam(':id_proprietaire',$tab['id'],PDO::PARAM_INT);
+		 
 
 		$req->execute();
 

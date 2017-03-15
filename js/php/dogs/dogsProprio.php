@@ -23,9 +23,9 @@ if(isset($_GET['id'])){
 	     <tr>Tatouage <input class="form-control" type="text"  id="tatooDogs'.$value['id_chien'].'" value="'.$value['tatoo_dogs'].'"></tr>
 	     <tr><h1><u>Divers</u></h1></tr>
 	     <tr>Lieu de détention <input class="form-control"  id="detention'.$value['id_chien'].'" type="text" value="'.$value['detention'].'"></tr>
-	     <tr>Club <input class="form-control" type="text" id="club'.$value['id_chien'].'" value="'.$value['club'].'"></tr>
-	     <tr>Adresse du club <input class="form-control" id="clubAdresse'.$value['id_chien'].'" type="text" value="'.$value['id_club'].'"></tr>
+	 
 	     <tr>Mordant <input class="form-control" type="text" id="mordant'.$value['id_chien'].'"  value="'.$value['mordant'].'"></tr>
+	     <tr>Vétérinaire <input class="form-control" type="text" id="veterinaire'.$value['id_chien'].'"  value="'.$value['nom_veto'].'"></tr>
 	     
 	     <tr><h1><u>Remarque(s)</u></h1></tr>
 
@@ -34,6 +34,7 @@ if(isset($_GET['id'])){
 
 	     <tr><img src="img/can.png" id="delete" onclick="desactDogs(\''.$value['id_chien'].'\',\''.$value['nom'].'\')">&nbsp;<tr>
 	     <tr><img src="img/edit.png" title="Modifier" id="modif" onclick="modifDogs(\''.$value['id_chien'].'\',\''.$value['nom'].'\')"></tr>
+	     <tr><td><a href="?component=admin&action=actif">Retour</a></td></tr>
 	     </table></div>';
 
     }

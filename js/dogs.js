@@ -61,9 +61,9 @@ function addNewDogs(){
 	var lieuNaissance = document.getElementById('lieuNaissance').value;
 	var periodeContact= document.getElementById('periodeContact').value;
 	var autreDispo = document.getElementById('autreDispo').value;
-	var club = document.getElementById('club'+id+'').value;
+	var club = document.getElementById('club').value;
 
-	
+	alert(club);
 
 	
 
@@ -88,6 +88,7 @@ function addNewDogs(){
 				lieuNaissance:lieuNaissance,
 				periodeContact:periodeContact,
 				autreDispo:autreDispo,
+				club:club,
 				
 			   
 			
@@ -188,12 +189,9 @@ alert("test");
 		var tatooDogs = document.getElementById('tatooDogs'+id+'').value;
 		var sexe_dogs = document.getElementById('sexe_dogs'+id+'').value;
 		var detention = document.getElementById('detention'+id+'').value;
-		
-		
 		var mordant = document.getElementById('mordant'+id+'').value;
 		var dangereux =document.getElementById('dangereux'+id+'').value;
 		var veterinaire = document.getElementById('veterinaire'+id+'').value;
-		
 		var remarques= document.getElementById('remarques'+id+'').value;
 		
 		
@@ -420,6 +418,7 @@ function modifField(id,nom){
 	var cpContact = document.getElementById('cpContact'+id+'').value;
 	var villeContact = document.getElementById('villeContact'+id+'').value;
 	var paysContact = document.getElementById('paysContact'+id+'').value;
+
 	
 
 	
@@ -537,12 +536,10 @@ function modifDogs(id){
 		var tatooDogs = document.getElementById('tatooDogs'+id+'').value;
 		var sexe_dogs = document.getElementById('sexe_dogs'+id+'').value;
 		var detention = document.getElementById('detention'+id+'').value;
-		var club = document.getElementById('club'+id+'').value;
-		var clubAdresse = document.getElementById('clubAdresse'+id+'').value;
 		var mordant = document.getElementById('mordant'+id+'').value;
-		var veto = document.getElementById('veto'+id+'').value;
-		var vetoTel = document.getElementById('vetoTel'+id+'').value;
-		var remarques = document.getElementById('remarques'+id+'').value;
+		var dangereux =document.getElementById('dangereux'+id+'').value;
+		var veterinaire = document.getElementById('veterinaire'+id+'').value;
+		var remarques= document.getElementById('remarques'+id+'').value;
 	
 
 
@@ -571,6 +568,7 @@ function modifDogs(id){
 						veto:veto,
 						vetoTel:vetoTel,
 						remarques:remarques,
+						veterinaire:veterinaire,
 
 					},
 
@@ -831,7 +829,7 @@ function nouvelUtilisateur(){
 			success:function(data){
                  alert('L\'ajout a bien été effectuée');
                 //console.log(data);
-                // window.location.href="?component=admin&action=actif";
+                 window.location.href="?component=admin&action=actif";
              },
              error : function(resultat, statut, erreur) { 
    				console.log(erreur);
