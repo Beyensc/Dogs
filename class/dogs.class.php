@@ -338,7 +338,7 @@ public function __construct($dbPdo){
  
    	public function connexion(){
    		$login=$_POST['login'];
-   		$mdp= $_POST['mdp'];
+   		$mdp= md5($_POST['mdp']);
 
 
 

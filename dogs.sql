@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 14 Mars 2017 à 20:23
+-- Généré le :  Mer 15 Mars 2017 à 21:06
 -- Version du serveur :  5.7.13-0ubuntu0.16.04.2
 -- Version de PHP :  7.0.15-0ubuntu0.16.04.4
 
@@ -43,7 +43,10 @@ CREATE TABLE `agent` (
 INSERT INTO `agent` (`id_agent`, `nom`, `prenom`, `matricule`, `login`, `mdp`, `id_type`) VALUES
 (2, 'Beyens', 'Clément', 123456, 'beyensc', 'clembey1991', 1),
 (3, 'beyens', 'pascal', 12345689, 'admin', '21232f297a57a5a743894a0e4a801fc3', 2),
-(4, 'beyens', 'clement', 123456789, 'Beyensc', 'cdff807c8f4e0b078045b454b3575af4', 1);
+(4, 'beyens', 'clement', 123456789, 'Beyensc', 'cdff807c8f4e0b078045b454b3575af4', 1),
+(5, 'jacques', 'albert', 132456, 'AlJ', 'cfa970af1c7913d4410b3c6975cf5c40', 2),
+(6, 'agent', 'jacque', 458976, 'agent', 'agent', 2),
+(7, 'dupont', 'jacque', 123546, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1);
 
 -- --------------------------------------------------------
 
@@ -56,14 +59,14 @@ CREATE TABLE `chien` (
   `nom` varchar(40) DEFAULT NULL,
   `date_naissance` varchar(25) DEFAULT NULL,
   `num_puce` varchar(10) DEFAULT NULL,
-  `sexe` char(1) DEFAULT NULL,
+  `sexe` char(7) DEFAULT NULL,
   `puce_dogs` varchar(25) DEFAULT NULL,
   `tatoo_dogs` varchar(25) DEFAULT NULL,
   `detention` varchar(50) DEFAULT NULL,
-  `mordant` varchar(1) DEFAULT NULL,
+  `mordant` varchar(3) DEFAULT NULL,
   `actif` char(1) DEFAULT 'O',
   `remarque` text,
-  `dangereux` char(1) DEFAULT NULL,
+  `dangereux` char(3) DEFAULT NULL,
   `id_race` int(11) DEFAULT NULL,
   `id_veterinaire` int(11) DEFAULT NULL,
   `id_proprietaire` int(11) NOT NULL
@@ -74,9 +77,11 @@ CREATE TABLE `chien` (
 --
 
 INSERT INTO `chien` (`id_chien`, `nom`, `date_naissance`, `num_puce`, `sexe`, `puce_dogs`, `tatoo_dogs`, `detention`, `mordant`, `actif`, `remarque`, `dangereux`, `id_race`, `id_veterinaire`, `id_proprietaire`) VALUES
-(1, 'est', '30/07/1991', '/', '/', '/', '/', '/', '/', 'O', '/', '/', 8, NULL, 1),
-(2, 'doug', '25/12/2016', '123654', 'M', '123584', '12569', 'jardin', 'N', 'O', 'ras', 'N', 10, 3, 1),
-(3, 'brutus', '05/07/2014', '1256487', 'F', '123564789', '123456', 'cave', 'O', 'O', NULL, 'N', 8, 2, 2);
+(2, 'doug', '25/12/2016', '123654', 'male', '123584', '12569', 'jardin', 'non', 'O', 'ras', 'non', 10, 3, 1),
+(3, 'brutus', '05/07/2014', '1256487', 'femelle', '123564789', '123456', 'cave', 'oui', 'O', NULL, 'non', 8, 2, 2),
+(4, 'basile', '20/09/2001', '12598', 'male', '45896', '41259', 'cuisine', 'non', 'O', NULL, 'non', 3, 2, 1),
+(5, 'junior', '06/08/2011', '7459', 'male', '/', '/', 'salon', 'non', 'O', NULL, 'non', 8, 4, 1),
+(6, 'yuna', '02/08/2012', '/', 'femelle', '/', '/', 'salle de bain', 'non', 'O', NULL, 'non', 6, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -129,7 +134,9 @@ CREATE TABLE `personne_de_contacte` (
 --
 
 INSERT INTO `personne_de_contacte` (`id_pdc`, `nom`, `prenom`, `telephone`, `gsm`, `rue`, `numero`, `cp`, `ville`, `pays`, `id_proprietaire`) VALUES
-(3, 'beyens', 'clement', '056998877', '0474885566', 'dragon', '56', 7700, 'mouqcron', 'bel', 2);
+(3, 'beyens', 'clement', '056998877', '0474885566', 'dragon', '56', 7700, 'mouqcron', 'bel', 2),
+(5, 'dupond', 'sarah', '056994478', '0474558972', 'du beauvoisinage', '45', 7700, 'mouscron', 'be', 1),
+(6, 'laurence', 'martens', '056884422', '0474996634', 'chene', '33', 7700, 'Mouscron', 'BE', 3);
 
 -- --------------------------------------------------------
 
@@ -176,8 +183,9 @@ CREATE TABLE `proprietaire` (
 --
 
 INSERT INTO `proprietaire` (`id_proprietaire`, `nom`, `prenom`, `date_naissance`, `lieu_naissance`, `telephone`, `gsm`, `actif`, `mail`, `rue`, `numero`, `cp`, `ville`, `pays`, `periode_dispo`, `autre_dispo`, `id_agent`, `id_club`) VALUES
-(1, 'Beyens', 'Clément', '2017-03-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL),
-(2, 'Beyens', 'Emilien', '2017-03-22', 'Mouscron', '', '', 'O', '/', 'du dragon', '113', 7700, 'Mouscron', 'BE', '', '', NULL, NULL);
+(1, 'Beyens', 'Clement', '2017-03-09', 'Mouscron', '/', '0474667069', 'O', 'beyens.c@gmail.com', 'dragon', '113', 7700, 'Mouscron', 'BE', '/', '/', 2, NULL),
+(2, 'Beyens', 'Emilien', '2017-03-22', 'Mouscron', '', '', 'O', '/', 'du dragon', '113', 7700, 'Mouscron', 'BE', '', '', NULL, NULL),
+(3, 'tibo', 'redoute', '30/12/1944', 'mouscron', '056998844', '0474112233', 'O', 'mou@gmail.com', 'chene', '33', 7700, 'Mouscron', 'BE', 'matin', '/', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -237,7 +245,7 @@ INSERT INTO `type` (`id_type`, `type`) VALUES
 
 CREATE TABLE `veterinaire` (
   `id_veterinaire` int(11) NOT NULL,
-  `nom` varchar(40) DEFAULT NULL,
+  `nom_veto` varchar(40) DEFAULT NULL,
   `telephone` varchar(25) DEFAULT NULL,
   `gsm` varchar(25) DEFAULT NULL,
   `rue` varchar(100) DEFAULT NULL,
@@ -251,7 +259,7 @@ CREATE TABLE `veterinaire` (
 -- Contenu de la table `veterinaire`
 --
 
-INSERT INTO `veterinaire` (`id_veterinaire`, `nom`, `telephone`, `gsm`, `rue`, `numero`, `cp`, `ville`, `pays`) VALUES
+INSERT INTO `veterinaire` (`id_veterinaire`, `nom_veto`, `telephone`, `gsm`, `rue`, `numero`, `cp`, `ville`, `pays`) VALUES
 (1, 'Centre Vétérinaire Vetofora', '056 33 39 85', NULL, ' Boulevard des Alliés', '228', 7700, 'Mouscron', 'BE'),
 (2, 'Mahieu Mélanie', '056 34 53 23', NULL, 'Rue de la Station', '27', 7700, 'Mouscron', 'BE'),
 (3, 'Daniel Radoux', '056 34 72 63', NULL, 'Rue du Nouveau Monde', '110', 7700, 'Mouscron', 'BE'),
@@ -333,12 +341,12 @@ ALTER TABLE `veterinaire`
 -- AUTO_INCREMENT pour la table `agent`
 --
 ALTER TABLE `agent`
-  MODIFY `id_agent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_agent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT pour la table `chien`
 --
 ALTER TABLE `chien`
-  MODIFY `id_chien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_chien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `club`
 --
@@ -348,12 +356,12 @@ ALTER TABLE `club`
 -- AUTO_INCREMENT pour la table `personne_de_contacte`
 --
 ALTER TABLE `personne_de_contacte`
-  MODIFY `id_pdc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pdc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `proprietaire`
 --
 ALTER TABLE `proprietaire`
-  MODIFY `id_proprietaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_proprietaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `race`
 --
