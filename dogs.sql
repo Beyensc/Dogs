@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mer 15 Mars 2017 à 21:06
+-- Généré le :  Jeu 16 Mars 2017 à 06:58
 -- Version du serveur :  5.7.13-0ubuntu0.16.04.2
 -- Version de PHP :  7.0.15-0ubuntu0.16.04.4
 
@@ -185,7 +185,7 @@ CREATE TABLE `proprietaire` (
 INSERT INTO `proprietaire` (`id_proprietaire`, `nom`, `prenom`, `date_naissance`, `lieu_naissance`, `telephone`, `gsm`, `actif`, `mail`, `rue`, `numero`, `cp`, `ville`, `pays`, `periode_dispo`, `autre_dispo`, `id_agent`, `id_club`) VALUES
 (1, 'Beyens', 'Clement', '2017-03-09', 'Mouscron', '/', '0474667069', 'O', 'beyens.c@gmail.com', 'dragon', '113', 7700, 'Mouscron', 'BE', '/', '/', 2, NULL),
 (2, 'Beyens', 'Emilien', '2017-03-22', 'Mouscron', '', '', 'O', '/', 'du dragon', '113', 7700, 'Mouscron', 'BE', '', '', NULL, NULL),
-(3, 'tibo', 'redoute', '30/12/1944', 'mouscron', '056998844', '0474112233', 'O', 'mou@gmail.com', 'chene', '33', 7700, 'Mouscron', 'BE', 'matin', '/', NULL, NULL);
+(3, 'tibo', 'redoute', '30/12/1944', 'mouscron', '056998844', '0474112233', 'N', 'mou@gmail.com', 'chene', '33', 7700, 'Mouscron', 'BE', 'matin', '/', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -346,7 +346,7 @@ ALTER TABLE `agent`
 -- AUTO_INCREMENT pour la table `chien`
 --
 ALTER TABLE `chien`
-  MODIFY `id_chien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_chien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT pour la table `club`
 --
@@ -361,7 +361,7 @@ ALTER TABLE `personne_de_contacte`
 -- AUTO_INCREMENT pour la table `proprietaire`
 --
 ALTER TABLE `proprietaire`
-  MODIFY `id_proprietaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_proprietaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `race`
 --

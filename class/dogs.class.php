@@ -248,7 +248,7 @@ public function __construct($dbPdo){
 		
 		print_r($tab);
 		$req=$this->pdo->prepare('INSERT INTO chien(nom,date_naissance,num_puce,sexe,puce_dogs,tatoo_dogs,detention,mordant,remarque,dangereux,id_race,id_veterinaire,id_proprietaire) 
-			VALUES (:nom,:date_naissance,:num_puce,:sexe,:puce_dogs,:tatoo_dogs,:detention,:mordant:remarque,:dangereux,:id_race,:id_veterinaire,:id_proprietaire)');
+			VALUES (:nom,:date_naissance,:num_puce,:sexe,:puce_dogs,:tatoo_dogs,:detention,:mordant,:remarque,:dangereux,:id_race,:id_veterinaire,:id_proprietaire)');
 		
 		$req->bindParam(':nom',$tab['nomDogs'],PDO::PARAM_STR);
 		$req->bindParam(':date_naissance',$tab['dateNaissance'],PDO::PARAM_STR);
